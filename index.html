@@ -14,9 +14,9 @@
         </div>
         <div class="nav-button-container">
             <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
-            <a href="#" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
-            <a href="#" class="contact-us-page mbtn-button">ติดต่อเรา</a>
-            <div href="#" class="nav-dropdown mbtn-button">
+            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
+            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
+            <div class="nav-dropdown mbtn-button">
                 <div class="nav-dropdown-toggle">เพิ่มเติม</div>
                 <div class="nav-dropdown-menu">
                     <a href="#">เมนูย่อย 1</a>
@@ -27,8 +27,8 @@
         </div>
         <div class="right-button-container">
             <div class="button-container">
-                <div class="tool-button nav-right-button">เครื่องมือ</div>
-                <div class="get-start-button nav-right-button nv2">เริ่มใช้งาน</div>
+                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
+                <a href="documentation-selector-page" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
             </div>
         </div>
     </div>
@@ -51,17 +51,131 @@
             <div class="left-container">
                 <div id="ready" class="tile-1-header">ยินดีต้อนรับสู่ FrontBasics</div>
                 <div class="title-1-paragraph">เว็บไซต์สื่อการเรียนรู้ HTML/CSS เบื้องต้น ที่รวมทั้งบทความ ตัวอย่างโค้ด แบบฝึกหัด ฟีเจอร์ Live Preview และโจทย์ท้าทาย (Challenge) พร้อมระบบ Leaderboard และ วิดีโอสื่อการสอน เพื่อช่วยให้ผู้เรียนเข้าใจได้ง่าย ฝึกปฏิบัติได้จริง และสร้างแรงบันดาลใจในการก้าวสู่การเป็นนักพัฒนาเว็บ</div>
-                <div class="tile-1-button">
+                <a href="Introduction" class="tile-1-button">
                     <img src="./asset/icon-image/main-home-page/right-arrow-icon.png" alt="right-arrow-icon" class="t1b-icon">
                     <div class="t1b-text">เริ่ม บทนำ Introduction</div>
-                </div>
+                </a>
             </div>
             
             <div class="right-container">
-                <!-- <img src="" alt="" class="t1b-icon"></img> -->
-                <div class="img-dummie">F</div>
+                <img width="100%" height="100%" src="./asset/background-image/main-home-page/tile-section-image-v2.jpg" alt="a-progarming-image" class="tile-image"></img>
             </div>
         </div>
     </div>
+
+    <!-- Chanllange Section -->
+    <div draggable="false" class="challange-section-container">
+        <div class="challange-header">แบบทดสอบท้าทาย</div>
+        <div class="cc-container">
+            <!-- HTML Challange Card -->
+            <a href="HTML-challange-Easy" class="challange-card">
+                <div class="cc-image-container">
+                    <img src="./asset/background-image/challange-background/Challange-bg-image-1.png" alt="challange-image-1" class="cc-image">
+                    <div class="cc-text-container">
+                        <div class="cc-text-top-container">
+                            <div class="challange-name-text">HTML</div>
+                            <div class="challange-text">Challenge</div>
+                        </div>
+                        <div class="cc-text-bottom-container">
+                            <div class="challange-dff-text">ระดับง่าย</div>
+                        </div>
+                        <div class="challange-hitbox"></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- CSS Challange Card -->
+            <a href="CSS-challange-medium" class="challange-card">
+                <div class="cc-image-container">
+                    <img src="./asset/background-image/challange-background/Challange-bg-image-2.jpg" alt="challange-image-1" class="cc-image">
+                    <div class="cc-text-container">
+                        <div class="cc-text-top-container">
+                            <div class="challange-name-text">CSS</div>
+                            <div class="challange-text">Challenge</div>
+                        </div>
+                        <div class="cc-text-bottom-container">
+                            <div class="challange-dff-text">ระดับปานกลาง</div>
+                        </div>
+                        <div class="challange-hitbox"></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- JS Challange Card -->
+            <a href="JS-challange-hard" class="challange-card">
+                <div class="cc-image-container">
+                    <img src="./asset/background-image/challange-background/Challange-bg-image-3.jpg" alt="challange-image-1" class="cc-image">
+                    <div class="cc-text-container">
+                        <div class="cc-text-top-container">
+                            <div class="challange-name-text">JS</div>
+                            <div class="challange-text">Challenge</div>
+                        </div>
+                        <div class="cc-text-bottom-container">
+                            <div class="challange-dff-text">ระดับยาก</div>
+                        </div>
+                        <div class="challange-hitbox"></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ALL Challange Card -->
+            <a href="all-challange-very-hard" class="challange-card">
+                <div class="cc-image-container">
+                    <img src="./asset/background-image/challange-background/skull-meme.gif" alt="challange-image-1" class="cc-image">
+                    <div class="cc-text-container">
+                        <div class="cc-text-top-container">
+                            <div class="challange-name-text">รวมมิตร</div>
+                            <div class="challange-text">Challenge</div>
+                        </div>
+                        <div class="cc-text-bottom-container">
+                            <div class="challange-dff-text">ระดับยากอย่างดี</div>
+                        </div>
+                        <div class="challange-hitbox"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <a href="leaderboard" class="view-leaderboard-button">ตารางอันดับ</a>
+    </div>
+
+    <!-- open soruce annoument section -->
+    <div class="osa-container">
+        <div class="osa-header-text">ประกาศ</div>
+        <div class="osa-paragraph-text">เว็บไซต์นี้ถูกพัฒนาในรูปแบบ Open Source ทุกคนสามารถเข้าถึง นำไปแก้ไข และมีส่วนร่วมในการพัฒนาต่อยอดได้อย่างอิสระ เพื่อสร้างชุมชนแห่งการเรียนรู้และแบ่งปันความรู้ด้านการพัฒนาเว็บร่วมกัน</div>
+        <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="osa-button-container">
+            <img src="./asset/icon-image/github-icon-black.png" alt="github-icon" class="osa-github-icon">
+            <div class="osa-button-text">GitHub Repository</div>
+        </a>
+    </div>
+
+    <!-- footer section -->
+    <div class="footer-container">
+        <div class="f-left-container">
+            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
+            <div class="footer-copyright">
+                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
+                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+            </div>
+        </div>
+        <div class="f-right-container">
+            <div class="footer-useful-link">
+                <div class="footer-button-container">
+                    <div class="fb-header">Useful Links</div>
+                    <a href="./index.html" class="fb">- หน้าหลัก</a>
+                    <a href="" class="fb">- เกี่ยวกับเรา</a>
+                    <a href="" class="fb">- ติดต่อเรา</a>
+                </div>
+            </div>
+            <div class="footer-media-link">
+                <div class="fb-header">Media Links</div>
+                <div class="footer-button-container">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
+                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
