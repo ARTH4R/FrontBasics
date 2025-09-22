@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrontBasics | หน้าหลัก</title>
-    <link rel="stylesheet" href="./main-home-page.css">
+    <link rel="stylesheet" href="./css/main-home-page.css">
 </head>
 <body>
+    <!-- nav bar section: when user scroll down navbar will follow user screen -->
+    <script>
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".nav-container");
+      const body = document.body;
+    
+      if (window.scrollY > 1) {
+        if (!navbar.classList.contains("fixed")) {
+          navbar.classList.add("fixed");
+          body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+        }
+      } else {
+        navbar.classList.remove("fixed");
+        body.style.marginTop = "0"; // reset when back to top
+      }
+    });
+    </script>
+    
+
     <!-- nav section  -->            
     <div class="nav-container">
         <div class="nav-logo-container">
@@ -28,7 +47,7 @@
         <div class="right-button-container">
             <div class="button-container">
                 <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
-                <a href="documentation-selector-page" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+                <a href="./html/learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
             </div>
         </div>
     </div>
