@@ -7,23 +7,24 @@
     <link rel="stylesheet" href="../css/learn-page.css">
 </head>
 <body>
-        <!-- nav bar section: when user scroll down navbar will follow user screen -->
-    <script>
+    <!-- Disable only this page because height too short -->
+    <!-- nav bar section: when user scroll down navbar will follow user screen -->
+    <!-- <script>
     window.addEventListener("scroll", function() {
-      const navbar = document.querySelector(".nav-container");
-      const body = document.body;
+        const navbar = document.querySelector(".nav-container");
+        const body = document.body;
     
-      if (window.scrollY > 1) {
+    if (window.scrollY > 1) {
         if (!navbar.classList.contains("fixed")) {
-          navbar.classList.add("fixed");
-          body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+            navbar.classList.add("fixed");
+            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
         }
-      } else {
-        navbar.classList.remove("fixed");
-        body.style.marginTop = "0"; // reset when back to top
-      }
+        } else {
+            navbar.classList.remove("fixed");
+            body.style.marginTop = "0"; // reset when back to top
+        }
     });
-    </script>
+    </script> -->
     
     <!-- nav section  -->            
     <div class="nav-container">
@@ -31,7 +32,7 @@
             <a href="index.html" class="logo-text">FrontBasics</a>
         </div>
         <div class="nav-button-container">
-            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
+            <a href="../index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
             <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
             <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
             <div class="nav-dropdown mbtn-button">
@@ -51,69 +52,105 @@
         </div>
     </div>
 
-    <div class="selector-container">
-        <div class="left-container">
-            <div class="selector-main-container">
-                <div class="se-top-container">
-                    <div class="se-header">เนื้อหาหลัก</div>
-                </div>
-                <div class="se-bottom-container">
-                    <div class="se-button-container">
-                        <div class="se-button">
-                            <div class="se-icon">
-                                <img src="" alt="block-Icon" class="se-icon-image">
-                            </div>
-                            <div class="se-text-container">
-                                <div class="se-button-header-text">บทนำ Introduction</div>
-                                <div class="se-button-paragraph-text">แนะนำโครงสร้างพื้นฐานของเว็บไซต์</div>
-                            </div>
-                        </div>
-
-                        <div class="se-button">
-                            <div class="se-icon">
-                                <img src="" alt="HTML-Icon" class="se-icon-image">
-                            </div>
-                            <div class="se-text-container">
-                                <div class="se-button-header-text">HTML พื้นฐาน</div>
-                                <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา HTML</div>
-                            </div>
-                        </div>
-
-                        <div class="se-button">
-                            <div class="se-icon">
-                                <img src="" alt="CSS-Icon" class="se-icon-image">
-                            </div>
-                            <div class="se-text-container">
-                                <div class="se-button-header-text">CSS พื้นฐาน</div>
-                                <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา CSS</div>
-                            </div>
-                        </div>
-
-                        <div class="se-button">
-                            <div class="se-icon">
-                                <img src="" alt="class-and-selection-Icon" class="se-icon-image">
-                            </div>
-                            <div class="se-text-container">
-                                <div class="se-button-header-text">Class และ Selection</div>
-                                <div class="se-button-paragraph-text">เรียนรู้การเลือกและจัดกลุ่ม element เพื่อการตกแต่งด้วย CSS</div>
-                            </div>
+    <!-- selector section -->
+    <div class="se-section-container">
+        <div class="selector-container">
+            <div class="left-container">
+                <div class="selector-main-container">
+                    <div class="se-top-container">
+                        <div class="se-header">เนื้อหาหลัก</div>
                     </div>
+                    <div class="se-bottom-container">
+                        <div class="se-button-container">
+                            <a href="INTRODUCTION" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/cube-icon-black.png" alt="block-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">บทนำ Introduction</div>
+                                    <div class="se-button-paragraph-text">แนะนำโครงสร้างพื้นฐานของเว็บไซต์</div>
+                                </div>
+                            </a>
+    
+                            <a href="HTML BASIC" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/html-icon-black.png" alt="HTML-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">HTML พื้นฐาน</div>
+                                    <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา HTML</div>
+                                </div>
+                            </a >
+    
+                            <a href="CSS BASIC" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/css-icon-black.png" alt="CSS-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">CSS พื้นฐาน</div>
+                                    <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา CSS</div>
+                                </div>
+                            </a >
+    
+                            <a href="Class And Selection" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/selection-icon-black.png" alt="class-and-selection-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">Class และ Selection</div>
+                                    <div class="se-button-paragraph-text">เรียนรู้การเลือกและจัดกลุ่ม element เพื่อการตกแต่งด้วย CSS</div>
+                                </div>
+                            </a >
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="selector-more-container">
+                    <div class="se-top-container">
+                        <div class="se-heder">เพิ่มเติม</div>
+                    </div>
+                    <div class="se-button-container">
+                            <a href="Hover And Effect" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/hover-icon-black.png" alt="block-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">Hover & Effects</div>
+                                    <div class="se-button-paragraph-text">สร้างเอฟเฟกต์ให้กับการใช้งานของผู้ใช้</div>
+                                </div>
+                            </a>
 
+                            <a href="JS BASIC" class="se-button">
+                                <div class="se-icon">
+                                    <div class="se-hover-line">-</div>
+                                    <img src="../asset/icon-image/java-script-icon-black.png" alt="block-Icon" class="se-icon-image">
+                                </div>
+                                <div class="se-text-container">
+                                    <div class="se-button-header-text">JavaScript พื้นฐาน</div>
+                                    <div class="se-button-paragraph-text">เริ่มต้นเรียนการเขียนคำสั่งและโปรแกรมเบื้องต้น</div>
+                                </div>
+                            </a>
+
+                            <div class="se-test-button">แบบทดสอบ</div>
+
+                    </div>
                 </div>
             </div>
-            <div class="selector-more-container">
-                <div class="se-heder">เพิ่มเติม</div>
+    
+            <div class="right-container">
+                <div class="dummy">Dummy GIF</div>
             </div>
-        </div>
-
-        <div class="right-container">
-            
         </div>
     </div>
 
 
 
-     <!-- footer section -->
+    <!-- footer section -->
     <div class="footer-container">
         <div class="f-left-container">
             <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>

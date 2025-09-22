@@ -10,18 +10,18 @@
     <!-- nav bar section: when user scroll down navbar will follow user screen -->
     <script>
     window.addEventListener("scroll", function() {
-      const navbar = document.querySelector(".nav-container");
-      const body = document.body;
+        const navbar = document.querySelector(".nav-container");
+        const body = document.body;
     
-      if (window.scrollY > 1) {
+    if (window.scrollY > 1) {
         if (!navbar.classList.contains("fixed")) {
-          navbar.classList.add("fixed");
-          body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+            navbar.classList.add("fixed");
+            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
         }
-      } else {
+    } else {
         navbar.classList.remove("fixed");
         body.style.marginTop = "0"; // reset when back to top
-      }
+    }
     });
     </script>
     
@@ -29,7 +29,7 @@
     <!-- nav section  -->            
     <div class="nav-container">
         <div class="nav-logo-container">
-            <a href="index.html" class="logo-text">FrontBasics</a>
+            <a href="./index.html" class="logo-text">FrontBasics</a>
         </div>
         <div class="nav-button-container">
             <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
