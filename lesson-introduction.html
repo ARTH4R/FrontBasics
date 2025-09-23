@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | บทนำ Introduction </title>
+    <link rel="stylesheet" href="./lesson-introduction.css">
+</head>
+<body>
+    <!-- Disable only this page because height too short -->
+    <!-- nav bar section: when user scroll down navbar will follow user screen -->
+    <!-- <script>
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".nav-container");
+        const body = document.body;
+    
+    if (window.scrollY > 1) {
+        if (!navbar.classList.contains("fixed")) {
+            navbar.classList.add("fixed");
+            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+        }
+        } else {
+            navbar.classList.remove("fixed");
+            body.style.marginTop = "0"; // reset when back to top
+        }
+    });
+    </script> -->
+
+    <!-- nav section  -->            
+    <div class="nav-container">
+        <div class="nav-logo-container">
+            <a href="./index.html" class="logo-text">FrontBasics</a>
+        </div>
+        <div class="nav-button-container">
+            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
+            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
+            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
+            <div class="nav-dropdown mbtn-button">
+                <div class="nav-dropdown-toggle">เพิ่มเติม</div>
+                <div class="nav-dropdown-menu">
+                    <a href="#">เมนูย่อย 1</a>
+                    <a href="#">เมนูย่อย 2</a>
+                    <a href="#">เมนูย่อย 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-button-container">
+            <div class="button-container">
+                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
+                <a href="./learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </div>
+
+<!-- lesson section -->
+<div class="lesson-container">
+    <!-- Left Sidebar -->
+    <div class="slider-bar-container">
+        <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">สิ่งที่ควรรู้ก่อนเริ่ม</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#overview">โครงสร้างเว็บไซต์</a></div>
+                <div class="lct-paragraph-text"><a href="#html-section">HTML คือ?</a></div>
+                <div class="lct-paragraph-text"><a href="#css-section">CSS คือ?</a></div>
+                <div class="lct-paragraph-text"><a href="#js-section">JavaScript คือ?</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">เครื่องมือที่จำเป็น</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#ide-section">IDE (Visual Studio Code)</a></div>
+                <div class="lct-paragraph-text"><a href="#browser-section">Browser สำหรับดู Previews</a></div>
+                <div class="lct-paragraph-text"><a href="#extensions-section">Extensions ที่จำเป็น</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content-container">
+        <div id="overview" class="ml-header-container">
+            <div class="main-lesson-header">Introduction: ก้าวแรกสู่การสร้างเว็บไซต์</div>
+            <div class="main-lesson-paragraph">ความรู้เบื้องต้นก่อน เริ่มต้นสร้างเว็บไซต์ด้วยภาษา HTML และ CSS รวมถึงส่วนประก่อบของเว็บไซต์</div>
+        </div>
+
+        <div class="mcc-paragraph">
+            เว็บไซต์ประกอบด้วยหลายส่วนสำคัญที่ผู้เริ่มต้นควรเข้าใจ  
+            <b>HTML</b> (HyperText Markup Language) ใช้สร้างโครงสร้างของเว็บไซต์ เปรียบเสมือนกระดูกของร่างกาย กำหนดว่าหน้าเว็บมีหัวเรื่อง ย่อหน้า รูปภาพ หรือลิงก์ไปหน้าอื่นอย่างไร  
+            <b>CSS</b> (Cascading Style Sheets) ใช้ตกแต่งเว็บไซต์ เช่น การจัดสี ขนาดตัวอักษร การจัดตำแหน่ง และทำให้เว็บสวยงามและอ่านง่าย  
+            <b>Web Browser</b> คือโปรแกรมที่ใช้แสดงผลหน้าเว็บ เช่น Google Chrome, Microsoft Edge หรือ Firefox  
+            และยังมี <b>เครื่องมือช่วยพัฒนา (IDE)</b> เช่น Visual Studio Code ที่ช่วยให้เขียนโค้ดสะดวก พร้อมส่วนเสริมต่าง ๆ ที่ช่วยตรวจสอบข้อผิดพลาดและจัดรูปแบบโค้ดอัตโนมัติ  
+            การเข้าใจองค์ประกอบเหล่านี้เป็นพื้นฐานสำคัญก่อนเริ่มสร้างเว็บไซต์จริง
+        </div>
+
+        <!-- Example YouTube Embed -->
+        <div class="yt-embed-container">
+            <iframe class="embed-video" src="https://www.youtube.com/embed/erEgovG9WBs" 
+            title="Basic HTML & CSS Intro" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div id="html-section" class="mcc-paragraph">
+            <h2>HTML คืออะไร?</h1>
+            <b>HTML</b> (HyperText Markup Language) คือ <b>ภาษามาตรฐานที่ใช้สร้างโครงสร้างของเว็บไซต์</b>  
+            เปรียบเสมือน <b>กระดูกของร่างกาย</b> เพราะเป็นโครงสร้างพื้นฐานที่กำหนดว่าเว็บเพจมีหัวเรื่อง ย่อหน้า รูปภาพ หรือลิงก์ไปหน้าอื่นอย่างไร  
+            HTML จะบอกเว็บเบราว์เซอร์ว่าหน้าเว็บของเรามีส่วนประกอบอะไรบ้าง เช่น  
+            <b>หัวเรื่อง (Heading)</b> สำหรับแสดงชื่อหรือหัวข้อของเนื้อหา,  
+            <b>ย่อหน้า (Paragraph)</b> สำหรับข้อความ,  
+            <b>รูปภาพ (Image)</b> สำหรับแสดงภาพ,  
+            และ <b>ลิงก์ (Link)</b> สำหรับเชื่อมไปยังหน้าเว็บอื่น ๆ  
+            การสร้างเว็บไซต์ด้วย HTML จึงเหมือนการสร้างโครงสร้างของอาคาร ที่กำหนดตำแหน่งและประเภทของแต่ละส่วน ก่อนจะตกแต่งให้สวยงามด้วย CSS และเพิ่มความโต้ตอบด้วย JavaScript
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/html-illustration.png" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/html-illustration.png" class="main-lesson-image-description">html-illustration.png</a>
+        </div>
+
+        <div id="css-section" class="mcc-paragraph">
+            <h2>CSS คืออะไร?</h2>
+            <b>CSS</b> (Cascading Style Sheets) คือ <b>ภาษาที่ใช้ตกแต่งเว็บไซต์</b>  
+            เปรียบเสมือน <b>ผิวหนังและเสื้อผ้าของร่างกาย</b> เพราะช่วยทำให้เว็บไซต์ดูสวยงามและน่าใช้งาน  
+            CSS ใช้กำหนดลักษณะต่าง ๆ ของ HTML เช่น  
+            <b>สีตัวอักษร</b>, <b>ขนาดและรูปแบบตัวอักษร</b>, <b>การจัดตำแหน่ง</b>, และ <b>การจัดวางส่วนประกอบ</b>  
+            การใช้ CSS ทำให้เว็บไซต์ไม่เพียงมีโครงสร้างเท่านั้น แต่ยังดูเป็นระเบียบสวยงามและใช้งานง่าย
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="main-lesson-image-description">css-illustration.jpg</a>
+        </div>
+
+        <div id="js-section" class="mcc-paragraph">
+            <h2>JavaScript คืออะไร?</h2>
+            <b>JavaScript</b> คือ <b>ภาษาที่ใช้เพิ่มความโต้ตอบและฟังก์ชันให้เว็บไซต์</b>  
+            เปรียบเสมือน <b>กล้ามเนื้อและการเคลื่อนไหวของร่างกาย</b> เพราะทำให้เว็บไซต์สามารถตอบสนองต่อผู้ใช้ได้  
+            JavaScript ใช้สร้างความสามารถต่าง ๆ เช่น  
+            <b>คลิกปุ่มแล้วแสดงข้อความ</b>, <b>เลื่อนหน้าลื่นไหล</b>, <b>ตรวจสอบข้อมูลที่ผู้ใช้กรอก</b>, หรือ <b>เปลี่ยนเนื้อหาบนหน้าเว็บแบบทันที</b>  
+            การใช้ JavaScript ทำให้เว็บไซต์ไม่ใช่แค่หน้าเว็บนิ่ง ๆ แต่สามารถมีฟังก์ชันโต้ตอบและใช้งานได้อย่างเต็มที่
+        </div>
+        
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/js-illustration.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/js-illustration.jpg" class="main-lesson-image-description">js-illustration.jpg</a>
+        </div>
+        
+        <br>
+        <br>
+
+        <div class="ml-header-container">
+            <div class="main-lesson-header">Introduction: เครื่องมือที่จำเป็น</div>
+            <div class="main-lesson-paragraph"> ก่อนเริ่มสร้างเว็บไซต์ ผู้เรียนควรเข้าใจเครื่องมือพื้นฐานที่ช่วยให้งานสะดวกและรวดเร็ว</div>
+        </div>
+
+        <div id="ide-section" class="mcc-paragraph">
+            <h2>IDE (Visual Studio Code)</h2>
+            <b>IDE</b> หรือ <b>Integrated Development Environment</b> คือเครื่องมือที่ช่วยในการเขียนและจัดการโค้ดให้สะดวกขึ้น  
+            <b>Visual Studio Code (VS Code)</b> เป็น IDE ยอดนิยมสำหรับผู้เริ่มต้นและมืออาชีพ  
+            VS Code มีฟีเจอร์ช่วยเขียนโค้ด เช่น การเน้นสีคำสั่ง, การเติมคำสั่งอัตโนมัติ, การจัดรูปแบบโค้ด และส่วนเสริม (Extensions) ที่ช่วยตรวจสอบข้อผิดพลาดหรือเพิ่มความสามารถพิเศษ  
+            การใช้ VS Code ทำให้การพัฒนาเว็บไซต์ง่ายและรวดเร็วมากขึ้น
+        </div>
+        
+        <div class="mcc-paragraph">
+            <h2>ดาวน์โหลด Visual Studio Code</h2>
+            <p>
+                คุณสามารถดาวน์โหลด <b>Visual Studio Code (VS Code)</b> ได้ฟรีจากเว็บไซต์ทางการ
+            </p>
+            <a href="https://code.visualstudio.com/" target="_blank" class="download-btn">ดาวน์โหลด VS Code</a>
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="main-lesson-image-description">vscode-image.jpg</a>
+        </div>
+        
+        <div id="browser-section" class="mcc-paragraph">
+            <h2>Web Browser คืออะไร?</h2>
+            <b>Web Browser</b> คือโปรแกรมที่ใช้ <b>เปิดและแสดงเว็บไซต์</b>  
+            เช่น Google Chrome, Mozilla Firefox, Microsoft Edge หรือ Safari  
+            Browser ทำหน้าที่แปลงโค้ด HTML, CSS และ JavaScript ให้กลายเป็นหน้าเว็บที่ผู้ใช้เห็นและสามารถโต้ตอบได้  
+            นอกจากนี้ Browser ยังมีเครื่องมือสำหรับนักพัฒนา (Developer Tools) ที่ช่วยตรวจสอบข้อผิดพลาด, ดูโค้ด, และปรับแต่งเว็บไซต์ได้แบบเรียลไทม์
+        </div>
+        
+        <div id="extensions-section" class="mcc-paragraph extension-section">
+            <h2>ดาวน์โหลด Extensions ใน Visual Studio Code</h2>
+            <p>
+                คุณสามารถติดตั้ง Extensions ที่แนะนำได้จาก <b>Marketplace ของ VS Code</b>  
+                ลิงก์ตัวอย่าง:
+            </p>
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>ชื่อ Extension</th>
+                            <th>ลิงก์ดาวน์โหลด</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HTML CSS Support</td>
+                            <td><a href="https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css" target="_blank" class="extension-link">ดาวน์โหลด</a></td>
+                        </tr>
+                        <tr>
+                            <td>Prettier – Code Formatter</td>
+                            <td><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank" class="extension-link">ดาวน์โหลด</a></td>
+                        </tr>
+                        <tr>
+                            <td>Live Server</td>
+                            <td><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" class="extension-link">ดาวน์โหลด</a></td>
+                        </tr>
+                        <tr>
+                            <td>Color Highlight</td>
+                            <td><a href="https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight" target="_blank" class="extension-link">ดาวน์โหลด</a></td>
+                        </tr>
+                        <tr>
+                            <td>IntelliSense for CSS class names</td>
+                            <td><a href="https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css" target="_blank" class="extension-link">ดาวน์โหลด</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <p >
+                คลิกลิงก์แล้วติดตั้ง Extensions เพื่อช่วยพัฒนาเว็บไซต์ได้สะดวกและรวดเร็ว
+            </p>
+        </div>
+        <div class="after-lesson-quiz-container">
+            <a href="quiz-introduction" class="after-lesson-quiz-button"> < - แบบทดสอบหลังบทเรียน - ></a>
+        </div>
+        <div class="next-lesson-button-container">
+            <a href="./lesson-html-basics.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : HTML Basics ></a>
+        </div>
+    </div>
+    <!-- <div class="uti-bar-container">
+        QOL section
+    </div> -->
+</div>
+
+
+
+
+
+    <!-- footer section -->
+    <div class="footer-container">
+        <div class="f-left-container">
+            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
+            <div class="footer-copyright">
+                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
+                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+            </div>
+        </div>
+        <div class="f-right-container">
+            <div class="footer-useful-link">
+                <div class="footer-button-container">
+                    <div class="fb-header">Useful Links</div>
+                    <a href="./index.html" class="fb">- หน้าหลัก</a>
+                    <a href="" class="fb">- เกี่ยวกับเรา</a>
+                    <a href="" class="fb">- ติดต่อเรา</a>
+                </div>
+            </div>
+            <div class="footer-media-link">
+                <div class="fb-header">Media Links</div>
+                <div class="footer-button-container">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
+                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

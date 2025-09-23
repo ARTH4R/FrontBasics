@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | บทนำ Introduction </title>
+    <link rel="stylesheet" href="./lesson-basics-class-and-selection.css">
+</head>
+<body>
+    <!-- Disable only this page because height too short -->
+    <!-- nav bar section: when user scroll down navbar will follow user screen -->
+    <!-- <script>
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".nav-container");
+        const body = document.body;
+    
+    if (window.scrollY > 1) {
+        if (!navbar.classList.contains("fixed")) {
+            navbar.classList.add("fixed");
+            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+        }
+        } else {
+            navbar.classList.remove("fixed");
+            body.style.marginTop = "0"; // reset when back to top
+        }
+    });
+    </script> -->
+
+    <!-- nav section  -->            
+    <div class="nav-container">
+        <div class="nav-logo-container">
+            <a href="./index.html" class="logo-text">FrontBasics</a>
+        </div>
+        <div class="nav-button-container">
+            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
+            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
+            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
+            <div class="nav-dropdown mbtn-button">
+                <div class="nav-dropdown-toggle">เพิ่มเติม</div>
+                <div class="nav-dropdown-menu">
+                    <a href="#">เมนูย่อย 1</a>
+                    <a href="#">เมนูย่อย 2</a>
+                    <a href="#">เมนูย่อย 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-button-container">
+            <div class="button-container">
+                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
+                <a href="./learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </div>
+
+<!-- lesson section -->
+    <div class="lesson-container">
+<div class="slider-bar-container">
+        <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">สิ่งที่จะเรียนรู้</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#overview">Class และ Selectors คืออะไร?</a></div>
+                <div class="lct-paragraph-text"><a href="#class-section">CSS Class</a></div>
+                <div class="lct-paragraph-text"><a href="#id-section">CSS ID</a></div>
+                <div class="lct-paragraph-text"><a href="#selectors-section">Basic Selectors</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">Selectors ขั้นสูง</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#descendant-section">Descendant Selectors</a></div>
+                <div class="lct-paragraph-text"><a href="#child-section">Child Selectors</a></div>
+                <div class="lct-paragraph-text"><a href="#pseudo-section">Pseudo Selectors</a></div>
+                <div class="lct-paragraph-text"><a href="#attribute-section">Attribute Selectors</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">การใช้งานจริง</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#naming-section">การตั้งชื่อ Class</a></div>
+                <div class="lct-paragraph-text"><a href="#multiple-section">Multiple Classes</a></div>
+                <div class="lct-paragraph-text"><a href="#specificity-section">Specificity</a></div>
+                <div class="lct-paragraph-text"><a href="#best-practices-section">Best Practices</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content-container">
+        <div id="overview" class="ml-header-container">
+            <div class="main-lesson-header">CSS Class และ Selectors เบื้องต้น</div>
+            <div class="main-lesson-paragraph">เรียนรู้การใช้ Class และ Selectors ต่างๆ เพื่อเลือกและตกแต่ง HTML Elements อย่างแม่นยำ</div>
+        </div>
+
+        <div class="mcc-paragraph">
+            <b>CSS Selectors</b> คือเครื่องมือที่ใช้ <b>เลือก HTML Elements</b> ที่เราต้องการตกแต่ง  
+            <b>Class</b> และ <b>ID</b> เป็น Selectors ที่สำคัญที่สุด เพราะช่วยให้เราสามารถ <b>เลือกเป้าหมายได้อย่างแม่นยำ</b>  
+            การเข้าใจ Selectors ทำให้เราสามารถสร้าง CSS ที่ <b>มีประสิทธิภาพ จัดระเบียบง่าย และบำรุงรักษาสะดวก</b>  
+            Selectors เป็นหัวใจสำคัญของการเขียน CSS ที่ดี
+        </div>
+
+        <div id="class-section" class="mcc-paragraph">
+            <h2>CSS Class - การใช้งานพื้นฐาน</h2>
+            <b>Class</b> คือ attribute ใน HTML ที่ใช้จัดกลุ่ม Elements เพื่อให้สามารถตกแต่งพร้อมกันได้  
+            <b>ใน HTML:</b> &lt;div class="highlight"&gt;เนื้อหา&lt;/div&gt;  
+            <b>ใน CSS:</b> .highlight { background-color: yellow; }
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>HTML</th>
+                        <th>CSS</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;p class="red-text"&gt;ข้อความสีแดง&lt;/p&gt;</td>
+                        <td>.red-text { color: red; }</td>
+                        <td>ข้อความจะเป็นสีแดง</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;div class="box"&gt;กล่อง&lt;/div&gt;</td>
+                        <td>.box { border: 1px solid black; }</td>
+                        <td>กล่องจะมีเส้นขอบสีดำ</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;h2 class="title"&gt;หัวเรื่อง&lt;/h2&gt;</td>
+                        <td>.title { font-size: 24px; }</td>
+                        <td>หัวเรื่องจะมีขนาด 24px</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ข้อดีของ Class:</b>  
+            - ใช้ได้หลายครั้งในหน้าเดียว  
+            - จัดกลุ่ม Elements ที่มีลักษณะเดียวกัน  
+            - สามารถใช้หลาย Class ใน Element เดียวได้
+        </div>
+
+        <div id="id-section" class="mcc-paragraph">
+            <h2>CSS ID - การใช้งานเฉพาะ</h2>
+            <b>ID</b> คือ attribute ที่ใช้ระบุ Element ใดเฉพาะ ห้ามซ้ำกันในหน้าเดียว  
+            <b>ใน HTML:</b> &lt;div id="header"&gt;ส่วนหัว&lt;/div&gt;  
+            <b>ใน CSS:</b> #header { background-color: blue; }
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>HTML</th>
+                        <th>CSS</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;div id="main-content"&gt;เนื้อหาหลัก&lt;/div&gt;</td>
+                        <td>#main-content { width: 80%; }</td>
+                        <td>ใช้แค่ครั้งเดียวในหน้า</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;nav id="navigation"&gt;เมนู&lt;/nav&gt;</td>
+                        <td>#navigation { position: fixed; }</td>
+                        <td>เหมาะสำหรับส่วนสำคัญ</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;footer id="page-footer"&gt;ส่วนท้าย&lt;/footer&gt;</td>
+                        <td>#page-footer { margin-top: 50px; }</td>
+                        <td>ID มีความสำคัญสูงกว่า Class</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ข้อแตกต่าง Class vs ID:</b>  
+            - <b>Class:</b> ใช้ได้หลายครั้ง เขียนด้วย . (จุด)  
+            - <b>ID:</b> ใช้ได้แค่ครั้งเดียว เขียนด้วย # (hash) มี Specificity สูงกว่า
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="main-lesson-image-description">CSS Class และ ID Selectors</a>
+        </div>
+
+        <div id="selectors-section" class="mcc-paragraph">
+            <h2>Basic Selectors ประเภทต่างๆ</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ประเภท Selector</th>
+                        <th>รูปแบบ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>การใช้งาน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Universal Selector</td>
+                        <td>*</td>
+                        <td>* { margin: 0; }</td>
+                        <td>เลือกทุก Element</td>
+                    </tr>
+                    <tr>
+                        <td>Element Selector</td>
+                        <td>tagname</td>
+                        <td>p { color: black; }</td>
+                        <td>เลือกตาม HTML Tag</td>
+                    </tr>
+                    <tr>
+                        <td>Class Selector</td>
+                        <td>.classname</td>
+                        <td>.button { padding: 10px; }</td>
+                        <td>เลือกตาม class attribute</td>
+                    </tr>
+                    <tr>
+                        <td>ID Selector</td>
+                        <td>#idname</td>
+                        <td>#logo { width: 100px; }</td>
+                        <td>เลือกตาม id attribute</td>
+                    </tr>
+                    <tr>
+                        <td>Group Selector</td>
+                        <td>selector1, selector2</td>
+                        <td>h1, h2 { font-weight: bold; }</td>
+                        <td>เลือกหลาย Element พร้อมกัน</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="descendant-section" class="mcc-paragraph">
+            <h2>Descendant Selectors (ตัวเลือกลูกหลาน)</h2>
+            ใช้เลือก Elements ที่อยู่ภายใน Element อื่น (ไม่ว่าจะลึกแค่ไหน)  
+            <b>รูปแบบ:</b> parent descendant  
+            <b>เขียนด้วย:</b> เว้นวรรคระหว่าง Selectors
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>CSS Selector</th>
+                        <th>HTML ที่ตรงกัน</th>
+                        <th>คำอธิบาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>div p { color: red; }</td>
+                        <td>&lt;div&gt;&lt;p&gt;ข้อความ&lt;/p&gt;&lt;/div&gt;</td>
+                        <td>p ที่อยู่ใน div ใดๆ</td>
+                    </tr>
+                    <tr>
+                        <td>.container img { width: 100%; }</td>
+                        <td>&lt;div class="container"&gt;&lt;img&gt;&lt;/div&gt;</td>
+                        <td>img ที่อยู่ใน element ที่มี class container</td>
+                    </tr>
+                    <tr>
+                        <td>nav a { text-decoration: none; }</td>
+                        <td>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a&gt;ลิงก์&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;</td>
+                        <td>a ที่อยู่ใน nav (ลึกแค่ไหนก็ได้)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="child-section" class="mcc-paragraph">
+            <h2>Child Selectors (ตัวเลือกลูกตรง)</h2>
+            ใช้เลือก Elements ที่เป็นลูกตรง (direct child) เท่านั้น  
+            <b>รูปแบบ:</b> parent > child  
+            <b>เขียนด้วย:</b> เครื่องหมาย > ระหว่าง Selectors
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>CSS Selector</th>
+                        <th>HTML ที่ตรงกัน</th>
+                        <th>HTML ที่ไม่ตรงกัน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ul > li { list-style: none; }</td>
+                        <td>&lt;ul&gt;&lt;li&gt;รายการ&lt;/li&gt;&lt;/ul&gt;</td>
+                        <td>&lt;ul&gt;&lt;div&gt;&lt;li&gt;รายการ&lt;/li&gt;&lt;/div&gt;&lt;/ul&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>.menu > a { font-weight: bold; }</td>
+                        <td>&lt;div class="menu"&gt;&lt;a&gt;ลิงก์&lt;/a&gt;&lt;/div&gt;</td>
+                        <td>&lt;div class="menu"&gt;&lt;p&gt;&lt;a&gt;ลิงก์&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="pseudo-section" class="mcc-paragraph">
+            <h2>Pseudo Selectors (ตัวเลือกเสมือน)</h2>
+            ใช้เลือก Elements ตามสถานะหรือตำแหน่งพิเศษ  
+            <b>Pseudo-classes:</b> ตามสถานะ (:hover, :active, :focus)  
+            <b>Pseudo-elements:</b> ตามส่วนประกอบ (::before, ::after)
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Pseudo Selector</th>
+                        <th>ตัวอย่าง</th>
+                        <th>คำอธิบาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>:hover</td>
+                        <td>a:hover { color: red; }</td>
+                        <td>เมื่อเมาส์วางบนลิงก์</td>
+                    </tr>
+                    <tr>
+                        <td>:active</td>
+                        <td>button:active { background: gray; }</td>
+                        <td>เมื่อกำลังคลิกปุ่ม</td>
+                    </tr>
+                    <tr>
+                        <td>:focus</td>
+                        <td>input:focus { border: 2px solid blue; }</td>
+                        <td>เมื่อ focus ที่ input field</td>
+                    </tr>
+                    <tr>
+                        <td>:first-child</td>
+                        <td>li:first-child { font-weight: bold; }</td>
+                        <td>รายการแรกในลิสต์</td>
+                    </tr>
+                    <tr>
+                        <td>:nth-child(n)</td>
+                        <td>tr:nth-child(2n) { background: lightgray; }</td>
+                        <td>แถวคู่ในตาราง</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="attribute-section" class="mcc-paragraph">
+            <h2>Attribute Selectors (ตัวเลือกตาม Attribute)</h2>
+            ใช้เลือก Elements ตาม attributes ที่มี
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>รูปแบบ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>คำอธิบาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[attribute]</td>
+                        <td>input[required] { border: 1px solid red; }</td>
+                        <td>input ที่มี attribute required</td>
+                    </tr>
+                    <tr>
+                        <td>[attribute="value"]</td>
+                        <td>input[type="email"] { background: lightblue; }</td>
+                        <td>input ที่ type เป็น email</td>
+                    </tr>
+                    <tr>
+                        <td>[attribute^="value"]</td>
+                        <td>a[href^="https"] { color: green; }</td>
+                        <td>ลิงก์ที่ขึ้นต้นด้วย https</td>
+                    </tr>
+                    <tr>
+                        <td>[attribute$="value"]</td>
+                        <td>a[href$=".pdf"] { font-weight: bold; }</td>
+                        <td>ลิงก์ที่ลงท้ายด้วย .pdf</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="naming-section" class="mcc-paragraph">
+            <h2>การตั้งชื่อ Class ที่ดี</h2>
+            <b>หลักการตั้งชื่อ:</b>  
+            - ใช้ชื่อที่<b>อธิบายความหมาย</b>มากกว่าลักษณะ  
+            - ใช้ <b>kebab-case</b> (คำต่อด้วย -)  
+            - หลีกเลี่ยงชื่อที่เฉพาะเจาะจงเกินไป  
+            - ใช้ชื่อที่สั้น แต่เข้าใจง่าย
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>❌ ไม่ควรใช้</th>
+                        <th>✅ ควรใช้</th>
+                        <th>เหตุผล</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>class="red-text"</td>
+                        <td>class="error-message"</td>
+                        <td>อธิบายความหมายมากกว่าสี</td>
+                    </tr>
+                    <tr>
+                        <td>class="big_button"</td>
+                        <td>class="primary-button"</td>
+                        <td>ใช้ kebab-case และความหมาย</td>
+                    </tr>
+                    <tr>
+                        <td>class="div1"</td>
+                        <td>class="sidebar"</td>
+                        <td>ชื่อที่มีความหมายชัดเจน</td>
+                    </tr>
+                    <tr>
+                        <td>class="very-very-long-class-name-for-button"</td>
+                        <td>class="btn-submit"</td>
+                        <td>สั้น กระชับ เข้าใจง่าย</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="multiple-section" class="mcc-paragraph">
+            <h2>การใช้หลาย Classes</h2>
+            Element เดียวสามารถมีได้หลาย Classes โดยคั่นด้วยเว้นวรรค  
+            <b>HTML:</b> &lt;div class="box red large"&gt;กล่องสีแดงขนาดใหญ่&lt;/div&gt;  
+            <b>CSS:</b> .box { border: 1px solid; } .red { color: red; } .large { font-size: 20px; }
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>HTML</th>
+                        <th>CSS ที่ใช้งานได้</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&lt;p class="text highlight"&gt;</td>
+                        <td>.text { font-size: 16px; } .highlight { background: yellow; }</td>
+                        <td>ข้อความขนาด 16px พื้นหลังเหลือง</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;button class="btn primary large"&gt;</td>
+                        <td>.btn { padding: 10px; } .primary { background: blue; } .large { font-size: 18px; }</td>
+                        <td>ปุ่มสีน้ำเงิน ขนาดใหญ่ มี padding</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="specificity-section" class="mcc-paragraph">
+            <h2>Specificity (ลำดับความสำคัญ)</h2>
+            เมื่อมี CSS Rules หลายตัวชี้ไปยัง Element เดียวกัน Browser จะใช้ Rule ที่มี Specificity สูงสุด
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Selector</th>
+                        <th>Specificity Score</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Inline style</td>
+                        <td>1000</td>
+                        <td>style="color: red;"</td>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>100</td>
+                        <td>#header { color: blue; }</td>
+                    </tr>
+                    <tr>
+                        <td>Class, Attribute, Pseudo-class</td>
+                        <td>10</td>
+                        <td>.highlight, [type="text"], :hover</td>
+                    </tr>
+                    <tr>
+                        <td>Element, Pseudo-element</td>
+                        <td>1</td>
+                        <td>p, ::before</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>การคำนวณ:</b>  
+            - <code>#header .nav a:hover</code> = 100 + 10 + 1 + 10 = 121  
+            - <code>.menu li a</code> = 10 + 1 + 1 = 12  
+            - Rule แรกจะชนะ เพราะมี Specificity สูงกว่า
+        </div>
+
+        <div id="best-practices-section" class="mcc-paragraph">
+            <h2>Best Practices</h2>
+            <b>แนวทางปฏิบัติที่ดี:</b>  
+            - <b>ใช้ Class มากกว่า ID</b> เพื่อความยืดหยุ่น  
+            - <b>หลีกเลี่ยง !important</b> ถ้าไม่จำเป็น  
+            - <b>เขียน CSS ที่อ่านง่าย</b> และมี comment อธิบาย  
+            - <b>จัดกลุ่ม Selectors</b> ที่มี properties เดียวกัน  
+            - <b>ใช้ Specificity ต่ำ</b> เพื่อให้แก้ไขง่าย  
+            - <b>ตั้งชื่อ Class</b> ให้สื่อความหมาย  
+            
+            <b>ตัวอย่างการเขียนที่ดี:</b>  
+            <code>
+            /* Navigation styles */  
+            .nav { list-style: none; }  
+            .nav-item { display: inline-block; }  
+            .nav-link { text-decoration: none; }  
+            .nav-link:hover { color: #007bff; }
+            </code>
+        </div>
+
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="main-lesson-image-description">ตัวอย่างการเขียน CSS Selectors</a>
+        </div>
+
+
+        <div class="after-lesson-quiz-container">
+            <a href="quiz-css-selectors" class="after-lesson-quiz-button"> < - แบบทดสอบหลังบทเรียน - ></a>
+        </div>
+        <div class="next-lesson-button-container">
+            <a href="./lesson-css-layout.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : CSS Layout ></a>
+        </div>
+        </div>
+    <!-- <div class="uti-bar-container">
+        QOL section
+    </div> -->
+</div>
+
+    <!-- footer section -->
+    <div class="footer-container">
+        <div class="f-left-container">
+            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
+            <div class="footer-copyright">
+                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
+                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+            </div>
+        </div>
+        <div class="f-right-container">
+            <div class="footer-useful-link">
+                <div class="footer-button-container">
+                    <div class="fb-header">Useful Links</div>
+                    <a href="./index.html" class="fb">- หน้าหลัก</a>
+                    <a href="" class="fb">- เกี่ยวกับเรา</a>
+                    <a href="" class="fb">- ติดต่อเรา</a>
+                </div>
+            </div>
+            <div class="footer-media-link">
+                <div class="fb-header">Media Links</div>
+                <div class="footer-button-container">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
+                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

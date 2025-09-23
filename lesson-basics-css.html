@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | บทนำ Introduction </title>
+    <link rel="stylesheet" href="./lesson-basics-html.css">
+</head>
+<body>
+    <!-- Disable only this page because height too short -->
+    <!-- nav bar section: when user scroll down navbar will follow user screen -->
+    <!-- <script>
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".nav-container");
+        const body = document.body;
+    
+    if (window.scrollY > 1) {
+        if (!navbar.classList.contains("fixed")) {
+            navbar.classList.add("fixed");
+            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
+        }
+        } else {
+            navbar.classList.remove("fixed");
+            body.style.marginTop = "0"; // reset when back to top
+        }
+    });
+    </script> -->
+
+    <!-- nav section  -->            
+    <div class="nav-container">
+        <div class="nav-logo-container">
+            <a href="./index.html" class="logo-text">FrontBasics</a>
+        </div>
+        <div class="nav-button-container">
+            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
+            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
+            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
+            <div class="nav-dropdown mbtn-button">
+                <div class="nav-dropdown-toggle">เพิ่มเติม</div>
+                <div class="nav-dropdown-menu">
+                    <a href="#">เมนูย่อย 1</a>
+                    <a href="#">เมนูย่อย 2</a>
+                    <a href="#">เมนูย่อย 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-button-container">
+            <div class="button-container">
+                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
+                <a href="./learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </div>
+
+<!-- lesson section -->
+    <div class="lesson-container">
+           <!-- Left Sidebar -->
+    <div class="slider-bar-container">
+        <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">สิ่งที่จะเรียนรู้</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#overview">CSS คืออะไร?</a></div>
+                <div class="lct-paragraph-text"><a href="#syntax-section">หลักไวยากรณ์</a></div>
+                <div class="lct-paragraph-text"><a href="#selectors-section">Selectors</a></div>
+                <div class="lct-paragraph-text"><a href="#properties-section">Properties พื้นฐาน</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">วิธีการใช้งาน</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#methods-section">3 วิธีเขียน CSS</a></div>
+                <div class="lct-paragraph-text"><a href="#cascade-section">Cascading</a></div>
+                <div class="lct-paragraph-text"><a href="#specificity-section">Specificity</a></div>
+                <div class="lct-paragraph-text"><a href="#box-model-section">Box Model</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">Properties สำคัญ</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#text-section">Text Properties</a></div>
+                <div class="lct-paragraph-text"><a href="#color-section">Color Properties</a></div>
+                <div class="lct-paragraph-text"><a href="#layout-section">Layout Properties</a></div>
+                <div class="lct-paragraph-text"><a href="#spacing-section">Spacing Properties</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content-container">
+        <div id="overview" class="ml-header-container">
+            <div class="main-lesson-header">CSS พื้นฐาน: การตกแต่งเว็บไซต์</div>
+            <div class="main-lesson-paragraph">เรียนรู้หลักการ ทฤษฎี และการใช้งาน CSS เพื่อสร้างเว็บไซต์ที่สวยงาม</div>
+        </div>
+
+        <div class="mcc-paragraph">
+            <b>CSS</b> (Cascading Style Sheets) คือ <b>ภาษาสำหรับตกแต่งเว็บไซต์</b> ที่ทำงานร่วมกับ HTML  
+            หาก HTML เป็น <b>โครงสร้าง</b> ของเว็บไซต์ CSS ก็เป็น <b>การตกแต่ง</b> ที่ทำให้เว็บไซต์ดูสวยงามและใช้งานง่าย  
+            CSS ช่วยกำหนด <b>สี ฟอนต์ ขนาด ตำแหน่ง และเลย์เอาท์</b> ของ HTML Elements  
+            หลักการสำคัญของ CSS คือการ <b>แยกเนื้อหาออกจากการตกแต่ง</b> ทำให้จัดการและบำรุงรักษาง่าย
+        </div>
+
+        <div id="syntax-section" class="mcc-paragraph">
+            <h2>หลักไวยากรณ์ CSS</h2>
+            CSS ประกอบด้วย <b>Selector</b> และ <b>Declaration Block</b> ที่มี Properties และ Values
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ส่วนประกอบ</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Selector</td>
+                        <td>เลือก HTML Element ที่ต้องการตกแต่ง</td>
+                        <td>h1, .class, #id</td>
+                    </tr>
+                    <tr>
+                        <td>Property</td>
+                        <td>คุณสมบัติที่ต้องการเปลี่ยน</td>
+                        <td>color, font-size, margin</td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>ค่าของ Property</td>
+                        <td>red, 16px, 10px</td>
+                    </tr>
+                    <tr>
+                        <td>Declaration</td>
+                        <td>Property + Value</td>
+                        <td>color: red;</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>รูปแบบ:</b> <code>selector { property: value; }</code>  
+            <b>ตัวอย่าง:</b> <code>h1 { color: blue; font-size: 24px; }</code>
+        </div>
+
+        <div id="methods-section" class="mcc-paragraph">
+            <h2>3 วิธีการเขียน CSS</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>วิธีการ</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง</th>
+                        <th>ข้อดี/ข้อเสีย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Inline CSS</td>
+                        <td>เขียนใน HTML Tag โดยตรง</td>
+                        <td>&lt;h1 style="color: red;"&gt;หัวเรื่อง&lt;/h1&gt;</td>
+                        <td>เร็ว แต่ยากจัดการ</td>
+                    </tr>
+                    <tr>
+                        <td>Internal CSS</td>
+                        <td>เขียนใน &lt;style&gt; ในส่วน &lt;head&gt;</td>
+                        <td>&lt;style&gt; h1 { color: red; } &lt;/style&gt;</td>
+                        <td>เฉพาะหน้า ใช้ได้กับหน้าเดียว</td>
+                    </tr>
+                    <tr>
+                        <td>External CSS</td>
+                        <td>เขียนในไฟล์ .css แยกต่างหาก</td>
+                        <td>&lt;link rel="stylesheet" href="style.css"&gt;</td>
+                        <td>ใช้ซ้ำได้ จัดการง่าย (แนะนำ)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="main-lesson-image-description">CSS Illustration</a>
+        </div>
+
+        <div id="selectors-section" class="mcc-paragraph">
+            <h2>CSS Selectors (ตัวเลือก)</h2>
+            Selectors คือวิธีการเลือก HTML Elements ที่ต้องการตกแต่ง
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ประเภท Selector</th>
+                        <th>รูปแบบ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>คำอธิบาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Element Selector</td>
+                        <td>tagname</td>
+                        <td>h1 { color: red; }</td>
+                        <td>เลือกทุก tag ประเภทนั้น</td>
+                    </tr>
+                    <tr>
+                        <td>Class Selector</td>
+                        <td>.classname</td>
+                        <td>.highlight { background: yellow; }</td>
+                        <td>เลือกตาม class attribute</td>
+                    </tr>
+                    <tr>
+                        <td>ID Selector</td>
+                        <td>#idname</td>
+                        <td>#header { font-size: 30px; }</td>
+                        <td>เลือกตาม id attribute (ใช้แค่ครั้งเดียว)</td>
+                    </tr>
+                    <tr>
+                        <td>Universal Selector</td>
+                        <td>*</td>
+                        <td>* { margin: 0; }</td>
+                        <td>เลือกทุก element</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="cascade-section" class="mcc-paragraph">
+            <h2>Cascading และ Inheritance</h2>
+            <b>Cascading</b> หมายถึงการที่ CSS Rules มีลำดับความสำคัญ และสามารถทับซ้อนกันได้  
+            <b>ลำดับความสำคัญ (จากมากไปน้อย):</b>  
+            1. Inline styles (style="...")  
+            2. IDs (#id)  
+            3. Classes (.class), attributes, pseudo-classes  
+            4. Elements (h1, p, div)  
+            
+            <b>Inheritance:</b> บาง Properties สืบทอดจาก Parent Element เช่น font-family, color  
+            <b>ไม่สืบทอด:</b> Properties เกี่ยวกับ layout เช่น margin, padding, border
+        </div>
+
+        <div id="specificity-section" class="mcc-paragraph">
+            <h2>Specificity (ความจำเพาะ)</h2>
+            เมื่อมี CSS Rules หลายตัวชี้ไปยัง Element เดียวกัน Browser จะใช้ Rule ที่มี Specificity สูงสุด
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Selector</th>
+                        <th>Specificity Score</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Inline style</td>
+                        <td>1000</td>
+                        <td>style="color: red;"</td>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>100</td>
+                        <td>#header</td>
+                    </tr>
+                    <tr>
+                        <td>Class</td>
+                        <td>10</td>
+                        <td>.highlight</td>
+                    </tr>
+                    <tr>
+                        <td>Element</td>
+                        <td>1</td>
+                        <td>h1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="box-model-section" class="mcc-paragraph">
+            <h2>CSS Box Model</h2>
+            ทุก HTML Element ถือว่าเป็น <b>"กล่อง"</b> ที่ประกอบด้วย 4 ส่วน:  
+            <b>1. Content:</b> เนื้อหาจริง (ข้อความ, รูปภาพ)  
+            <b>2. Padding:</b> พื้นที่ว่างรอบเนื้อหา (ภายในกล่อง)  
+            <b>3. Border:</b> เส้นขอบของกล่อง  
+            <b>4. Margin:</b> พื้นที่ว่างรอบกล่อง (ภายนอกกล่อง)  
+            
+            <b>ขนาดรวม = Content + Padding + Border</b> (Margin ไม่นับ)
+        </div>
+
+        <div id="text-section" class="mcc-paragraph">
+            <h2>Text Properties</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>font-family</td>
+                        <td>ประเภทฟอนต์</td>
+                        <td>"Arial", "Kanit", sans-serif</td>
+                    </tr>
+                    <tr>
+                        <td>font-size</td>
+                        <td>ขนาดฟอนต์</td>
+                        <td>16px, 1.2em, 120%</td>
+                    </tr>
+                    <tr>
+                        <td>font-weight</td>
+                        <td>ความหนาของฟอนต์</td>
+                        <td>normal, bold, 400, 700</td>
+                    </tr>
+                    <tr>
+                        <td>text-align</td>
+                        <td>การจัดตำแหน่งข้อความ</td>
+                        <td>left, center, right, justify</td>
+                    </tr>
+                    <tr>
+                        <td>line-height</td>
+                        <td>ความสูงของบรรทัด</td>
+                        <td>1.5, 24px, 150%</td>
+                    </tr>
+                    <tr>
+                        <td>text-decoration</td>
+                        <td>การตกแต่งข้อความ</td>
+                        <td>none, underline, line-through</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="color-section" class="mcc-paragraph">
+            <h2>Color Properties</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>color</td>
+                        <td>สีข้อความ</td>
+                        <td>red, #FF0000, rgb(255,0,0)</td>
+                    </tr>
+                    <tr>
+                        <td>background-color</td>
+                        <td>สีพื้นหลัง</td>
+                        <td>blue, #0000FF, rgba(0,0,255,0.5)</td>
+                    </tr>
+                    <tr>
+                        <td>background-image</td>
+                        <td>รูปภาพพื้นหลัง</td>
+                        <td>url("image.jpg")</td>
+                    </tr>
+                    <tr>
+                        <td>opacity</td>
+                        <td>ความโปร่งใส</td>
+                        <td>0.5, 0.8 (0 = โปร่งใส, 1 = ทึบ)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>รูปแบบสี:</b>  
+            - <b>ชื่อสี:</b> red, blue, green  
+            - <b>Hex:</b> #FF0000 (แดง), #00FF00 (เขียว)  
+            - <b>RGB:</b> rgb(255, 0, 0) (แดง)  
+            - <b>RGBA:</b> rgba(255, 0, 0, 0.5) (แดงโปร่งใส 50%)
+        </div>
+
+        <div id="layout-section" class="mcc-paragraph">
+            <h2>Layout Properties</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>display</td>
+                        <td>ลักษณะการแสดงผลของ Element</td>
+                        <td>block, inline, none, flex</td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td>ความกว้าง</td>
+                        <td>300px, 50%, auto</td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>ความสูง</td>
+                        <td>200px, 50vh, auto</td>
+                    </tr>
+                    <tr>
+                        <td>position</td>
+                        <td>การจัดตำแหน่ง</td>
+                        <td>static, relative, absolute, fixed</td>
+                    </tr>
+                    <tr>
+                        <td>float</td>
+                        <td>การลอยของ Element</td>
+                        <td>left, right, none</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="spacing-section" class="mcc-paragraph">
+            <h2>Spacing Properties (Box Model)</h2>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>margin</td>
+                        <td>พื้นที่ว่างภายนอก Element</td>
+                        <td>10px, 10px 20px, auto</td>
+                    </tr>
+                    <tr>
+                        <td>padding</td>
+                        <td>พื้นที่ว่างภายใน Element</td>
+                        <td>15px, 10px 20px 15px 5px</td>
+                    </tr>
+                    <tr>
+                        <td>border</td>
+                        <td>เส้นขอบ</td>
+                        <td>1px solid black</td>
+                    </tr>
+                    <tr>
+                        <td>border-radius</td>
+                        <td>มุมโค้ง</td>
+                        <td>5px, 10px 20px</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>การเขียนแบบย่อ:</b>  
+            - <b>1 ค่า:</b> margin: 10px; (ทุกด้าน)  
+            - <b>2 ค่า:</b> margin: 10px 20px; (บน-ล่าง ซ้าย-ขวา)  
+            - <b>4 ค่า:</b> margin: 10px 20px 15px 5px; (บน ขวา ล่าง ซ้าย)
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+            <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="main-lesson-image-description">ตัวอย่างการเขียน CSS ใน VS Code</a>
+        </div>
+
+
+        <div class="after-lesson-quiz-container">
+            <a href="quiz-css-basics" class="after-lesson-quiz-button"> < - แบบทดสอบหลังบทเรียน - ></a>
+        </div>
+        <div class="next-lesson-button-container">
+            <a href="./lesson-basics-class-and-selection.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : Class and Selection ></a>
+        </div>
+    </div>
+    <!-- <div class="uti-bar-container">
+        QOL section
+    </div> -->
+</div>
+
+    <!-- footer section -->
+    <div class="footer-container">
+        <div class="f-left-container">
+            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
+            <div class="footer-copyright">
+                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
+                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+            </div>
+        </div>
+        <div class="f-right-container">
+            <div class="footer-useful-link">
+                <div class="footer-button-container">
+                    <div class="fb-header">Useful Links</div>
+                    <a href="./index.html" class="fb">- หน้าหลัก</a>
+                    <a href="" class="fb">- เกี่ยวกับเรา</a>
+                    <a href="" class="fb">- ติดต่อเรา</a>
+                </div>
+            </div>
+            <div class="footer-media-link">
+                <div class="fb-header">Media Links</div>
+                <div class="footer-button-container">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
+                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
