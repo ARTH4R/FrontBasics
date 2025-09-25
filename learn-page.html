@@ -8,25 +8,9 @@
     <link rel="stylesheet" href="./main-css-framework.css">
 </head>
 <body>
-    <!-- Disable only this page because height too short -->
-    <!-- nav bar section: when user scroll down navbar will follow user screen -->
-    <!-- <script>
-    window.addEventListener("scroll", function() {
-        const navbar = document.querySelector(".nav-container");
-        const body = document.body;
-    
-    if (window.scrollY > 1) {
-        if (!navbar.classList.contains("fixed")) {
-            navbar.classList.add("fixed");
-            body.style.marginTop = navbar.offsetHeight + "px"; // push content down
-        }
-        } else {
-            navbar.classList.remove("fixed");
-            body.style.marginTop = "0"; // reset when back to top
-        }
-    });
-    </script> -->
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/tooltip.js"></script>
+
     <!-- nav section  -->            
     <div class="nav-container">
         <div class="nav-logo-container">
@@ -137,7 +121,7 @@
                                 </div>
                             </a>
 
-                            <div class="se-test-button">แบบทดสอบ</div>
+                            <a href="./before-after-learn.html" class="se-test-button">แบบทดสอบก่อน - หลังเรียนรู้</a>
 
                     </div>
                 </div>
@@ -146,6 +130,10 @@
             <div class="right-container">
                 <div class="dummy">Dummy GIF</div>
             </div>
+        </div>
+
+        <div class="lower-container">
+
         </div>
     </div>
 

@@ -1,4 +1,26 @@
 /* lesson container section */
+.path-container {
+    width: 100%;
+    display: flex;
+    font-family: "Prompt", sans-serif;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    background-color: white; /* ป้องกัน see-through */
+    transition: top 0.3s ease; /* เพิ่ม animation เล็กน้อย */
+    z-index: 1000; /* ให้อยู่เหนือ content */
+}
+.path-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.path-text1 {
+    margin-left: 2rem;
+}
+.pt:hover { 
+    text-decoration: underline; 
+}
 .lesson-container {
     width: 100%;
     height: auto;
@@ -22,7 +44,6 @@
     height: auto;
     box-sizing: border-box;
     padding: 1rem;
-    margin-top: 2rem;
     font-family: "Prompt", sans-serif;
 }
 .main-content-container {
@@ -54,6 +75,7 @@
 }
 .lct-header-text { font-size: 1.2rem; font-weight: 500; }
 .lct-paragraph-text { margin-left: 0.3rem; font-size: 1rem; color: #555; }
+.lct-paragraph-text:hover { color: #000; cursor: pointer; text-decoration: underline; }
 
 .ml-header-container {
     margin-bottom: 1.5rem;
@@ -82,13 +104,27 @@
 }
 .main-lesson-image { max-width: 617px; height: 300px; }
 .main-lesson-image-description {
-    margin-top: 0.5rem;
     font-size: 0.8rem;
     text-align: center;
-    padding: 0.4rem;
     border-radius: 0.2rem;
 }
-.main-lesson-image-description:hover { background-color: #0078d4; color: white; }
+.focus-image-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-top: 0.8rem;
+    padding: 0.1rem;
+    border-radius: 0.2rem;
+}
+.focus-image-container:hover { background-color: rgba(0, 0, 0, 0.147); }
+.focus-image-container:hover .focus-icon { transition: 0.2s ease-in-out; opacity: 100; }
+.focus-icon {
+    opacity: 0;
+    margin-left: 0.5rem;
+    width: 15px;
+    height: 15px;
+}
+
 .yt-embed-container {
     display: flex;
     flex-direction: column;

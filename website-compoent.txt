@@ -1,0 +1,9 @@
+Image section
+    <div class="main-lesson-image-container">
+        <img src="#" alt="lesson-image" class="main-lesson-image">
+
+        <a href="#" class="focus-image-container">
+            <span class="main-lesson-image-description">#-image.png</span>
+            <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+        </a>
+    </div>
