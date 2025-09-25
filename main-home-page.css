@@ -18,7 +18,7 @@
     filter: brightness(0.5);
 }
 .canvas-container {
-    margin-top: 13rem;
+    margin-top: 12rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -30,12 +30,21 @@
     text-align: center;
     z-index: 100;
 }
+.hero-header {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+.hero-subheader {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
 .hero-button {
     margin-top: 1rem;
     color: #fff;
     border: 2px solid #fff;
     padding: 0.8rem 3rem;
-    font-size: 1.1rem;
+    font-size: 1.8rem;
     font-family: "Prompt", sans-serif;
     text-decoration: none;
     font-weight: light;
@@ -81,12 +90,12 @@
 }
 
 .tile-1-header {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #333;
 }
 .title-1-paragraph {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #555;
     line-height: 1.5;
     margin-bottom: 1rem; /* Added margin */
@@ -219,12 +228,12 @@
     text-align: center;
 }
 .osa-header-text {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 400;
     margin-bottom: 1rem; /* Added margin */
 }
 .osa-paragraph-text {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     max-width: 700px;
     line-height: 1.6;
     color: #ccc;
