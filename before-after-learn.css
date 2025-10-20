@@ -1,15 +1,116 @@
 .quiz-selection-container {
     display: flex;
+    width: 100%;
+    height: auto;
     flex-direction: column;
     align-items: center;
-    margin-top: 2rem;
+    font-family: "Prompt", sans-serif;
+    justify-content: center;
+}
+.quiz-container-header {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 .quiz-button-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
     width: 100%;
     height: auto;
-    gap: 1.5rem;
+}
+.qbb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    max-width: 900px;
+    padding: 1rem;
+    background: #fff;
+    transition: background 0.3s ease;
+}
+/* hover background */
+
+.qbb:hover { background-color: #DBDBDB  ; cursor: pointer; }
+.qbb:hover .line-on-hover {
+    opacity: 1;
+}
+.qbb:hover .leader-button-container {
+    opacity: 100%;
+}
+.qbb-text-container {
+    margin-left: 1rem;
+    width: 70%;
+    text-align: left;
+}
+.qbb-th {
+    font-weight: 500;
+    font-size: 1rem;
+}.qbb-tp {
+    font-size: 0.8rem;
+    color: #555;
+}
+.quiz-icon {
+    width: 40px;
+    height: 40px;
+}
+/* ปุ่ม container */
+.hitbox-container {
+    display: flex;
+    transition: opacity 0.3s ease;
+}
+/* โผล่มาตอน hover ที่ qbb */
+.qbb:hover .hitbox-container {
+    opacity: 1;
+    pointer-events: auto;
+}
+/* ปุ่ม "เริ่มทำ" */
+.qbb-hitbox {
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: 1px solid black;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+/* ปุ่ม hover */
+.qbb-hitbox:hover {
+    background: #fff;
+    color: black;
+    border: 1px solid black;
+}
+/* leader button */
+.leader-button-container {
+    opacity: 0;
+    margin-right: 0.2rem;
+    width: 36px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.leader-button-container:hover {
+    background: #555;
+}
+.leader-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(1); /* ให้เป็นสีขาวบนปุ่มดำ */
+}
+.line-on-hover {
+    width: 5px;
+    height: 40px;
+    opacity: 0;
+    background-color: black;
+    transition: 0.2s ease-in-out;
+}
+.text-warn {
+    color: rgb(114, 114, 114);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
 }

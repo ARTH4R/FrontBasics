@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | หน้าหลัก</title>
+    <link rel="stylesheet" href="./main-css-framework.css">
+    <link rel="stylesheet" href="./BAL-framework.css">
+</head>
+<body>
+
+    <!-- nav section  -->            
+    <div class="nav-container">
+        <div class="nav-logo-container">
+            <a href="./index.html" class="logo-text">FrontBasics</a>
+        </div>
+        <div class="nav-button-container">
+            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
+            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
+            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
+            <div class="nav-dropdown mbtn-button">
+                <div class="nav-dropdown-toggle">เพิ่มเติม</div>
+                <div class="nav-dropdown-menu">
+                    <a href="#">เมนูย่อย 1</a>
+                    <a href="#">เมนูย่อย 2</a>
+                    <a href="#">เมนูย่อย 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-button-container">
+            <div class="button-container">
+                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
+                <a href="./learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- quiz section -->
+    <div class="quiz-container">
+        <div class="quiz-content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <!-- 20 Questions -->
+            <!-- ✅ ข้อ 1 -->
+            <div class="question-container active" data-question="0">
+                <div class="question-number">คำถามที่ 1 จาก 20</div>
+                <div class="question-text">HTML ย่อมาจากอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">High Tech Modern Language</div>
+                    <div class="option" data-answer="1">HyperText Markup Language</div>
+                    <div class="option" data-answer="2">Home Tool Markup Language</div>
+                    <div class="option" data-answer="3">Hyperlink and Text Markup Language</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 2 -->
+            <div class="question-container" data-question="1">
+                <div class="question-number">คำถามที่ 2 จาก 20</div>
+                <div class="question-text">เว็บเบราว์เซอร์ใช้ HTML เพื่ออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">เก็บข้อมูลในฐานข้อมูล</div>
+                    <div class="option" data-answer="1">ประมวลผลข้อมูล</div>
+                    <div class="option" data-answer="2">แสดงผลเนื้อหาเว็บไซต์</div>
+                    <div class="option" data-answer="3">สร้างแอนิเมชัน</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 3 -->
+            <div class="question-container" data-question="2">
+                <div class="question-number">คำถามที่ 3 จาก 20</div>
+                <div class="question-text">ไฟล์ HTML มักจะมีนามสกุลอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">.txt</div>
+                    <div class="option" data-answer="1">.doc</div>
+                    <div class="option" data-answer="2">.web</div>
+                    <div class="option" data-answer="3">.html หรือ .htm</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 4 -->
+            <div class="question-container" data-question="3">
+                <div class="question-number">คำถามที่ 4 จาก 20</div>
+                <div class="question-text">HTML Tag คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">คำสั่งที่ใช้กำหนดโครงสร้างและรูปแบบของเนื้อหา</div>
+                    <div class="option" data-answer="1">ข้อความธรรมดา</div>
+                    <div class="option" data-answer="2">รูปภาพ</div>
+                    <div class="option" data-answer="3">ไฟล์เสียง</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 5 -->
+            <div class="question-container" data-question="4">
+                <div class="question-number">คำถามที่ 5 จาก 20</div>
+                <div class="question-text">HTML Element ประกอบด้วยอะไรบ้าง?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">เฉพาะ Content เท่านั้น</div>
+                    <div class="option" data-answer="1">Opening tag, Content, และ Closing tag</div>
+                    <div class="option" data-answer="2">เฉพาะ Tag เท่านั้น</div>
+                    <div class="option" data-answer="3">เฉพาะ Attribute เท่านั้น</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 6 -->
+            <div class="question-container" data-question="5">
+                <div class="question-number">คำถามที่ 6 จาก 20</div>
+                <div class="question-text">CSS ย่อมาจากอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">Computer Style System</div>
+                    <div class="option" data-answer="1">Creative Style Sheets</div>
+                    <div class="option" data-answer="2">Cascading Style Sheets</div>
+                    <div class="option" data-answer="3">Colorful Style System</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 7 -->
+            <div class="question-container" data-question="6">
+                <div class="question-number">คำถามที่ 7 จาก 20</div>
+                <div class="question-text">JavaScript ใช้สำหรับอะไรในเว็บไซต์?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">กำหนดโครงสร้างเนื้อหา</div>
+                    <div class="option" data-answer="1">เพิ่มการโต้ตอบและความเป็นไดนามิก</div>
+                    <div class="option" data-answer="2">จัดรูปแบบการแสดงผล</div>
+                    <div class="option" data-answer="3">เก็บข้อมูลถาวร</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 8 -->
+            <div class="question-container" data-question="7">
+                <div class="question-number">คำถามที่ 8 จาก 20</div>
+                <div class="question-text">Web Browser คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">โปรแกรมแก้ไขรูปภาพ</div>
+                    <div class="option" data-answer="1">โปรแกรมเขียนโค้ด</div>
+                    <div class="option" data-answer="2">โปรแกรมสำหรับเปิดและแสดงเว็บไซต์</div>
+                    <div class="option" data-answer="3">โปรแกรมจัดการไฟล์</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 9 -->
+            <div class="question-container" data-question="8">
+                <div class="question-number">คำถามที่ 9 จาก 20</div>
+                <div class="question-text">URL ย่อมาจากอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">Universal Resource Link</div>
+                    <div class="option" data-answer="1">Unique Resource Location</div>
+                    <div class="option" data-answer="2">United Resource Locator</div>
+                    <div class="option" data-answer="3">Uniform Resource Locator</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 10 -->
+            <div class="question-container" data-question="9">
+                <div class="question-number">คำถามที่ 10 จาก 20</div>
+                <div class="question-text">HTTP ย่อมาจากอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">HyperText Transfer Protocol</div>
+                    <div class="option" data-answer="1">High Tech Transfer Protocol</div>
+                    <div class="option" data-answer="2">Home Text Transfer Protocol</div>
+                    <div class="option" data-answer="3">Hyperlink Text Transfer Protocol</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 11 -->
+            <div class="question-container" data-question="10">
+                <div class="question-number">คำถามที่ 11 จาก 20</div>
+                <div class="question-text">Server คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">โปรแกรมแก้ไขข้อความ</div>
+                    <div class="option" data-answer="1">คอมพิวเตอร์ที่ให้บริการข้อมูลแก่เครื่องอื่น</div>
+                    <div class="option" data-answer="2">เว็บเบราว์เซอร์</div>
+                    <div class="option" data-answer="3">ไฟล์รูปภาพ</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 12 -->
+            <div class="question-container" data-question="11">
+                <div class="question-number">คำถามที่ 12 จาก 20</div>
+                <div class="question-text">Domain Name คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">รหัสผ่านของเว็บไซต์</div>
+                    <div class="option" data-answer="1">ชื่อไฟล์ HTML</div>
+                    <div class="option" data-answer="2">ชื่อที่ใช้แทน IP Address ของเว็บไซต์</div>
+                    <div class="option" data-answer="3">ชื่อโฟลเดอร์</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 13 -->
+            <div class="question-container" data-question="12">
+                <div class="question-number">คำถามที่ 13 จาก 20</div>
+                <div class="question-text">Text Editor คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">โปรแกรมดูรูปภาพ</div>
+                    <div class="option" data-answer="1">โปรแกรมเล่นเพลง</div>
+                    <div class="option" data-answer="2">โปรแกรมคำนวณ</div>
+                    <div class="option" data-answer="3">โปรแกรมสำหรับเขียนและแก้ไขโค้ด</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 14 -->
+            <div class="question-container" data-question="13">
+                <div class="question-number">คำถามที่ 14 จาก 20</div>
+                <div class="question-text">Attribute ใน HTML คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">เนื้อหาภายใน Tag</div>
+                    <div class="option" data-answer="1">ข้อมูลเพิ่มเติมที่กำหนดให้กับ HTML Tag</div>
+                    <div class="option" data-answer="2">ชื่อของ Tag</div>
+                    <div class="option" data-answer="3">ความคิดเห็นในโค้ด</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 15 -->
+            <div class="question-container" data-question="14">
+                <div class="question-number">คำถามที่ 15 จาก 20</div>
+                <div class="question-text">Frontend คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">ส่วนที่ผู้ใช้เห็นและโต้ตอบได้</div>
+                    <div class="option" data-answer="1">ส่วนจัดการฐานข้อมูล</div>
+                    <div class="option" data-answer="2">ส่วนประมวลผลเซิร์ฟเวอร์</div>
+                    <div class="option" data-answer="3">ส่วนรักษาความปลอดภัย</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 16 -->
+            <div class="question-container" data-question="15">
+                <div class="question-number">คำถามที่ 16 จาก 20</div>
+                <div class="question-text">Backend คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">ส่วนแสดงผลหน้าเว็บ</div>
+                    <div class="option" data-answer="1">ส่วนออกแบบ UI</div>
+                    <div class="option" data-answer="2">ส่วนโต้ตอบกับผู้ใช้</div>
+                    <div class="option" data-answer="3">ส่วนประมวลผลและจัดการข้อมูลเบื้องหลัง</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 17 -->
+            <div class="question-container" data-question="16">
+                <div class="question-number">คำถามที่ 17 จาก 20</div>
+                <div class="question-text">Responsive Design คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">การออกแบบให้โหลดเร็ว</div>
+                    <div class="option" data-answer="1">การออกแบบให้เว็บไซต์แสดงผลได้ดีในทุกขนาดหน้าจอ</div>
+                    <div class="option" data-answer="2">การออกแบบสีสันสวยงาม</div>
+                    <div class="option" data-answer="3">การออกแบบให้ปลอดภัย</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 18 -->
+            <div class="question-container" data-question="17">
+                <div class="question-number">คำถามที่ 18 จาก 20</div>
+                <div class="question-text">SEO ย่อมาจากอะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">Social Engine Optimization</div>
+                    <div class="option" data-answer="1">System Engine Operation</div>
+                    <div class="option" data-answer="2">Search Engine Optimization</div>
+                    <div class="option" data-answer="3">Secure Engine Organization</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 19 -->
+            <div class="question-container" data-question="18">
+                <div class="question-number">คำถามที่ 19 จาก 20</div>
+                <div class="question-text">Version Control คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">ระบบจัดการและติดตามการเปลี่ยนแปลงของโค้ด</div>
+                    <div class="option" data-answer="1">ระบบตรวจสอบไวรัส</div>
+                    <div class="option" data-answer="2">ระบบสำรองข้อมูล</div>
+                    <div class="option" data-answer="3">ระบบจัดการผู้ใช้</div>
+                </div>
+            </div>
+
+            <!-- ✅ ข้อ 20 -->
+            <div class="question-container" data-question="19">
+                <div class="question-number">คำถามที่ 20 จาก 20</div>
+                <div class="question-text">Git คืออะไร?</div>
+                <div class="options">
+                    <div class="option" data-answer="0">ภาษาโปรแกรม</div>
+                    <div class="option" data-answer="1">ระบบควบคุมเวอร์ชันยอดนิยมสำหรับนักพัฒนา</div>
+                    <div class="option" data-answer="2">เว็บเบราว์เซอร์</div>
+                    <div class="option" data-answer="3">เซิร์ฟเวอร์</div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn" id="prevBtn">ย้อนกลับ</button>
+                <button class="btn" id="nextBtn">ถัดไป</button>
+            </div>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <h2>ผลคะแนนของคุณ</h2>
+            <div class="score-display" id="scoreDisplay">0/20 (0%)</div>
+            
+            <div class="result-buttons">
+                <button class="restart-btn" onclick="restartQuiz()">เริ่มใหม่อีกครั้ง</button>
+                <button class="save-btn" id="saveBtn">บันทึกคะแนน</button>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✓ บันทึกคะแนนสำเร็จ!
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Name Input -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3>บันทึกคะแนน</h3>
+            <p>กรุณาระบุชื่อของคุณเพื่อบันทึกคะแนน</p>
+            <input type="text" class="modal-input" id="nameInput" placeholder="ชื่อ-นามสกุล" maxlength="100">
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal()">ยกเลิก</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmBtn" onclick="saveToGoogleSheet()">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <div class="footer-container">
+        <div class="f-left-container">
+            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
+            <div class="footer-copyright">
+                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
+                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+            </div>
+        </div>
+        <div class="f-right-container">
+            <div class="footer-useful-link">
+                <div class="footer-button-container">
+                    <div class="fb-header">Useful Links</div>
+                    <a href="./index.html" class="fb">- หน้าหลัก</a>
+                    <a href="" class="fb">- เกี่ยวกับเรา</a>
+                    <a href="" class="fb">- ติดต่อเรา</a>
+                </div>
+            </div>
+            <div class="footer-media-link">
+                <div class="fb-header">Media Links</div>
+                <div class="footer-button-container">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
+                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/beforeHtml.js"></script>
+</body>
+</html>
