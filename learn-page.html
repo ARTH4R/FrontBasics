@@ -1,170 +1,688 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrontBasics | บทเรียน</title>
-    <link rel="stylesheet" href="./learn-page.css">\
+    <link rel="stylesheet" href="./learn-page.css">
     <link rel="stylesheet" href="./main-css-framework.css">
+    <link rel="stylesheet" href="./lesson-framework.css">
+
+    <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">    
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/tooltip.js"></script>
 
-    <!-- nav section  -->            
-    <div class="nav-container">
-        <div class="nav-logo-container">
-            <a href="./index.html" class="logo-text">FrontBasics</a>
-        </div>
-        <div class="nav-button-container">
-            <a href="./index.html" class="main-home-page mbtn-button">หน้าหลัก</a>
-            <a href="about-us" class="about-us-page mbtn-button">เกี่ยวกับเรา</a>
-            <a href="contact-us" class="contact-us-page mbtn-button">ติดต่อเรา</a>
-            <div class="nav-dropdown mbtn-button">
-                <div class="nav-dropdown-toggle">เพิ่มเติม</div>
-                <div class="nav-dropdown-menu">
-                    <a href="#">เมนูย่อย 1</a>
-                    <a href="#">เมนูย่อย 2</a>
-                    <a href="#">เมนูย่อย 3</a>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-logo-container">
+                <a href="./index.html" class="logo-text">FrontBasics</a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" data-lang-placeholder="search_placeholder" autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="search-suggestions" id="searchSuggestions"></div>
                 </div>
             </div>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="./index.html" class="nav-link" data-lang="home">หน้าหลัก</a>
+                <a href="./learn-page.html" class="nav-link" data-lang="lessons">บทเรียน</a>
+                <a href="#" class="nav-link" data-lang="about">เกี่ยวกับเรา</a>
+                <a href="#" class="nav-link" data-lang="contact">ติดต่อเรา</a>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                    <option value="alien">👽 Alien</option>
+                </select>
+            </div>
+
+            <!-- Dark Mode Toggle -->
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31412 6.31412L4.8999 4.8999M17.6859 6.31412L19.1001 4.8999M6.31412 17.69L4.8999 19.1042M17.6859 17.69L19.1001 19.1042M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <!-- CTA Buttons -->
+            <div class="nav-cta">
+                <a href="./playground.html" class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html" class="nav-button nav-button-primary">เริ่มใช้งาน</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div class="right-button-container">
-            <div class="button-container">
-                <a href="tool" class="tool-button nav-right-button">เครื่องมือ</a>
-                <a href="./learn-page.html" class="get-start-button nav-right-button nv2">เริ่มใช้งาน</a>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <!-- Mobile Search -->
+            <div class="mobile-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="search-suggestions" id="mobileSearchSuggestions"></div>
+                </div>
+            </div>
+
+            <a href="./index.html" class="nav-link">หน้าหลัก</a>
+            <a href="./learn-page.html" class="nav-link">บทเรียน</a>
+            <a href="#" class="nav-link">เกี่ยวกับเรา</a>
+            <a href="#" class="nav-link">ติดต่อเรา</a>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                <a href="./playground.html" class="nav-button nav-button-secondary" style="text-align: center;">PG</a>
+                <a href="./learn-page.html" class="nav-button nav-button-primary" style="text-align: center;">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </nav>
+
+<div class="se-section-container">
+    <!-- Introduction Section -->
+    <div class="intro-section">
+        <!-- Intro Content -->
+        <div class="intro-content" id="introContent">
+            <div class="intro-help-section">
+                <div class="intro-help-text">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="9" stroke="#1a1a1a" stroke-width="1.5"/>
+                        <path d="M10 14V10M10 6H10.01" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span data-lang="help_text">หากคุณไม่รู้ว่าจะต้องเริ่มตรงไหน คุณสามารถดูได้ว่าต้องทำอะไรก่อน</span>
+                </div>
+                <button class="intro-help-button" id="toggleRoadmapBtn">
+                    ดูแนวทางการเรียนรู้
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Roadmap Section -->
+        <div class="roadmap-section" id="roadmapSection">
+            <div class="roadmap-header">
+                <div class="roadmap-title">แนวทางการเรียนรู้</div>
+                <button class="roadmap-back-button" id="backToIntroBtn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    กลับ
+                </button>
+            </div>
+
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 1</div>
+                        <div class="roadmap-lesson-title">บทนำ Introduction</div>
+                        <div class="roadmap-lesson-desc">แนะนำโครงสร้างพื้นฐานของเว็บไซต์และการทำงานของ HTML, CSS</div>
+                        <span class="roadmap-level-badge">Beginner</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 2</div>
+                        <div class="roadmap-lesson-title">HTML พื้นฐาน</div>
+                        <div class="roadmap-lesson-desc">ศึกษาองค์ประกอบสำคัญของภาษา HTML และการใช้งาน tag ต่างๆ</div>
+                        <span class="roadmap-level-badge">Beginner</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 3</div>
+                        <div class="roadmap-lesson-title">CSS พื้นฐาน</div>
+                        <div class="roadmap-lesson-desc">ศึกษาองค์ประกอบสำคัญของภาษา CSS และการตกแต่งหน้าเว็บ</div>
+                        <span class="roadmap-level-badge">Beginner</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 4</div>
+                        <div class="roadmap-lesson-title">Class และ Selection</div>
+                        <div class="roadmap-lesson-desc">เรียนรู้การเลือกและจัดกลุ่ม element เพื่อการตกแต่งด้วย CSS</div>
+                        <span class="roadmap-level-badge">Beginner</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 5</div>
+                        <div class="roadmap-lesson-title">ฟอร์มและองค์ประกอบอินพุต</div>
+                        <div class="roadmap-lesson-desc">เชี่ยวชาญการสร้างฟอร์ม HTML ด้วยประเภทอินพุตต่างๆ</div>
+                        <span class="roadmap-level-badge">Beginner</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 6</div>
+                        <div class="roadmap-lesson-title">Flexbox และ Grid Layout</div>
+                        <div class="roadmap-lesson-desc">เรียนรู้เทคนิคการจัดวาง CSS สมัยใหม่สำหรับการออกแบบ responsive</div>
+                        <span class="roadmap-level-badge">Intermediate</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 7</div>
+                        <div class="roadmap-lesson-title">มัลติมีเดียและการเข้าถึง</div>
+                        <div class="roadmap-lesson-desc">เพิ่มรูปภาพ เสียง และวิดีโอลงในหน้าเว็บอย่างมีประสิทธิภาพ</div>
+                        <span class="roadmap-level-badge">Intermediate</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 8</div>
+                        <div class="roadmap-lesson-title">แอนิเมชันและเอฟเฟกต์</div>
+                        <div class="roadmap-lesson-desc">เพิ่มชีวิตชีวาให้เว็บไซต์ด้วยแอนิเมชัน CSS และ transitions</div>
+                        <span class="roadmap-level-badge">Intermediate</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 9</div>
+                        <div class="roadmap-lesson-title">เหตุการณ์และความโต้ตอบ</div>
+                        <div class="roadmap-lesson-desc">จัดการการโต้ตอบของผู้ใช้ด้วย JavaScript event listeners</div>
+                        <span class="roadmap-level-badge">Advanced</span>
+                    </a>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <a href="#" class="roadmap-link">
+                        <div class="roadmap-step">ขั้นตอนที่ 10</div>
+                        <div class="roadmap-lesson-title">JavaScript พื้นฐาน</div>
+                        <div class="roadmap-lesson-desc">เริ่มต้นเรียนการเขียนคำสั่งและโปรแกรมเบื้องต้นด้วย JavaScript</div>
+                        <span class="roadmap-level-badge">Advanced</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- selector section -->
-    <div class="se-section-container">
-        <div class="selector-container">
-            <div class="left-container">
-                <div class="selector-main-container">
-                    <div class="se-top-container">
-                        <div class="se-header">เนื้อหาหลัก</div>
-                    </div>
-                    <div class="se-bottom-container">
-                        <div class="se-button-container">
-                            <a href="./lesson-introduction.html" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/cube-icon-black.png" alt="block-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">บทนำ Introduction</div>
-                                    <div class="se-button-paragraph-text">แนะนำโครงสร้างพื้นฐานของเว็บไซต์</div>
-                                </div>
-                            </a>
-    
-                            <a href="./lesson-basics-html.html" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/html-icon-black.png" alt="HTML-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">HTML พื้นฐาน</div>
-                                    <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา HTML</div>
-                                </div>
-                            </a >
-    
-                            <a href="./lesson-basics-css.html" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/css-icon-black.png" alt="CSS-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">CSS พื้นฐาน</div>
-                                    <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา CSS</div>
-                                </div>
-                            </a >
-    
-                            <a href="./lesson-basics-class-and-selection.html" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/selection-icon-black.png" alt="class-and-selection-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">Class และ Selection</div>
-                                    <div class="se-button-paragraph-text">เรียนรู้การเลือกและจัดกลุ่ม element เพื่อการตกแต่งด้วย CSS</div>
-                                </div>
-                            </a >
-                        </div>
-    
-                    </div>
-                </div>
-                <div class="selector-more-container">
-                    <div class="se-top-container">
-                        <div class="se-heder">เพิ่มเติม</div>
-                    </div>
-                    <div class="se-button-container">
-                            <a href="Hover And Effect" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/hover-icon-black.png" alt="block-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">Hover & Effects</div>
-                                    <div class="se-button-paragraph-text">สร้างเอฟเฟกต์ให้กับการใช้งานของผู้ใช้</div>
-                                </div>
-                            </a>
-
-                            <a href="JS BASIC" class="se-button">
-                                <div class="se-icon">
-                                    <div class="se-hover-line">-</div>
-                                    <img src="./asset/icon-image/java-script-icon-black.png" alt="block-Icon" class="se-icon-image">
-                                </div>
-                                <div class="se-text-container">
-                                    <div class="se-button-header-text">JavaScript พื้นฐาน</div>
-                                    <div class="se-button-paragraph-text">เริ่มต้นเรียนการเขียนคำสั่งและโปรแกรมเบื้องต้น</div>
-                                </div>
-                            </a>
-
-                            <a href="./before-after-learn.html" class="se-test-button">แบบทดสอบก่อน - หลังเรียนรู้</a>
-
-                    </div>
-                </div>
+    <!-- Lesson Sections -->
+    <div class="selector-container">
+        <!-- Beginner Section -->
+        <div class="selector-main-container">
+            <div class="se-top-container">
+                <div class="se-header">บทเรียนสำหรับผู้เริ่มต้น</div>
+                <div class="level-badge">Beginner</div>
             </div>
-    
-            <div class="right-container">
-                <div class="dummy">Dummy GIF</div>
+            <div class="se-button-container">
+                <a href="./lesson-introduction.html" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="20" height="20" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M12 12h8M12 16h8M12 20h5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">บทนำ Introduction</div>
+                        <div class="se-button-paragraph-text">แนะนำโครงสร้างพื้นฐานของเว็บไซต์</div>
+                    </div>
+                </a>
+
+                <a href="./lesson-basics-html.html" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 6L10 26L16 28L22 26L24 6H8Z" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M16 10V22M12 14H20M12 18H20" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">HTML พื้นฐาน</div>
+                        <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา HTML</div>
+                    </div>
+                </a>
+
+                <a href="./lesson-basics-css.html" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="8" width="20" height="16" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <circle cx="10" cy="12" r="1" fill="#1a1a1a"/>
+                            <circle cx="14" cy="12" r="1" fill="#1a1a1a"/>
+                            <circle cx="18" cy="12" r="1" fill="#1a1a1a"/>
+                            <path d="M10 16h12M10 20h8" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">CSS พื้นฐาน</div>
+                        <div class="se-button-paragraph-text">ศึกษาองค์ประกอบสำคัญของภาษา CSS</div>
+                    </div>
+                </a>
+
+                <a href="./lesson-basics-class-and-selection.html" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="8" height="8" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                            <rect x="18" y="6" width="8" height="8" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                            <rect x="6" y="18" width="8" height="8" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                            <rect x="18" y="18" width="8" height="8" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">Class และ Selection</div>
+                        <div class="se-button-paragraph-text">เรียนรู้การเลือกและจัดกลุ่ม element เพื่อการตกแต่งด้วย CSS</div>
+                    </div>
+                </a>
+
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="20" height="20" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M10 12h12M10 16h12M10 20h8" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">ฟอร์มและองค์ประกอบอินพุต</div>
+                        <div class="se-button-paragraph-text">เชี่ยวชาญการสร้างฟอร์ม HTML ด้วยประเภทอินพุตต่าง ๆ</div>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class="lower-container">
+        <!-- Intermediate Section -->
+        <div class="selector-more-container">
+            <div class="se-top-container">
+                <div class="se-heder">บทเรียนระดับกลาง</div>
+                <div class="level-badge">Intermediate</div>
+            </div>
+            <div class="se-button-container">
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="8" height="20" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                            <rect x="18" y="6" width="8" height="20" rx="1" stroke="#1a1a1a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">Flexbox และ Grid Layout</div>
+                        <div class="se-button-paragraph-text">เรียนรู้เทคนิคการจัดวาง CSS สมัยใหม่</div>
+                    </div>
+                </a>
 
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="8" width="20" height="16" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <circle cx="12" cy="14" r="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M18 18l-4-3-4 3" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">มัลติมีเดียและการเข้าถึง</div>
+                        <div class="se-button-paragraph-text">เพิ่มรูปภาพ เสียง และวิดีโอลงในหน้าเว็บ</div>
+                    </div>
+                </a>
+
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="8" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M16 8v8l4 4" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">แอนิเมชันและเอฟเฟกต์</div>
+                        <div class="se-button-paragraph-text">เพิ่มชีวิตชีวาให้เว็บไซต์ด้วยแอนิเมชัน CSS</div>
+                    </div>
+                </a>
+
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 6v20M6 16h20" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="16" cy="16" r="10" stroke="#1a1a1a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">Hover & Effects</div>
+                        <div class="se-button-paragraph-text">สร้างเอฟเฟกต์ให้กับการใช้งานของผู้ใช้</div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
-
-
-    <!-- footer section -->
-    <div class="footer-container">
-        <div class="f-left-container">
-            <div class="logo-container"><a href="./index.html" class="footer-logo logo-text">FrontBasics</a></div>
-            <div class="footer-copyright">
-                <div class="fc fc-row1">© 2025 frontBasics. Released under the MIT License.  </div>
-                <div class="fc fc-row2">This project is open-source: you are free to use, modify, and distribute it with proper attribution</div>
+    <!-- Advanced Section -->
+    <div class="selector-container">
+        <div class="selector-main-container">
+            <div class="se-top-container">
+                <div class="se-header">บทเรียนขั้นสูง</div>
+                <div class="level-badge">Advanced</div>
             </div>
-        </div>
-        <div class="f-right-container">
-            <div class="footer-useful-link">
-                <div class="footer-button-container">
-                    <div class="fb-header">Useful Links</div>
-                    <a href="./index.html" class="fb">- หน้าหลัก</a>
-                    <a href="" class="fb">- เกี่ยวกับเรา</a>
-                    <a href="" class="fb">- ติดต่อเรา</a>
-                </div>
-            </div>
-            <div class="footer-media-link">
-                <div class="fb-header">Media Links</div>
-                <div class="footer-button-container">
-                    <a target="_blank" href="https://www.youtube.com/watch?v=t7zahkRR_uQ" class="fb">- ช่อง Youtube</a>
-                    <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="fb">- GitHub Repository</a>
-                </div>
+            <div class="se-button-container">
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8L20 16L12 24" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 16h16" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">เหตุการณ์และความโต้ตอบ</div>
+                        <div class="se-button-paragraph-text">จัดการการโต้ตอบของผู้ใช้ด้วย event listener</div>
+                    </div>
+                </a>
+
+                <a href="#" class="se-button">
+                    <div class="se-icon">
+                        <svg class="se-icon-image" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="6" width="20" height="20" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M12 16l3 3 5-6" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="se-text-container">
+                        <div class="se-button-header-text">JavaScript พื้นฐาน</div>
+                        <div class="se-button-paragraph-text">เริ่มต้นเรียนการเขียนคำสั่งและโปรแกรมเบื้องต้น</div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
+
+    <!-- Test Section -->
+    <div class="test-section">
+        <div class="test-section-header">ทดสอบความรู้ของคุณ</div>
+        <p class="test-section-desc">
+            วัดระดับความเข้าใจก่อนและหลังเรียน เพื่อติดตามความก้าวหน้าของคุณ
+        </p>
+        <a href="#" class="se-test-button">แบบทดสอบก่อน - หลังเรียนรู้</a>
+    </div>
+</div>
+
+<script>
+    // Toggle Roadmap functionality
+    const toggleRoadmapBtn = document.getElementById('toggleRoadmapBtn');
+    const backToIntroBtn = document.getElementById('backToIntroBtn');
+    const introContent = document.getElementById('introContent');
+    const roadmapSection = document.getElementById('roadmapSection');
+
+    function toggleRoadmap() {
+        if (roadmapSection.classList.contains('active')) {
+            roadmapSection.classList.remove('active');
+            introContent.classList.remove('hidden');
+        } else {
+            roadmapSection.classList.add('active');
+            introContent.classList.add('hidden');
+        }
+    }
+
+    toggleRoadmapBtn.addEventListener('click', toggleRoadmap);
+    backToIntroBtn.addEventListener('click', toggleRoadmap);
+</script>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="./index.html" class="footer-logo">FrontBasics</a>
+                    <p class="footer-description">
+                        แพลตฟอร์มเรียนรู้การพัฒนาเว็บไซต์สำหรับผู้เริ่มต้น เรียนรู้ HTML, CSS และ JavaScript อย่างง่ายและรวดเร็ว
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Quick Links</div>
+                    <a href="./index.html" class="footer-link">หน้าหลัก</a>
+                    <a href="./learn-page.html" class="footer-link">บทเรียนทั้งหมด</a>
+                    <a href="#" class="footer-link">แบบทดสอบ</a>
+                    <a href="./playground.html" class="footer-link">PG</a>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Resources</div>
+                    <a href="#" class="footer-link">เอกสารประกอบ</a>
+                    <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                    <a href="#" class="footer-link">ชุมชน</a>
+                    <a href="#" class="footer-link">สนับสนุน</a>
+                </div>
+
+                <!-- About -->
+                <div class="footer-column">
+                    <div class="footer-column-title">About</div>
+                    <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                    <a href="#" class="footer-link">ติดต่อเรา</a>
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 FrontBasics. Released under the MIT License. This project is open-source.
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="social-link" title="GitHub">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=t7zahkRR_uQ" target="_blank" class="social-link" title="YouTube">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+        <!-- mobile drop-down toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (!menu || !toggle) return;
+
+        // Toggle menu
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('active');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menu.classList.contains('active') &&
+                !menu.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Close on desktop resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                menu.classList.remove('active');
+            }
+            });
+        });
+    </script>
+    <script>
+        // ==========================================
+        // Minimal Notification System
+        // ==========================================
+
+        function notify(message, type = 'default', duration = 2500) {
+            // Get or create container
+            let container = document.getElementById('notificationContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notificationContainer';
+                container.className = 'notification-container';
+                document.body.appendChild(container);
+            }
+
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification' + (type !== 'default' ? ' type-' + type : '');
+
+            // Icon based on type
+            const icons = {
+                success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+                error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+                warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>',
+                info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+                default: ''
+            };
+
+            notification.innerHTML = `
+                ${icons[type] ? `<div class="notification-icon">${icons[type]}</div>` : ''}
+                <div class="notification-message">${message}</div>
+            `;
+
+            container.appendChild(notification);
+
+            // Show animation
+            setTimeout(() => notification.classList.add('show'), 10);
+
+            // Auto dismiss
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.classList.add('hide');
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+
+            return notification;
+        }
+
+        // Shorthand functions
+        function notifySuccess(message, duration) {
+            return notify(message, 'success', duration);
+        }
+
+        function notifyError(message, duration) {
+            return notify(message, 'error', duration);
+        }
+
+        function notifyWarning(message, duration) {
+            return notify(message, 'warning', duration);
+        }
+
+        function notifyInfo(message, duration) {
+            return notify(message, 'info', duration);
+        }
+
+        // ==================== DARK MODE ====================
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                notify('เปิดใช้งานโหมดมืดแล้ว', 'success');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                notify('เปลี่ยนกลับเป็นโหมดสว่างแล้ว', 'info');
+            }
+        }
+
+        // Load saved preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // ==================== OTHER FUNCTIONS ====================
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('is-scrolled');
+            } else {
+                nav.classList.remove('is-scrolled');
+            }
+        });
+
+        // ==================== DEMO FUNCTIONS ====================
+
+        function showSuccessDemo() {
+            notify('บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
+        }
+
+        function showInfoDemo() {
+            notify('คุณมีบทเรียนใหม่ 3 บท', 'info');
+        }
+
+        function showWarningDemo() {
+            notify('ใกล้ถึงขีดจำกัดการใช้งาน', 'warning');
+        }
+
+        function showErrorDemo() {
+            notify('ไม่สามารถเชื่อมต่อได้ กรุณาลองใหม่', 'error');
+        }
+
+
+    </script>
+
+    <script src="./js/language.js"></script>
+    <script src="./js/navSearchSystem.js"></script>
 </body>
 </html>

@@ -35,18 +35,3 @@ $(document).on(
 );
 });
 
-// Sticky path container functionality
-window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".path-container");
-    const body = document.body;
-
-    if (window.scrollY > 20) {
-        if (!navbar.classList.contains("fixed")) {
-            navbar.classList.add("fixed");
-            body.style.paddingTop = navbar.offsetHeight + "px"; // ใช้ padding แทน margin
-        }
-    } else {
-        navbar.classList.remove("fixed");
-        body.style.paddingTop = "0"; // reset
-    }
-});
