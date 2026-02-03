@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | JavaScript พื้นฐาน</title>
+    <link rel="stylesheet" href="./lesson-framework.css">
+    <link rel="stylesheet" href="./main-css-framework.css">
+
+    <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">    
+</head>
+<body>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/app.js"></script>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-container">
+        <div class="nav-content">
+
+            <div class="nav-logo-container">
+                <a href="./index.html" class="logo-text">FrontBasics</a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="./index.html"       class="nav-link">หน้าหลัก</a>
+                <a href="./learn-page.html"  class="nav-link">บทเรียน</a>
+                <a href="./maintenance.html" class="nav-link">เกี่ยวกับเรา</a>
+                <a href="./maintenance.html" class="nav-link">ติดต่อเรา</a>
+            </div>
+
+            <!-- Language Selector (Desktop) -->
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <!-- Dark Mode Toggle (Desktop) -->
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <!-- CTA Buttons (Desktop) -->
+            <div class="nav-cta">
+                <a href="./playground.html"  class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html"  class="nav-button nav-button-primary">เริ่มใช้งาน</a>
+            </div>
+
+            <!-- ===== HAMBURGER (Mobile only — shown via CSS at ≤1024 px) ===== -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU OVERLAY (dark backdrop) ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- ===== MOBILE MENU DRAWER ===== -->
+    <aside class="mobile-menu" id="mobileMenu" role="dialog" aria-label="เมนูมอบิล">
+
+        <!-- Header: logo + close -->
+        <div class="mobile-menu-header">
+            <a href="./index.html" class="mobile-menu-logo">FrontBasics</a>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="ปิดเมนู">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="mobile-menu-search">
+            <div class="search-container">
+                <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                <button class="search-button">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="search-suggestions" id="mobileSuggestions"></div>
+            </div>
+        </div>
+
+        <!-- Nav links -->
+        <nav class="mobile-menu-links" aria-label="เมนูหลัก">
+            <a href="./index.html"       class="mobile-menu-link">หน้าหลัก</a>
+            <a href="./learn-page.html"  class="mobile-menu-link">บทเรียน</a>
+            <a href="./playground.html"  class="mobile-menu-link">เครื่องมือ (PG)</a>
+            <a href="./maintenance.html" class="mobile-menu-link">เกี่ยวกับเรา</a>
+            <a href="./maintenance.html" class="mobile-menu-link">ติดต่อเรา</a>
+        </nav>
+
+        <div class="mobile-menu-divider"></div>
+
+        <!-- Controls: Language + Dark Mode -->
+        <div class="mobile-menu-controls">
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">ภาษา</span>
+                <select class="mobile-language-select" id="mobileLanguageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">โหมดมืด</span>
+                <button class="mobile-dark-toggle" id="mobileDarkToggle" aria-label="เปลี่ยนโหมดมืด">
+                    <svg class="mobile-sun-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="mobile-moon-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mobile-menu-cta">
+            <a href="./learn-page.html" class="mobile-menu-btn-primary">เริ่มใช้งาน</a>
+        </div>
+    </aside>
+
+    <div class="path-container">
+        <div class="path-text-container">
+            <a href="./index.html" class="path-text1 pt">Home</a>
+            <span class="path-separator"> > </span>
+            <a href="./learn-page.html" class="path-text pt">บทเรียน</a>    
+            <span class="path-separator"> > </span>
+            <a href="./lesson-js-fundamentals.html" class="path-text pt">JavaScript พื้นฐาน</a>
+        </div>
+    </div>
+
+<!-- lesson section -->
+    <div class="lesson-container">
+    <!-- Mobile Sidebar Toggle -->
+    <button class="mobile-sidebar-toggle" onclick="toggleLessonSidebar()">
+        แสดงเมนูบทเรียน
+    </button>
+
+    <div class="slider-bar-container">
+        <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+        <div class="lct-container">
+            <div class="lct-header-text">สิ่งที่จะเรียนรู้</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#overview">JavaScript คืออะไร?</a></div>
+                <div class="lct-paragraph-text"><a href="#variables-section">ตัวแปร (Variables)</a></div>
+                <div class="lct-paragraph-text"><a href="#data-types-section">ชนิดข้อมูล (Data Types)</a></div>
+                <div class="lct-paragraph-text"><a href="#operators-section">ตัวดำเนินการ (Operators)</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">โครงสร้างควบคุม</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#conditionals-section">เงื่อนไข (If/Else)</a></div>
+                <div class="lct-paragraph-text"><a href="#switch-section">Switch Statement</a></div>
+                <div class="lct-paragraph-text"><a href="#loops-section">การวนซ้ำ (Loops)</a></div>
+                <div class="lct-paragraph-text"><a href="#functions-section">ฟังก์ชัน (Functions)</a></div>
+            </div>
+        </div>
+
+        <div class="lct-container">
+            <div class="lct-header-text">การใช้งานจริง</div>
+            <div class="lct-paragraph-container">
+                <div class="lct-paragraph-text"><a href="#arrays-section">อาร์เรย์ (Arrays)</a></div>
+                <div class="lct-paragraph-text"><a href="#objects-section">ออบเจ็กต์ (Objects)</a></div>
+                <div class="lct-paragraph-text"><a href="#practical-section">ตัวอย่างโปรแกรม</a></div>
+                <div class="lct-paragraph-text"><a href="#best-practices-section">Best Practices</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content-container">
+        <div id="overview" class="ml-header-container">
+            <div class="main-lesson-header">JavaScript พื้นฐาน</div>
+            <div class="main-lesson-paragraph">เริ่มต้นเรียนการเขียนคำสั่งและโปรแกรมเบื้องต้น</div>
+        </div>
+
+        <div class="mcc-paragraph">
+            <b>JavaScript</b> คือภาษาโปรแกรมที่ทำให้เว็บไซต์ <b>มีชีวิตชีวา</b> และมีปฏิสัมพันธ์กับผู้ใช้  
+            ทำงานบน <b>browser</b> (Client-side) และ <b>server</b> (Node.js)  
+            เป็น 1 ใน 3 ภาษาหลักของ web development: <b>HTML, CSS, JavaScript</b>  
+            JavaScript ทำให้เราสามารถ <b>จัดการข้อมูล คำนวณ ตอบสนองต่อผู้ใช้</b> และสร้าง web applications ที่ซับซ้อนได้
+        </div>
+
+        <div id="variables-section" class="mcc-paragraph">
+            <h2>ตัวแปร (Variables) - เก็บข้อมูล</h2>
+            <b>ตัวแปร</b> คือ "กล่อง" สำหรับเก็บข้อมูล มี 3 วิธีประกาศ: <b>var, let, const</b>  
+            <b>let</b> - เปลี่ยนค่าได้ (แนะนำใช้)  
+            <b>const</b> - เปลี่ยนค่าไม่ได้ (ค่าคงที่)  
+            <b>var</b> - วิธีเก่า ไม่แนะนำในโค้ดใหม่
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ประเภท</th>
+                        <th>รูปแบบ</th>
+                        <th>เปลี่ยนค่าได้</th>
+                        <th>Scope</th>
+                        <th>ใช้เมื่อ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>let</td>
+                        <td>let name = "John";</td>
+                        <td>✅ ได้</td>
+                        <td>Block scope</td>
+                        <td>ค่าที่ต้องเปลี่ยนได้</td>
+                    </tr>
+                    <tr>
+                        <td>const</td>
+                        <td>const PI = 3.14;</td>
+                        <td>❌ ไม่ได้</td>
+                        <td>Block scope</td>
+                        <td>ค่าคงที่ ไม่เปลี่ยน</td>
+                    </tr>
+                    <tr>
+                        <td>var</td>
+                        <td>var age = 25;</td>
+                        <td>✅ ได้</td>
+                        <td>Function scope</td>
+                        <td>โค้ดเก่า (หลีกเลี่ยง)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // let - เปลี่ยนค่าได้<br>
+            let score = 0;<br>
+            score = 100; // ✅ ได้<br>
+            score = 200; // ✅ ได้<br>
+            <br>
+            // const - เปลี่ยนค่าไม่ได้<br>
+            const MAX_USERS = 100;<br>
+            MAX_USERS = 200; // ❌ Error!<br>
+            <br>
+            // const กับ object/array - แก้ properties ได้<br>
+            const user = { name: "John" };<br>
+            user.name = "Jane"; // ✅ ได้<br>
+            user = {}; // ❌ Error! (ห้ามเปลี่ยนตัวแปร)<br>
+            <br>
+            // การตั้งชื่อตัวแปร<br>
+            let userName = "John"; // ✅ camelCase (แนะนำ)<br>
+            let user_name = "John"; // ✅ snake_case<br>
+            let UserName = "John"; // ✅ PascalCase (ใช้กับ class)<br>
+            let 1name = "John"; // ❌ Error! ขึ้นต้นด้วยตัวเลขไม่ได้
+            </code>
+            
+            <b>หลักการตั้งชื่อที่ดี:</b>  
+            - ใช้ชื่อที่มีความหมาย: <code>userAge</code> ดีกว่า <code>x</code>  
+            - camelCase สำหรับตัวแปรและฟังก์ชัน  
+            - UPPER_CASE สำหรับค่าคงที่: <code>const MAX_SIZE = 100;</code>  
+            - ห้ามใช้คำสงวน: <code>let, const, function, if, else</code> เป็นต้น
+        </div>
+
+        <div id="data-types-section" class="mcc-paragraph">
+            <h2>ชนิดข้อมูล (Data Types)</h2>
+            JavaScript มี 2 กลุ่มชนิดข้อมูล: <b>Primitive</b> และ <b>Reference</b>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ชนิดข้อมูล</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง</th>
+                        <th>typeof</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>String</td>
+                        <td>ข้อความ</td>
+                        <td>"Hello", 'World', `Template`</td>
+                        <td>"string"</td>
+                    </tr>
+                    <tr>
+                        <td>Number</td>
+                        <td>ตัวเลข (จำนวนเต็มและทศนิยม)</td>
+                        <td>42, 3.14, -7, Infinity, NaN</td>
+                        <td>"number"</td>
+                    </tr>
+                    <tr>
+                        <td>Boolean</td>
+                        <td>ค่าความจริง</td>
+                        <td>true, false</td>
+                        <td>"boolean"</td>
+                    </tr>
+                    <tr>
+                        <td>Undefined</td>
+                        <td>ไม่ได้กำหนดค่า</td>
+                        <td>undefined</td>
+                        <td>"undefined"</td>
+                    </tr>
+                    <tr>
+                        <td>Null</td>
+                        <td>ค่าว่าง (ตั้งใจให้ว่าง)</td>
+                        <td>null</td>
+                        <td>"object" (bug ในภาษา)</td>
+                    </tr>
+                    <tr>
+                        <td>Symbol</td>
+                        <td>ค่าที่ไม่ซ้ำ (ES6)</td>
+                        <td>Symbol("id")</td>
+                        <td>"symbol"</td>
+                    </tr>
+                    <tr>
+                        <td>BigInt</td>
+                        <td>เลขจำนวนเต็มขนาดใหญ่</td>
+                        <td>9007199254740991n</td>
+                        <td>"bigint"</td>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td>กลุ่มข้อมูล</td>
+                        <td>{name: "John", age: 30}</td>
+                        <td>"object"</td>
+                    </tr>
+                    <tr>
+                        <td>Array</td>
+                        <td>ลิสต์ข้อมูล</td>
+                        <td>[1, 2, 3, 4, 5]</td>
+                        <td>"object"</td>
+                    </tr>
+                    <tr>
+                        <td>Function</td>
+                        <td>ฟังก์ชัน</td>
+                        <td>function() { }</td>
+                        <td>"function"</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // String - ข้อความ<br>
+            let firstName = "John";<br>
+            let lastName = 'Doe';<br>
+            let fullName = `${firstName} ${lastName}`; // Template literal<br>
+            <br>
+            // Number - ตัวเลข<br>
+            let age = 25;<br>
+            let price = 99.99;<br>
+            let negative = -10;<br>
+            let result = 10 / 0; // Infinity<br>
+            let notANumber = "abc" / 2; // NaN<br>
+            <br>
+            // Boolean - จริง/เท็จ<br>
+            let isActive = true;<br>
+            let hasPermission = false;<br>
+            let isAdult = age >= 18; // true<br>
+            <br>
+            // Undefined vs Null<br>
+            let x; // undefined (ยังไม่ได้กำหนดค่า)<br>
+            let y = null; // null (ตั้งใจให้ค่าว่าง)<br>
+            <br>
+            // Object<br>
+            let person = {<br>
+            &nbsp;&nbsp;name: "John",<br>
+            &nbsp;&nbsp;age: 30,<br>
+            &nbsp;&nbsp;city: "Bangkok"<br>
+            };<br>
+            <br>
+            // Array<br>
+            let colors = ["red", "green", "blue"];<br>
+            let numbers = [1, 2, 3, 4, 5];<br>
+            let mixed = [1, "text", true, null]; // ได้หลายชนิด<br>
+            <br>
+            // ตรวจสอบชนิดข้อมูล<br>
+            console.log(typeof "Hello"); // "string"<br>
+            console.log(typeof 42); // "number"<br>
+            console.log(typeof true); // "boolean"<br>
+            console.log(typeof undefined); // "undefined"<br>
+            console.log(typeof null); // "object" (bug!)<br>
+            console.log(typeof {}); // "object"<br>
+            console.log(typeof []); // "object"<br>
+            console.log(Array.isArray([])); // true (ตรวจสอบ array)
+            </code>
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+
+            <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="focus-image-container">
+                <span class="main-lesson-image-description">javascript-fundamentals.png</span>
+                <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+            </a>
+        </div>
+
+        <div id="operators-section" class="mcc-paragraph">
+            <h2>ตัวดำเนินการ (Operators)</h2>
+            
+            <b>1. ตัวดำเนินการทางคณิตศาสตร์ (Arithmetic Operators)</b>  
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ตัวดำเนินการ</th>
+                        <th>ชื่อ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>+</td>
+                        <td>บวก</td>
+                        <td>10 + 5</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>ลบ</td>
+                        <td>10 - 5</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>คูณ</td>
+                        <td>10 * 5</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>หาร</td>
+                        <td>10 / 5</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>%</td>
+                        <td>หารเอาเศษ (modulus)</td>
+                        <td>10 % 3</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>**</td>
+                        <td>ยกกำลัง</td>
+                        <td>2 ** 3</td>
+                        <td>8 (2³)</td>
+                    </tr>
+                    <tr>
+                        <td>++</td>
+                        <td>เพิ่มค่า 1</td>
+                        <td>let x = 5; x++;</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>ลดค่า 1</td>
+                        <td>let x = 5; x--;</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>2. ตัวดำเนินการเปรียบเทียบ (Comparison Operators)</b>  
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ตัวดำเนินการ</th>
+                        <th>ชื่อ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>==</td>
+                        <td>เท่ากับ (ค่า)</td>
+                        <td>5 == "5"</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>===</td>
+                        <td>เท่ากับ (ค่าและชนิด)</td>
+                        <td>5 === "5"</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>!=</td>
+                        <td>ไม่เท่ากับ (ค่า)</td>
+                        <td>5 != "5"</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>!==</td>
+                        <td>ไม่เท่ากับ (ค่าและชนิด)</td>
+                        <td>5 !== "5"</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>มากกว่า</td>
+                        <td>10 > 5</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td><</td>
+                        <td>น้อยกว่า</td>
+                        <td>10 < 5</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>มากกว่าหรือเท่ากับ</td>
+                        <td>10 >= 10</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td><=</td>
+                        <td>น้อยกว่าหรือเท่ากับ</td>
+                        <td>10 <= 5</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>3. ตัวดำเนินการตรรกะ (Logical Operators)</b>  
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ตัวดำเนินการ</th>
+                        <th>ชื่อ</th>
+                        <th>ตัวอย่าง</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&&</td>
+                        <td>และ (AND)</td>
+                        <td>true && false</td>
+                        <td>false (ต้องจริงทั้งหมด)</td>
+                    </tr>
+                    <tr>
+                        <td>||</td>
+                        <td>หรือ (OR)</td>
+                        <td>true || false</td>
+                        <td>true (จริงอย่างน้อย 1 ตัว)</td>
+                    </tr>
+                    <tr>
+                        <td>!</td>
+                        <td>ไม่ (NOT)</td>
+                        <td>!true</td>
+                        <td>false (กลับค่า)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // Arithmetic<br>
+            let sum = 10 + 5; // 15<br>
+            let remainder = 10 % 3; // 1<br>
+            let power = 2 ** 3; // 8<br>
+            <br>
+            let counter = 0;<br>
+            counter++; // 1<br>
+            counter += 5; // 6<br>
+            <br>
+            // Comparison - ใช้ === แทน ==<br>
+            console.log(5 == "5"); // true (แนะนำหลีกเลี่ยง)<br>
+            console.log(5 === "5"); // false (✅ แนะนำ)<br>
+            console.log(5 === 5); // true<br>
+            <br>
+            // Logical<br>
+            let age = 25;<br>
+            let hasLicense = true;<br>
+            <br>
+            // AND - ต้องจริงทั้งหมด<br>
+            if (age >= 18 && hasLicense) {<br>
+            &nbsp;&nbsp;console.log("สามารถขับรถได้");<br>
+            }<br>
+            <br>
+            // OR - จริงอย่างน้อย 1 ตัว<br>
+            if (age < 18 || !hasLicense) {<br>
+            &nbsp;&nbsp;console.log("ไม่สามารถขับรถได้");<br>
+            }<br>
+            <br>
+            // NOT - กลับค่า<br>
+            let isLoggedIn = false;<br>
+            if (!isLoggedIn) {<br>
+            &nbsp;&nbsp;console.log("กรุณาเข้าสู่ระบบ");<br>
+            }
+            </code>
+        </div>
+
+        <div id="conditionals-section" class="mcc-paragraph">
+            <h2>เงื่อนไข (Conditionals) - if/else</h2>
+            <b>if/else</b> ใช้ตัดสินใจว่าจะทำอะไรตามเงื่อนไข
+            
+            <b>รูปแบบต่างๆ:</b>  
+            <code>
+            // if เดียว<br>
+            if (condition) {<br>
+            &nbsp;&nbsp;// ทำถ้าเงื่อนไขเป็นจริง<br>
+            }<br>
+            <br>
+            // if-else<br>
+            if (condition) {<br>
+            &nbsp;&nbsp;// ทำถ้าเงื่อนไขเป็นจริง<br>
+            } else {<br>
+            &nbsp;&nbsp;// ทำถ้าเงื่อนไขเป็นเท็จ<br>
+            }<br>
+            <br>
+            // if-else if-else<br>
+            if (condition1) {<br>
+            &nbsp;&nbsp;// ทำถ้าเงื่อนไข 1 เป็นจริง<br>
+            } else if (condition2) {<br>
+            &nbsp;&nbsp;// ทำถ้าเงื่อนไข 2 เป็นจริง<br>
+            } else {<br>
+            &nbsp;&nbsp;// ทำถ้าทุกเงื่อนไขเป็นเท็จ<br>
+            }<br>
+            <br>
+            // Ternary operator (if-else แบบสั้น)<br>
+            let result = condition ? valueIfTrue : valueIfFalse;
+            </code>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // ตรวจสอบอายุ<br>
+            let age = 20;<br>
+            <br>
+            if (age >= 18) {<br>
+            &nbsp;&nbsp;console.log("บรรลุนิติภาวะ");<br>
+            } else {<br>
+            &nbsp;&nbsp;console.log("ยังไม่บรรลุนิติภาวะ");<br>
+            }<br>
+            <br>
+            // คะแนนเกรด<br>
+            let score = 75;<br>
+            let grade;<br>
+            <br>
+            if (score >= 80) {<br>
+            &nbsp;&nbsp;grade = "A";<br>
+            } else if (score >= 70) {<br>
+            &nbsp;&nbsp;grade = "B";<br>
+            } else if (score >= 60) {<br>
+            &nbsp;&nbsp;grade = "C";<br>
+            } else if (score >= 50) {<br>
+            &nbsp;&nbsp;grade = "D";<br>
+            } else {<br>
+            &nbsp;&nbsp;grade = "F";<br>
+            }<br>
+            <br>
+            console.log(`เกรด: ${grade}`); // "เกรด: B"<br>
+            <br>
+            // Ternary operator<br>
+            let status = age >= 18 ? "ผู้ใหญ่" : "เด็ก";<br>
+            let discount = isMember ? 0.2 : 0; // ลด 20% ถ้าเป็นสมาชิก<br>
+            <br>
+            // Nested ternary (หลีกเลี่ยงถ้าซับซ้อน)<br>
+            let message = score >= 50 <br>
+            &nbsp;&nbsp;? score >= 80 ? "ดีมาก" : "ผ่าน" <br>
+            &nbsp;&nbsp;: "ไม่ผ่าน";
+            </code>
+        </div>
+
+        <div id="switch-section" class="mcc-paragraph">
+            <h2>Switch Statement - เลือกทางเดินหลายทาง</h2>
+            <b>switch</b> เหมาะสำหรับเปรียบเทียบค่าเดียวกับหลายๆ case
+            
+            <code>
+            switch (expression) {<br>
+            &nbsp;&nbsp;case value1:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// ทำถ้า expression === value1<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case value2:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// ทำถ้า expression === value2<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;default:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// ทำถ้าไม่ตรงกับ case ใดๆ<br>
+            }
+            </code>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // วันในสัปดาห์<br>
+            let day = 3;<br>
+            let dayName;<br>
+            <br>
+            switch (day) {<br>
+            &nbsp;&nbsp;case 1:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "จันทร์";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 2:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "อังคาร";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 3:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "พุธ";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 4:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "พฤหัสบดี";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 5:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "ศุกร์";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 6:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "เสาร์";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 7:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "อาทิตย์";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;default:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dayName = "ไม่ถูกต้อง";<br>
+            }<br>
+            <br>
+            // รวม case (fall-through)<br>
+            let month = 2;<br>
+            let season;<br>
+            <br>
+            switch (month) {<br>
+            &nbsp;&nbsp;case 12:<br>
+            &nbsp;&nbsp;case 1:<br>
+            &nbsp;&nbsp;case 2:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;season = "ฤดูหนาว";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 3:<br>
+            &nbsp;&nbsp;case 4:<br>
+            &nbsp;&nbsp;case 5:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;season = "ฤดูร้อน";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case 6:<br>
+            &nbsp;&nbsp;case 7:<br>
+            &nbsp;&nbsp;case 8:<br>
+            &nbsp;&nbsp;case 9:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;season = "ฤดูฝน";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;default:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;season = "ไม่ทราบ";<br>
+            }
+            </code>
+        </div>
+
+        <div class="main-lesson-image-container">
+            <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+            alt="lesson-image" class="main-lesson-image">
+
+            <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="focus-image-container">
+                <span class="main-lesson-image-description">javascript-code-example.png</span>
+                <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+            </a>
+        </div>
+
+        <div id="loops-section" class="mcc-paragraph">
+            <h2>การวนซ้ำ (Loops)</h2>
+            <b>Loops</b> ใช้ทำงานซ้ำๆ จนกว่าเงื่อนไขจะไม่เป็นจริง
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>ประเภท</th>
+                        <th>รูปแบบ</th>
+                        <th>ใช้เมื่อ</th>
+                        <th>ตัวอย่าง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>for</td>
+                        <td>for (init; condition; increment)</td>
+                        <td>รู้จำนวนรอบ</td>
+                        <td>วนซ้ำ 10 รอบ</td>
+                    </tr>
+                    <tr>
+                        <td>while</td>
+                        <td>while (condition)</td>
+                        <td>ไม่รู้จำนวนรอบ</td>
+                        <td>วนจนกว่าจะ input ถูก</td>
+                    </tr>
+                    <tr>
+                        <td>do-while</td>
+                        <td>do { } while (condition)</td>
+                        <td>ต้องทำอย่างน้อย 1 รอบ</td>
+                        <td>แสดง menu อย่างน้อย 1 ครั้ง</td>
+                    </tr>
+                    <tr>
+                        <td>for...of</td>
+                        <td>for (item of array)</td>
+                        <td>วนใน array/string</td>
+                        <td>วนทุกสมาชิกใน array</td>
+                    </tr>
+                    <tr>
+                        <td>for...in</td>
+                        <td>for (key in object)</td>
+                        <td>วนใน object properties</td>
+                        <td>วนทุก key ใน object</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // for loop - แบบคลาสสิก<br>
+            for (let i = 0; i < 5; i++) {<br>
+            &nbsp;&nbsp;console.log(`รอบที่ ${i + 1}`);<br>
+            }<br>
+            // Output: รอบที่ 1, รอบที่ 2, ..., รอบที่ 5<br>
+            <br>
+            // while loop<br>
+            let count = 0;<br>
+            while (count < 5) {<br>
+            &nbsp;&nbsp;console.log(`Count: ${count}`);<br>
+            &nbsp;&nbsp;count++;<br>
+            }<br>
+            <br>
+            // do-while loop - ทำก่อนอย่างน้อย 1 รอบ<br>
+            let num = 10;<br>
+            do {<br>
+            &nbsp;&nbsp;console.log(`Number: ${num}`);<br>
+            &nbsp;&nbsp;num++;<br>
+            } while (num < 5); // แม้เงื่อนไขเป็นเท็จ ก็ทำ 1 รอบ<br>
+            <br>
+            // for...of - วน array<br>
+            const fruits = ["apple", "banana", "orange"];<br>
+            for (const fruit of fruits) {<br>
+            &nbsp;&nbsp;console.log(fruit);<br>
+            }<br>
+            // Output: apple, banana, orange<br>
+            <br>
+            // for...in - วน object<br>
+            const person = { name: "John", age: 30, city: "Bangkok" };<br>
+            for (const key in person) {<br>
+            &nbsp;&nbsp;console.log(`${key}: ${person[key]}`);<br>
+            }<br>
+            // Output: name: John, age: 30, city: Bangkok<br>
+            <br>
+            // break - หยุด loop<br>
+            for (let i = 0; i < 10; i++) {<br>
+            &nbsp;&nbsp;if (i === 5) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break; // หยุดเมื่อ i = 5<br>
+            &nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;console.log(i);<br>
+            }<br>
+            // Output: 0, 1, 2, 3, 4<br>
+            <br>
+            // continue - ข้าม iteration<br>
+            for (let i = 0; i < 5; i++) {<br>
+            &nbsp;&nbsp;if (i === 2) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;continue; // ข้าม i = 2<br>
+            &nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;console.log(i);<br>
+            }<br>
+            // Output: 0, 1, 3, 4
+            </code>
+        </div>
+
+        <div id="functions-section" class="mcc-paragraph">
+            <h2>ฟังก์ชัน (Functions) - บล็อกของโค้ดที่ใช้ซ้ำได้</h2>
+            <b>Function</b> คือกลุ่มคำสั่งที่ทำงานเฉพาะ สามารถเรียกใช้ซ้ำได้
+            
+            <b>รูปแบบการประกาศ:</b>  
+            <code>
+            // 1. Function Declaration<br>
+            function greet(name) {<br>
+            &nbsp;&nbsp;return `สวัสดี ${name}`;<br>
+            }<br>
+            <br>
+            // 2. Function Expression<br>
+            const greet = function(name) {<br>
+            &nbsp;&nbsp;return `สวัสดี ${name}`;<br>
+            };<br>
+            <br>
+            // 3. Arrow Function (ES6)<br>
+            const greet = (name) => {<br>
+            &nbsp;&nbsp;return `สวัสดี ${name}`;<br>
+            };<br>
+            <br>
+            // Arrow function แบบสั้น<br>
+            const greet = name => `สวัสดี ${name}`;
+            </code>
+            
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>รูปแบบ</th>
+                        <th>Hoisting</th>
+                        <th>this binding</th>
+                        <th>ใช้เมื่อ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Function Declaration</td>
+                        <td>✅ ได้</td>
+                        <td>Dynamic</td>
+                        <td>ฟังก์ชันหลัก, ต้องการ hoisting</td>
+                    </tr>
+                    <tr>
+                        <td>Function Expression</td>
+                        <td>❌ ไม่ได้</td>
+                        <td>Dynamic</td>
+                        <td>เก็บฟังก์ชันในตัวแปร</td>
+                    </tr>
+                    <tr>
+                        <td>Arrow Function</td>
+                        <td>❌ ไม่ได้</td>
+                        <td>Lexical (ไม่มี this)</td>
+                        <td>ฟังก์ชันสั้นๆ, callbacks</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>ตัวอย่างการใช้งาน:</b>  
+            <code>
+            // ฟังก์ชันพื้นฐาน<br>
+            function add(a, b) {<br>
+            &nbsp;&nbsp;return a + b;<br>
+            }<br>
+            <br>
+            let result = add(5, 3); // 8<br>
+            <br>
+            // Parameters vs Arguments<br>
+            function greet(name, age) { // name, age = parameters<br>
+            &nbsp;&nbsp;console.log(`สวัสดี ${name} อายุ ${age} ปี`);<br>
+            }<br>
+            <br>
+            greet("John", 25); // "John", 25 = arguments<br>
+            <br>
+            // Default parameters<br>
+            function multiply(a, b = 1) {<br>
+            &nbsp;&nbsp;return a * b;<br>
+            }<br>
+            <br>
+            console.log(multiply(5)); // 5 (ใช้ค่า default b = 1)<br>
+            console.log(multiply(5, 2)); // 10<br>
+            <br>
+            // Rest parameters - รับหลายค่า<br>
+            function sum(...numbers) {<br>
+            &nbsp;&nbsp;return numbers.reduce((total, num) => total + num, 0);<br>
+            }<br>
+            <br>
+            console.log(sum(1, 2, 3, 4, 5)); // 15<br>
+            <br>
+            // Arrow function ตัวอย่าง<br>
+            const numbers = [1, 2, 3, 4, 5];<br>
+            <br>
+            // แบบเต็ม<br>
+            const doubled = numbers.map((num) => {<br>
+            &nbsp;&nbsp;return num * 2;<br>
+            });<br>
+            <br>
+            // แบบสั้น<br>
+            const doubled = numbers.map(num => num * 2);<br>
+            <br>
+            // Return object (ต้องใส่ วงเล็บ)<br>
+            const createUser = (name, age) => ({ name, age });<br>
+            console.log(createUser("John", 30)); // {name: "John", age: 30}
+            </code>
+        </div>
+
+        <div id="arrays-section" class="mcc-paragraph">
+            <h2>อาร์เรย์ (Arrays) - เก็บข้อมูลหลายตัว</h2>
+            <b>Array</b> คือตัวแปรที่เก็บข้อมูลหลายค่าในตัวเดียว
+            
+            <b>การสร้างและใช้งาน:</b>  
+            <code>
+            // สร้าง array<br>
+            const fruits = ["apple", "banana", "orange"];<br>
+            const numbers = [1, 2, 3, 4, 5];<br>
+            const mixed = [1, "text", true, null, {name: "John"}];<br>
+            const empty = [];<br>
+            <br>
+            // เข้าถึงข้อมูล (index เริ่มที่ 0)<br>
+            console.log(fruits[0]); // "apple"<br>
+            console.log(fruits[1]); // "banana"<br>
+            console.log(fruits[fruits.length - 1]); // "orange" (ตัวสุดท้าย)<br>
+            <br>
+            // แก้ไขข้อมูล<br>
+            fruits[1] = "mango";<br>
+            console.log(fruits); // ["apple", "mango", "orange"]<br>
+            <br>
+            // Properties และ Methods<br>
+            console.log(fruits.length); // 3 (จำนวนสมาชิก)
+            </code>
+            
+            <b>Array Methods ที่สำคัญ:</b>  
+            <table class="extension-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>คำอธิบาย</th>
+                        <th>ตัวอย่าง</th>
+                        <th>ผลลัพธ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>push()</td>
+                        <td>เพิ่มท้าย</td>
+                        <td>arr.push(4)</td>
+                        <td>[1,2,3,4]</td>
+                    </tr>
+                    <tr>
+                        <td>pop()</td>
+                        <td>ลบท้าย</td>
+                        <td>arr.pop()</td>
+                        <td>[1,2] (ลบ 3 ออก)</td>
+                    </tr>
+                    <tr>
+                        <td>unshift()</td>
+                        <td>เพิ่มหน้า</td>
+                        <td>arr.unshift(0)</td>
+                        <td>[0,1,2,3]</td>
+                    </tr>
+                    <tr>
+                        <td>shift()</td>
+                        <td>ลบหน้า</td>
+                        <td>arr.shift()</td>
+                        <td>[2,3] (ลบ 1 ออก)</td>
+                    </tr>
+                    <tr>
+                        <td>splice()</td>
+                        <td>เพิ่ม/ลบตรงกลาง</td>
+                        <td>arr.splice(1, 1)</td>
+                        <td>[1,3] (ลบตำแหน่ง 1)</td>
+                    </tr>
+                    <tr>
+                        <td>slice()</td>
+                        <td>คัดลอกส่วนหนึ่ง</td>
+                        <td>arr.slice(0, 2)</td>
+                        <td>[1,2] (ไม่แก้ของเดิม)</td>
+                    </tr>
+                    <tr>
+                        <td>concat()</td>
+                        <td>รวม array</td>
+                        <td>arr1.concat(arr2)</td>
+                        <td>[1,2,3,4,5]</td>
+                    </tr>
+                    <tr>
+                        <td>indexOf()</td>
+                        <td>หาตำแหน่ง</td>
+                        <td>arr.indexOf(2)</td>
+                        <td>1 (ไม่เจอ = -1)</td>
+                    </tr>
+                    <tr>
+                        <td>includes()</td>
+                        <td>ตรวจสอบมีหรือไม่</td>
+                        <td>arr.includes(2)</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>join()</td>
+                        <td>แปลงเป็น string</td>
+                        <td>arr.join(", ")</td>
+                        <td>"1, 2, 3"</td>
+                    </tr>
+                    <tr>
+                        <td>reverse()</td>
+                        <td>กลับลำดับ</td>
+                        <td>arr.reverse()</td>
+                        <td>[3,2,1] (แก้ของเดิม)</td>
+                    </tr>
+                    <tr>
+                        <td>sort()</td>
+                        <td>เรียงลำดับ</td>
+                        <td>arr.sort()</td>
+                        <td>[1,2,3] (แก้ของเดิม)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <b>Modern Array Methods (ES6+):</b>  
+            <code>
+            const numbers = [1, 2, 3, 4, 5];<br>
+            <br>
+            // map - แปลงทุกตัว<br>
+            const doubled = numbers.map(num => num * 2);<br>
+            // [2, 4, 6, 8, 10]<br>
+            <br>
+            // filter - กรองตามเงื่อนไข<br>
+            const evenNumbers = numbers.filter(num => num % 2 === 0);<br>
+            // [2, 4]<br>
+            <br>
+            // find - หาตัวแรกที่ตรง<br>
+            const found = numbers.find(num => num > 3);<br>
+            // 4<br>
+            <br>
+            // reduce - รวมเป็นค่าเดียว<br>
+            const sum = numbers.reduce((total, num) => total + num, 0);<br>
+            // 15<br>
+            <br>
+            // forEach - วนทุกตัว<br>
+            numbers.forEach(num => console.log(num));<br>
+            <br>
+            // some - มีอย่างน้อย 1 ตัวที่ตรง<br>
+            const hasEven = numbers.some(num => num % 2 === 0);<br>
+            // true<br>
+            <br>
+            // every - ทุกตัวต้องตรง<br>
+            const allPositive = numbers.every(num => num > 0);<br>
+            // true
+            </code>
+        </div>
+
+        <div id="objects-section" class="mcc-paragraph">
+            <h2>ออบเจ็กต์ (Objects) - เก็บข้อมูลแบบ key-value</h2>
+            <b>Object</b> คือโครงสร้างข้อมูลที่เก็บคู่ของ key-value
+            
+            <b>การสร้างและใช้งาน:</b>  
+            <code>
+            // สร้าง object<br>
+            const person = {<br>
+            &nbsp;&nbsp;name: "John",<br>
+            &nbsp;&nbsp;age: 30,<br>
+            &nbsp;&nbsp;city: "Bangkok",<br>
+            &nbsp;&nbsp;isStudent: false,<br>
+            &nbsp;&nbsp;hobbies: ["reading", "coding"]<br>
+            };<br>
+            <br>
+            // เข้าถึงข้อมูล<br>
+            console.log(person.name); // "John" (dot notation)<br>
+            console.log(person["age"]); // 30 (bracket notation)<br>
+            <br>
+            // แก้ไขข้อมูล<br>
+            person.age = 31;<br>
+            person.city = "Chiang Mai";<br>
+            <br>
+            // เพิ่ม property ใหม่<br>
+            person.email = "john@example.com";<br>
+            <br>
+            // ลบ property<br>
+            delete person.isStudent;<br>
+            <br>
+            // ตรวจสอบมี property หรือไม่<br>
+            console.log("name" in person); // true<br>
+            console.log(person.hasOwnProperty("age")); // true
+            </code>
+            
+            <b>Object Methods:</b>  
+            <code>
+            // Object กับ methods<br>
+            const calculator = {<br>
+            &nbsp;&nbsp;value: 0,<br>
+            &nbsp;&nbsp;add: function(num) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.value += num;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return this;<br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;subtract(num) { // shorthand<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.value -= num;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return this;<br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;result() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return this.value;<br>
+            &nbsp;&nbsp;}<br>
+            };<br>
+            <br>
+            calculator.add(10).subtract(3).add(5);<br>
+            console.log(calculator.result()); // 12<br>
+            <br>
+            // Object destructuring<br>
+            const { name, age, city } = person;<br>
+            console.log(name); // "John"<br>
+            console.log(age); // 30<br>
+            <br>
+            // Object spread operator<br>
+            const newPerson = { ...person, country: "Thailand" };<br>
+            <br>
+            // Object.keys(), Object.values(), Object.entries()<br>
+            const user = { name: "Alice", age: 25, role: "admin" };<br>
+            <br>
+            console.log(Object.keys(user)); // ["name", "age", "role"]<br>
+            console.log(Object.values(user)); // ["Alice", 25, "admin"]<br>
+            console.log(Object.entries(user)); <br>
+            // [["name", "Alice"], ["age", 25], ["role", "admin"]]<br>
+            <br>
+            // วน object<br>
+            for (const key in user) {<br>
+            &nbsp;&nbsp;console.log(`${key}: ${user[key]}`);<br>
+            }<br>
+            <br>
+            // หรือใช้ Object.entries()<br>
+            Object.entries(user).forEach(([key, value]) => {<br>
+            &nbsp;&nbsp;console.log(`${key}: ${value}`);<br>
+            });
+            </code>
+        </div>
+
+        <div id="practical-section" class="mcc-paragraph">
+            <h2>ตัวอย่างโปรแกรมจริง</h2>
+            
+            <b>1. คำนวณคะแนนเฉลี่ย</b>  
+            <code>
+            function calculateAverage(scores) {<br>
+            &nbsp;&nbsp;if (scores.length === 0) return 0;<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;const sum = scores.reduce((total, score) => total + score, 0);<br>
+            &nbsp;&nbsp;return sum / scores.length;<br>
+            }<br>
+            <br>
+            const myScores = [85, 90, 78, 92, 88];<br>
+            const average = calculateAverage(myScores);<br>
+            console.log(`คะแนนเฉลี่ย: ${average.toFixed(2)}`); // 86.60
+            </code>
+            
+            <b>2. ตรวจสอบ palindrome</b>  
+            <code>
+            function isPalindrome(str) {<br>
+            &nbsp;&nbsp;// ทำให้เป็นตัวพิมพ์เล็กและลบช่องว่าง<br>
+            &nbsp;&nbsp;const cleaned = str.toLowerCase().replace(/\s/g, '');<br>
+            &nbsp;&nbsp;const reversed = cleaned.split('').reverse().join('');<br>
+            &nbsp;&nbsp;return cleaned === reversed;<br>
+            }<br>
+            <br>
+            console.log(isPalindrome("radar")); // true<br>
+            console.log(isPalindrome("hello")); // false<br>
+            console.log(isPalindrome("A man a plan a canal Panama")); // true
+            </code>
+            
+            <b>3. Todo List Manager</b>  
+            <code>
+            const todoList = {<br>
+            &nbsp;&nbsp;tasks: [],<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;addTask(task) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.tasks.push({<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: Date.now(),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: task,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;completed: false<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;console.log(`เพิ่ม: ${task}`);<br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;completeTask(id) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;const task = this.tasks.find(t => t.id === id);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if (task) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;task.completed = true;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(`เสร็จแล้ว: ${task.text}`);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;removeTask(id) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.tasks = this.tasks.filter(t => t.id !== id);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;console.log("ลบงานแล้ว");<br>
+            &nbsp;&nbsp;},<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;showTasks() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;console.log("\n=== Todo List ===");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.tasks.forEach(task => {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const status = task.completed ? "✓" : "○";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(`${status} ${task.text}`);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+            &nbsp;&nbsp;}<br>
+            };<br>
+            <br>
+            // ใช้งาน<br>
+            todoList.addTask("เรียน JavaScript");<br>
+            todoList.addTask("ทำการบ้าน");<br>
+            todoList.addTask("ออกกำลังกาย");<br>
+            todoList.showTasks();<br>
+            todoList.completeTask(todoList.tasks[0].id);<br>
+            todoList.showTasks();
+            </code>
+            
+            <b>4. ค้นหาและกรองข้อมูล</b>  
+            <code>
+            const products = [<br>
+            &nbsp;&nbsp;{ id: 1, name: "Laptop", price: 25000, category: "electronics" },<br>
+            &nbsp;&nbsp;{ id: 2, name: "Mouse", price: 500, category: "electronics" },<br>
+            &nbsp;&nbsp;{ id: 3, name: "Desk", price: 3000, category: "furniture" },<br>
+            &nbsp;&nbsp;{ id: 4, name: "Chair", price: 2000, category: "furniture" }<br>
+            ];<br>
+            <br>
+            // หาสินค้าตามชื่อ<br>
+            function searchByName(query) {<br>
+            &nbsp;&nbsp;return products.filter(p => <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;p.name.toLowerCase().includes(query.toLowerCase())<br>
+            &nbsp;&nbsp;);<br>
+            }<br>
+            <br>
+            // กรองตามราคา<br>
+            function filterByPrice(min, max) {<br>
+            &nbsp;&nbsp;return products.filter(p => p.price >= min && p.price <= max);<br>
+            }<br>
+            <br>
+            // กรองตามหมวดหมู่<br>
+            function filterByCategory(category) {<br>
+            &nbsp;&nbsp;return products.filter(p => p.category === category);<br>
+            }<br>
+            <br>
+            console.log(searchByName("lap")); // [Laptop]<br>
+            console.log(filterByPrice(1000, 5000)); // [Mouse, Desk, Chair]<br>
+            console.log(filterByCategory("furniture")); // [Desk, Chair]
+            </code>
+        </div>
+
+        <div id="best-practices-section" class="mcc-paragraph">
+            <h2>Best Practices - แนวทางปฏิบัติที่ดี</h2>
+            
+            <b>1. ตัวแปร</b>  
+            - ใช้ <code>const</code> เป็นค่าเริ่มต้น เปลี่ยนเป็น <code>let</code> ถ้าต้องเปลี่ยนค่า  
+            - หลีกเลี่ยง <code>var</code> ในโค้ดใหม่  
+            - ตั้งชื่อให้มีความหมาย: <code>userAge</code> ดีกว่า <code>x</code>  
+            - ใช้ camelCase: <code>firstName</code>, <code>isActive</code>
+            
+            <b>2. การเปรียบเทียบ</b>  
+            <code>
+            // ❌ หลีกเลี่ยง<br>
+            if (x == 5) { } // แปลงชนิดอัตโนมัติ<br>
+            <br>
+            // ✅ แนะนำ<br>
+            if (x === 5) { } // เปรียบเทียบทั้งค่าและชนิด
+            </code>
+            
+            <b>3. ฟังก์ชัน</b>  
+            - ฟังก์ชันควรทำงานเดียว (Single Responsibility)  
+            - ใช้ชื่อที่บอกว่าทำอะไร: <code>calculateTotal()</code>  
+            - ใช้ arrow function สำหรับฟังก์ชันสั้นๆ  
+            - Return เร็วเมื่อเจอเงื่อนไข (Early Return)
+            
+            <code>
+            // ❌ Nested if<br>
+            function checkAge(age) {<br>
+            &nbsp;&nbsp;if (age) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if (age >= 18) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "ผู้ใหญ่";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "เด็ก";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;}<br>
+            }<br>
+            <br>
+            // ✅ Early return<br>
+            function checkAge(age) {<br>
+            &nbsp;&nbsp;if (!age) return null;<br>
+            &nbsp;&nbsp;if (age >= 18) return "ผู้ใหญ่";<br>
+            &nbsp;&nbsp;return "เด็ก";<br>
+            }
+            </code>
+            
+            <b>4. Arrays และ Objects</b>  
+            - ใช้ modern methods: <code>map</code>, <code>filter</code>, <code>reduce</code>  
+            - หลีกเลี่ยง mutation ของ array: ใช้ methods ที่ return array ใหม่  
+            - ใช้ destructuring เพื่อความสะดวก  
+            - ใช้ spread operator แทน <code>Object.assign()</code>
+            
+            <code>
+            // ❌ Mutation<br>
+            const arr = [1, 2, 3];<br>
+            arr.push(4); // แก้ของเดิม<br>
+            <br>
+            // ✅ Immutable<br>
+            const arr = [1, 2, 3];<br>
+            const newArr = [...arr, 4]; // สร้างใหม่<br>
+            <br>
+            // ❌ Manual copy<br>
+            const newObj = Object.assign({}, oldObj, { new: "prop" });<br>
+            <br>
+            // ✅ Spread operator<br>
+            const newObj = { ...oldObj, new: "prop" };
+            </code>
+            
+            <b>5. Code Style</b>  
+            - ใส่ semicolon ท้ายคำสั่ง  
+            - Indent ด้วย 2 หรือ 4 spaces (เลือกแบบเดียวทั้งโปรเจค)  
+            - ใช้ comments อธิบายโค้ดที่ซับซ้อน  
+            - แบ่งโค้ดเป็นฟังก์ชันย่อยๆ  
+            - ตั้งชื่อให้สื่อความหมาย ไม่ต้องอธิบายด้วย comment
+            
+            <code>
+            // ❌ ไม่ดี<br>
+            let x = u.a + u.b; // รวมคะแนน<br>
+            <br>
+            // ✅ ดี<br>
+            let totalScore = user.mathScore + user.scienceScore;
+            </code>
+            
+            <b>6. Error Handling</b>  
+            - ตรวจสอบ input ก่อนใช้  
+            - ใช้ try-catch สำหรับโค้ดที่อาจ error  
+            - Return ค่า default หรือ null แทน undefined
+            
+            <code>
+            function divide(a, b) {<br>
+            &nbsp;&nbsp;if (b === 0) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;console.error("ไม่สามารถหารด้วย 0 ได้");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return null;<br>
+            &nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;return a / b;<br>
+            }
+            </code>
+        </div>
+
+        <div class="after-lesson-quiz-container">
+            <a href="quiz-js-fundamentals" class="after-lesson-quiz-button"> < - แบบทดสอบหลังบทเรียน - ></a>
+        </div>
+        <div class="next-lesson-button-container">
+            <a href="./lesson-dom-manipulation.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : DOM Manipulation ></a>
+        </div>
+        </div>
+    <!-- <div class="uti-bar-container">
+        QOL section
+    </div> -->
+</div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="./index.html" class="footer-logo">FrontBasics</a>
+                    <p class="footer-description">
+                        แพลตฟอร์มเรียนรู้การพัฒนาเว็บไซต์สำหรับผู้เริ่มต้น เรียนรู้ HTML, CSS และ JavaScript อย่างง่ายและรวดเร็ว
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Quick Links</div>
+                    <a href="./index.html" class="footer-link">หน้าหลัก</a>
+                    <a href="./learn-page.html" class="footer-link">บทเรียนทั้งหมด</a>
+                    <a href="#" class="footer-link">แบบทดสอบ</a>
+                    <a href="#" class="footer-link">เครื่องมือ</a>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Resources</div>
+                    <a href="#" class="footer-link">เอกสารประกอบ</a>
+                    <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                    <a href="#" class="footer-link">ชุมชน</a>
+                    <a href="#" class="footer-link">สนับสนุน</a>
+                </div>
+
+                <!-- About -->
+                <div class="footer-column">
+                    <div class="footer-column-title">About</div>
+                    <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                    <a href="#" class="footer-link">ติดต่อเรา</a>
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 FrontBasics. Released under the MIT License. This project is open-source.
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="social-link" title="GitHub">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=t7zahkRR_uQ" target="_blank" class="social-link" title="YouTube">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- mobile drop-down toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        if (!menu || !toggle) return;
+
+        // Toggle menu
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menu.classList.contains('active') &&
+                !menu.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+            }
+        });
+
+        // Close on desktop resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                menu.classList.remove('active');
+            }
+            });
+        });
+    </script>
+    <script>
+        // ==========================================
+        // Minimal Notification System
+        // ==========================================
+
+        function notify(message, type = 'default', duration = 2500) {
+            // Get or create container
+            let container = document.getElementById('notificationContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notificationContainer';
+                container.className = 'notification-container';
+                document.body.appendChild(container);
+            }
+
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification' + (type !== 'default' ? ' type-' + type : '');
+
+            // Icon based on type
+            const icons = {
+                success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+                error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+                warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>',
+                info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+                default: ''
+            };
+
+            notification.innerHTML = `
+                ${icons[type] ? `<div class="notification-icon">${icons[type]}</div>` : ''}
+                <div class="notification-message">${message}</div>
+            `;
+
+            container.appendChild(notification);
+
+            // Show animation
+            setTimeout(() => notification.classList.add('show'), 10);
+
+            // Auto dismiss
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.classList.add('hide');
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+
+            return notification;
+        }
+
+        // Shorthand functions
+        function notifySuccess(message, duration) {
+            return notify(message, 'success', duration);
+        }
+
+        function notifyError(message, duration) {
+            return notify(message, 'error', duration);
+        }
+
+        function notifyWarning(message, duration) {
+            return notify(message, 'warning', duration);
+        }
+
+        function notifyInfo(message, duration) {
+            return notify(message, 'info', duration);
+        }
+
+        // ==================== DARK MODE ====================
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                notify('เปิดใช้งานโหมดมืดแล้ว', 'success');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                notify('เปลี่ยนกลับเป็นโหมดสว่างแล้ว', 'info');
+            }
+        }
+
+        // Load saved preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // ==================== OTHER FUNCTIONS ====================
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function toggleLessonSidebar() {
+            const sidebar = document.querySelector('.slider-bar-container');
+            const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
+
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('active');
+                toggleBtn.classList.toggle('active');
+
+                // Update button text
+                if (sidebar.classList.contains('active')) {
+                    toggleBtn.textContent = 'ซ่อนเมนูบทเรียน';
+                } else {
+                    toggleBtn.textContent = 'แสดงเมนูบทเรียน';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('is-scrolled');
+            } else {
+                nav.classList.remove('is-scrolled');
+            }
+        });
+
+        // ==================== DEMO FUNCTIONS ====================
+
+        function showSuccessDemo() {
+            notify('บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
+        }
+
+        function showInfoDemo() {
+            notify('คุณมีบทเรียนใหม่ 3 บท', 'info');
+        }
+
+        function showWarningDemo() {
+            notify('ใกล้ถึงขีดจำกัดการใช้งาน', 'warning');
+        }
+
+        function showErrorDemo() {
+            notify('ไม่สามารถเชื่อมต่อได้ กรุณาลองใหม่', 'error');
+        }
+    </script>
+
+    <script src="./js/navSearchSystem.js"></script>
+    <script src="./js/language.js"></script>
+    <script src="./js/mobile-nav-complete.js"></script>
+</body>
+</html>

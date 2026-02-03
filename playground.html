@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground - FrontBasics</title>
+    <link rel="stylesheet" href="./main-css-framework.css">
+    <link rel="stylesheet" href="./main-home-page.css">
+    <link rel="stylesheet" href="./lesson-framework.css">
+    <link rel="stylesheet" href="./playground.css">
+    <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">
+</head>
+<body>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container" id="navContainer">
+        <div class="nav-content">
+            <div class="nav-logo-container">
+                <a href="./index.html" class="logo-text">FrontBasics</a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาบทเรียน..." data-lang="search_placeholder" autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="./index.html" class="nav-link" data-lang="home">หน้าหลัก</a>
+                <a href="./learn-page.html" class="nav-link" data-lang="lessons">บทเรียน</a>
+                <a href="#" class="nav-link" data-lang="about">เกี่ยวกับเรา</a>
+                <a href="#" class="nav-link" data-lang="contact">ติดต่อเรา</a>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                    <option value="alien">👽 Alien</option>
+                </select>
+            </div>
+
+            <!-- Dark Mode Toggle -->
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31412 6.31412L4.8999 4.8999M17.6859 6.31412L19.1001 4.8999M6.31412 17.69L4.8999 19.1042M17.6859 17.69L19.1001 19.1042M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <!-- CTA Buttons -->
+            <div class="nav-cta">
+                <a href="./playground.html" class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html" class="nav-button nav-button-primary" data-lang="get_started">เริ่มใช้งาน</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <!-- Mobile Search -->
+            <div class="mobile-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="search-suggestions" id="mobileSearchSuggestions"></div>
+                </div>
+            </div>
+
+            <a href="./index.html" class="nav-link">หน้าหลัก</a>
+            <a href="./learn-page.html" class="nav-link">บทเรียน</a>
+            <a href="#" class="nav-link">เกี่ยวกับเรา</a>
+            <a href="#" class="nav-link">ติดต่อเรา</a>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                <a href="./playground.html" class="nav-button nav-button-secondary" style="text-align: center;">PG</a>
+                <a href="./learn-page.html" class="nav-button nav-button-primary" style="text-align: center;">เริ่มใช้งาน</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Collapse Nav Button -->
+    <button class="collapse-nav-btn" id="collapseNavBtn" data-tooltip="ซ่อน/แสดง แถบนำทาง">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <!-- Control Sidebar -->
+    <div class="control-sidebar" id="controlSidebar">
+        <div class="sidebar-header">
+            <h3>ควบคุม</h3>
+            <button class="sidebar-toggle" id="sidebarToggle" data-tooltip="ซ่อน/แสดง แถบควบคุม">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Position Controls -->
+            <div class="control-section">
+                <div class="control-section-title">ตำแหน่งควบคุม</div>
+                <div class="position-controls">
+                    <button class="position-btn" data-position="left" data-tooltip="ซ้าย">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="6" height="18" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="13" y="3" width="8" height="18" rx="1" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                        </svg>
+                    </button>
+                    <button class="position-btn" data-position="right" data-tooltip="ขวา">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="8" height="18" rx="1" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                            <rect x="15" y="3" width="6" height="18" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="position-btn" data-position="bottom" data-tooltip="ล่าง">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="8" rx="1" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                            <rect x="3" y="15" width="18" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Button -->
+            <button class="settings-btn" id="settingsBtn" data-tooltip="ตั้งค่า">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>ตั้งค่า</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Playground Container -->
+    <div class="playground-container" id="playgroundContainer">
+        <!-- Header with Controls -->
+        <div class="playground-header">
+            <button class="layout-toggle-btn" id="layoutToggleBtn" data-tooltip="เปลี่ยนการจัดวาง">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="8" height="18" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+
+            <div class="controls-group">
+                <div class="run-controls">
+                    <button class="control-btn btn-run" id="runBtn" data-tooltip="รันโค้ด (Ctrl+Enter)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3L19 12L5 21V3Z" fill="currentColor"/>
+                        </svg>
+                        <span>รัน</span>
+                    </button>
+                    <label class="auto-run-toggle" data-tooltip="รันอัตโนมัติ">
+                        <input type="checkbox" id="autoRunCheck">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <button class="control-btn btn-reload" id="reloadBtn" data-tooltip="รีเฟรช">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 4V10H7M23 20V14H17M20.49 9C19.9828 7.56678 19.1209 6.28542 17.9845 5.27542C16.8482 4.26541 15.4745 3.55976 13.9917 3.22426C12.5089 2.88875 10.9652 2.93434 9.50481 3.35677C8.04437 3.77921 6.71475 4.56471 5.64 5.64L1 10M23 14L18.36 18.36C17.2853 19.4353 15.9556 20.2208 14.4952 20.6432C13.0348 21.0657 11.4911 21.1112 10.0083 20.7757C8.52547 20.4402 7.1518 19.7346 6.01547 18.7246C4.87913 17.7146 4.01717 16.4332 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <button class="control-btn btn-clear" id="clearBtn" data-tooltip="ลบโค้ด">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <label class="console-toggle" data-tooltip="คอนโซล">
+                    <input type="checkbox" id="consoleToggle">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">คอนโซล</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Editor and Preview -->
+        <div class="editor-container">
+            <!-- Editors Panel -->
+            <div class="editors-panel" id="editorsPanel">
+                <div class="drag-handle" id="dragHandle">
+                    <div class="drag-handle-bar">
+                        <div class="drag-handle-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="9" cy="5" r="1.5" fill="currentColor"/>
+                                <circle cx="9" cy="12" r="1.5" fill="currentColor"/>
+                                <circle cx="9" cy="19" r="1.5" fill="currentColor"/>
+                                <circle cx="15" cy="5" r="1.5" fill="currentColor"/>
+                                <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+                                <circle cx="15" cy="19" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-tabs">
+                    <button class="editor-tab active" data-tab="html">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        HTML
+                    </button>
+                    <button class="editor-tab" data-tab="css">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 8H17M7 12H17M7 16H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        CSS
+                    </button>
+                    <button class="editor-tab" data-tab="js">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        JavaScript
+                    </button>
+                </div>
+
+                <div class="editor-content active" id="html-editor">
+                    <div class="editor-toolbar">
+                        <div class="editor-info">
+                            <span class="editor-lang">HTML</span>
+                            <span class="editor-status" id="htmlStatus">พร้อม</span>
+                        </div>
+                        <div class="editor-controls">
+                            <button class="zoom-btn" id="zoomInBtn" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="zoom-btn" id="zoomOutBtn" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea class="code-editor" id="htmlCode" placeholder="เขียน HTML ที่นี่..." spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, World!</h1>
+  <p>Welcome to the playground!</p>
+</body>
+</html></textarea>
+                    <div class="error-message" id="htmlError"></div>
+                </div>
+
+                <div class="editor-content" id="css-editor">
+                    <div class="editor-toolbar">
+                        <div class="editor-info">
+                            <span class="editor-lang">CSS</span>
+                            <span class="editor-status" id="cssStatus">พร้อม</span>
+                        </div>
+                        <div class="editor-controls">
+                            <button class="zoom-btn" id="zoomInBtnCss" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="zoom-btn" id="zoomOutBtnCss" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea class="code-editor" id="cssCode" placeholder="เขียน CSS ที่นี่..." spellcheck="false">body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+}</textarea>
+                    <div class="error-message" id="cssError"></div>
+                </div>
+
+                <div class="editor-content" id="js-editor">
+                    <div class="editor-toolbar">
+                        <div class="editor-info">
+                            <span class="editor-lang">JavaScript</span>
+                            <span class="editor-status" id="jsStatus">พร้อม</span>
+                        </div>
+                        <div class="editor-controls">
+                            <button class="zoom-btn" id="zoomInBtnJs" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="zoom-btn" id="zoomOutBtnJs" data-tooltip="">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea class="code-editor" id="jsCode" placeholder="เขียน JavaScript ที่นี่..." spellcheck="false">console.log('Hello from JavaScript!');
+
+// ลองเขียนโค้ดของคุณที่นี่</textarea>
+                    <div class="error-message" id="jsError"></div>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <div class="preview-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        ตัวอย่างผลลัพธ์
+                    </div>
+                    
+                    <div class="device-controls">
+                        <button class="device-btn active" data-device="desktop" data-tooltip="เดสก์ท็อป">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <button class="device-btn" data-device="tablet" data-tooltip="แท็บเล็ต">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <button class="device-btn" data-device="mobile" data-tooltip="มือถือ">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <button class="device-btn" data-device="custom" data-tooltip="กำหนดเอง">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="preview-status" id="previewStatus">
+                        <div class="status-dot"></div>
+                        <span>พร้อม</span>
+                    </div>
+                </div>
+                <div class="preview-wrapper" id="previewWrapper">
+                    <iframe class="preview-iframe" id="preview"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Panel -->
+        <div class="console-panel" id="consolePanel">
+            <div class="console-header">
+                <div class="console-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 9L12 13L8 17M13 17H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    คอนโซล
+                </div>
+                <button class="console-clear-btn" id="consoleClearBtn" data-tooltip="ล้างคอนโซล">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="console-output" id="consoleOutput">
+                <div class="console-empty">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 9L12 13L8 17M13 17H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>คอนโซลว่างเปล่า</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Confirmation Modal -->
+    <div class="modal-overlay" id="clearModal">
+        <div class="modal">
+            <div class="modal-icon warning">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="modal-title">ยืนยันการลบโค้ด</div>
+            <div class="modal-message">คุณต้องการลบโค้ดทั้งหมดใช่หรือไม่? การดำเนินการนี้ไม่สามารถย้อนกลับได้</div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="cancelClear">ยกเลิก</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmClear">ลบทั้งหมด</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Size Modal -->
+    <div class="modal-overlay" id="customSizeModal">
+        <div class="modal">
+            <div class="modal-icon info">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="modal-title">กำหนดขนาดแสดงผล</div>
+            <div class="custom-size-inputs">
+                <div class="input-group">
+                    <label>ความกว้าง (px)</label>
+                    <input type="number" id="customWidth" min="320" max="3840" value="1024">
+                </div>
+                <div class="input-group">
+                    <label>ความสูง (px)</label>
+                    <input type="number" id="customHeight" min="240" max="2160" value="768">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="cancelCustomSize">ยกเลิก</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmCustomSize">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal settings-modal">
+            <div class="modal-header">
+                <h2>ตั้งค่า</h2>
+                <button class="modal-close" id="closeSettings">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h3>ฟอนต์ของ Editor</h3>
+                    <div class="setting-item">
+                        <label>
+                            <input type="radio" name="editorFont" value="all" checked>
+                            <span>ฟอนต์เดียวกันทั้งหมด</span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="radio" name="editorFont" value="except-css">
+                            <span>แยกฟอนต์ CSS</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section" id="fontAllSection">
+                    <h3>เลือกฟอนต์</h3>
+                    <select id="fontAllSelect" class="font-select">
+                        <option value="'Consolas', 'Monaco', 'Courier New', monospace">Consolas (ค่าเริ่มต้น)</option>
+                        <option value="'Fira Code', monospace">Fira Code</option>
+                        <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'IBM Plex Mono', monospace">IBM Plex Mono</option>
+                        <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                        <option value="'Ubuntu Mono', monospace">Ubuntu Mono</option>
+                    </select>
+                </div>
+
+                <div class="settings-section" id="fontHtmlJsSection" style="display: none;">
+                    <h3>ฟอนต์ HTML และ JavaScript</h3>
+                    <select id="fontHtmlJsSelect" class="font-select">
+                        <option value="'Consolas', 'Monaco', 'Courier New', monospace">Consolas (ค่าเริ่มต้น)</option>
+                        <option value="'Fira Code', monospace">Fira Code</option>
+                        <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'IBM Plex Mono', monospace">IBM Plex Mono</option>
+                        <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                        <option value="'Ubuntu Mono', monospace">Ubuntu Mono</option>
+                    </select>
+                </div>
+
+                <div class="settings-section" id="fontCssSection" style="display: none;">
+                    <h3>ฟอนต์ CSS</h3>
+                    <select id="fontCssSelect" class="font-select">
+                        <option value="'Consolas', 'Monaco', 'Courier New', monospace">Consolas (ค่าเริ่มต้น)</option>
+                        <option value="'Fira Code', monospace">Fira Code</option>
+                        <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'IBM Plex Mono', monospace">IBM Plex Mono</option>
+                        <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                        <option value="'Ubuntu Mono', monospace">Ubuntu Mono</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-confirm" id="saveSettings">บันทึก</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="./js/language.js"></script>
+
+    <script src="./playground.js"></script>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            mobileMenu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Mobile menu event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!menu || !toggle) return;
+
+            // Toggle menu
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (menu.classList.contains('active') &&
+                    !menu.contains(e.target) &&
+                    !toggle.contains(e.target)) {
+                    menu.classList.remove('active');
+                    toggle.classList.remove('active');
+                }
+            });
+
+            // Close on desktop resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    menu.classList.remove('active');
+                    toggle.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <script src="./js/mobile-nav-complete.js"></script>
+</body>
+</html>
