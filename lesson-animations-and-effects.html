@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | แอนิเมชันและเอฟเฟกต์ CSS</title>
+    <link rel="stylesheet" href="./lesson-framework.css">
+    <link rel="stylesheet" href="./main-css-framework.css">
+    <link rel="stylesheet" href="./mobile-nav-complete.css">
+    <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">    
+</head>
+<body>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/app.js"></script>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-container">
+        <div class="nav-content">
+
+            <div class="nav-logo-container">
+                <a href="./index.html" class="logo-text">FrontBasics</a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="./index.html"       class="nav-link">หน้าหลัก</a>
+                <a href="./learn-page.html"  class="nav-link">บทเรียน</a>
+                <a href="./maintenance.html" class="nav-link">เกี่ยวกับเรา</a>
+                <a href="./maintenance.html" class="nav-link">ติดต่อเรา</a>
+            </div>
+
+            <!-- Language Selector (Desktop) -->
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <!-- Dark Mode Toggle (Desktop) -->
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <!-- CTA Buttons (Desktop) -->
+            <div class="nav-cta">
+                <a href="./playground.html"  class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html"  class="nav-button nav-button-primary">เริ่มใช้งาน</a>
+            </div>
+
+            <!-- ===== HAMBURGER (Mobile only — shown via CSS at ≤1024 px) ===== -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU OVERLAY (dark backdrop) ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- ===== MOBILE MENU DRAWER ===== -->
+    <aside class="mobile-menu" id="mobileMenu" role="dialog" aria-label="เมนูมอบิล">
+
+        <!-- Header: logo + close -->
+        <div class="mobile-menu-header">
+            <a href="./index.html" class="mobile-menu-logo">FrontBasics</a>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="ปิดเมนู">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="mobile-menu-search">
+            <div class="search-container">
+                <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                <button class="search-button">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="search-suggestions" id="mobileSuggestions"></div>
+            </div>
+        </div>
+
+        <!-- Nav links -->
+        <nav class="mobile-menu-links" aria-label="เมนูหลัก">
+            <a href="./index.html"       class="mobile-menu-link">หน้าหลัก</a>
+            <a href="./learn-page.html"  class="mobile-menu-link">บทเรียน</a>
+            <a href="./playground.html"  class="mobile-menu-link">เครื่องมือ (PG)</a>
+            <a href="./maintenance.html" class="mobile-menu-link">เกี่ยวกับเรา</a>
+            <a href="./maintenance.html" class="mobile-menu-link">ติดต่อเรา</a>
+        </nav>
+
+        <div class="mobile-menu-divider"></div>
+
+        <!-- Controls: Language + Dark Mode -->
+        <div class="mobile-menu-controls">
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">ภาษา</span>
+                <select class="mobile-language-select" id="mobileLanguageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">โหมดมืด</span>
+                <button class="mobile-dark-toggle" id="mobileDarkToggle" aria-label="เปลี่ยนโหมดมืด">
+                    <svg class="mobile-sun-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="mobile-moon-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mobile-menu-cta">
+            <a href="./learn-page.html" class="mobile-menu-btn-primary">เริ่มใช้งาน</a>
+        </div>
+    </aside>
+
+    <div class="path-container">
+        <div class="path-text-container">
+            <a href="./index.html" class="path-text1 pt">Home</a>
+            <span class="path-separator"> > </span>
+            <a href="./learn-page.html" class="path-text pt">บทเรียน</a>    
+            <span class="path-separator"> > </span>
+            <a href="./lesson-css-animations.html" class="path-text pt">แอนิเมชันและเอฟเฟกต์ CSS</a>
+        </div>
+    </div>
+
+    <!-- Lesson Section -->
+    <div class="lesson-container">
+        <div class="slider-bar-container">
+            <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+            
+            <div class="lct-container">
+                <div class="lct-header-text">สิ่งที่จะเรียนรู้</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#overview">แอนิเมชัน CSS คืออะไร?</a></div>
+                    <div class="lct-paragraph-text"><a href="#transition-section">CSS Transitions</a></div>
+                    <div class="lct-paragraph-text"><a href="#transform-section">CSS Transforms</a></div>
+                    <div class="lct-paragraph-text"><a href="#keyframes-section">CSS Keyframes</a></div>
+                </div>
+            </div>
+
+            <div class="lct-container">
+                <div class="lct-header-text">แอนิเมชันขั้นสูง</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#timing-section">Timing Functions</a></div>
+                    <div class="lct-paragraph-text"><a href="#animation-properties-section">Animation Properties</a></div>
+                    <div class="lct-paragraph-text"><a href="#multiple-animations-section">Multiple Animations</a></div>
+                    <div class="lct-paragraph-text"><a href="#3d-transforms-section">3D Transforms</a></div>
+                </div>
+            </div>
+
+            <div class="lct-container">
+                <div class="lct-header-text">การใช้งานจริง</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#hover-effects-section">Hover Effects</a></div>
+                    <div class="lct-paragraph-text"><a href="#loading-section">Loading Animations</a></div>
+                    <div class="lct-paragraph-text"><a href="#performance-section">Performance Tips</a></div>
+                    <div class="lct-paragraph-text"><a href="#best-practices-section">Best Practices</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content-container">
+            <div id="overview" class="ml-header-container">
+                <div class="main-lesson-header">แอนิเมชันและเอฟเฟกต์ CSS</div>
+                <div class="main-lesson-paragraph">เพิ่มชีวิตชีวาให้เว็บไซต์ด้วยแอนิเมชัน CSS - เรียนรู้การสร้างเอฟเฟกต์การเคลื่อนไหวที่สวยงามและลื่นไหล</div>
+            </div>
+
+            <div class="mcc-paragraph">
+                <b>CSS Animations</b> คือเครื่องมือที่ใช้สร้าง <b>การเคลื่อนไหวและเอฟเฟกต์</b> บนเว็บไซต์โดยไม่ต้องใช้ JavaScript  
+                การใช้แอนิเมชันช่วยให้เว็บไซต์ <b>มีชีวิตชีวา น่าสนใจ และเพิ่มประสบการณ์ผู้ใช้</b>  
+                เครื่องมือหลักที่ใช้คือ <b>Transitions, Transforms และ Keyframes</b>  
+                แอนิเมชันที่ดีต้อง <b>นุ่มนวล มีจุดประสงค์ชัดเจน และไม่รบกวนผู้ใช้</b>
+            </div>
+
+            <div id="transition-section" class="mcc-paragraph">
+                <h2>CSS Transitions - การเปลี่ยนแปลงแบบนุ่มนวล</h2>
+                <b>Transition</b> ใช้สร้างการเปลี่ยนแปลงแบบค่อยเป็นค่อยไประหว่างสถานะต่างๆ  
+                <b>เหมาะสำหรับ:</b> Hover effects, การเปลี่ยนสี, การขยาย-หดตัว  
+                <b>Properties:</b> transition-property, transition-duration, transition-timing-function, transition-delay
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>ความหมาย</th>
+                            <th>ตัวอย่าง</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>transition-property</td>
+                            <td>กำหนดคุณสมบัติที่จะ transition</td>
+                            <td>transition-property: color;</td>
+                            <td>เฉพาะสีที่จะมีการเปลี่ยนแปลง</td>
+                        </tr>
+                        <tr>
+                            <td>transition-duration</td>
+                            <td>ระยะเวลาที่ใช้</td>
+                            <td>transition-duration: 0.3s;</td>
+                            <td>ใช้เวลา 0.3 วินาที</td>
+                        </tr>
+                        <tr>
+                            <td>transition-timing-function</td>
+                            <td>ความเร็วการเปลี่ยนแปลง</td>
+                            <td>transition-timing-function: ease-in-out;</td>
+                            <td>ช้าตอนเริ่ม-กลาง-จบ</td>
+                        </tr>
+                        <tr>
+                            <td>transition-delay</td>
+                            <td>หน่วงเวลาก่อนเริ่ม</td>
+                            <td>transition-delay: 0.2s;</td>
+                            <td>รอ 0.2 วินาทีก่อนเริ่ม</td>
+                        </tr>
+                        <tr>
+                            <td>transition (shorthand)</td>
+                            <td>เขียนรวมทั้งหมด</td>
+                            <td>transition: all 0.3s ease;</td>
+                            <td>ทุกคุณสมบัติ ใช้เวลา 0.3s แบบ ease</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>ตัวอย่างการใช้งาน:</b>  
+                <code>
+                .button {<br>
+                &nbsp;&nbsp;background-color: blue;<br>
+                &nbsp;&nbsp;transition: background-color 0.3s ease;<br>
+                }<br>
+                .button:hover {<br>
+                &nbsp;&nbsp;background-color: darkblue;<br>
+                }
+                </code>
+            </div>
+
+            <div id="transform-section" class="mcc-paragraph">
+                <h2>CSS Transforms - การแปลงรูปแบบ</h2>
+                <b>Transform</b> ใช้เปลี่ยนแปลงตำแหน่ง ขนาด และมุมของ Elements  
+                <b>ข้อดี:</b> ไม่กระทบ layout ของหน้า มีประสิทธิภาพสูง  
+                <b>Transform Functions:</b> translate, rotate, scale, skew
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Function</th>
+                            <th>ความหมาย</th>
+                            <th>ตัวอย่าง</th>
+                            <th>ผลลัพธ์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>translate(x, y)</td>
+                            <td>เลื่อนตำแหน่ง</td>
+                            <td>transform: translate(50px, 100px);</td>
+                            <td>เลื่อนขวา 50px ลง 100px</td>
+                        </tr>
+                        <tr>
+                            <td>translateX(x)</td>
+                            <td>เลื่อนแนวนอน</td>
+                            <td>transform: translateX(-20px);</td>
+                            <td>เลื่อนซ้าย 20px</td>
+                        </tr>
+                        <tr>
+                            <td>translateY(y)</td>
+                            <td>เลื่อนแนวตั้ง</td>
+                            <td>transform: translateY(30px);</td>
+                            <td>เลื่อนลง 30px</td>
+                        </tr>
+                        <tr>
+                            <td>rotate(deg)</td>
+                            <td>หมุน</td>
+                            <td>transform: rotate(45deg);</td>
+                            <td>หมุน 45 องศา</td>
+                        </tr>
+                        <tr>
+                            <td>scale(x, y)</td>
+                            <td>ขยาย-ย่อ</td>
+                            <td>transform: scale(1.2);</td>
+                            <td>ขยายใหญ่ขึ้น 120%</td>
+                        </tr>
+                        <tr>
+                            <td>scaleX(x)</td>
+                            <td>ขยายแนวนอน</td>
+                            <td>transform: scaleX(0.8);</td>
+                            <td>แคบลง 80%</td>
+                        </tr>
+                        <tr>
+                            <td>scaleY(y)</td>
+                            <td>ขยายแนวตั้ง</td>
+                            <td>transform: scaleY(1.5);</td>
+                            <td>สูงขึ้น 150%</td>
+                        </tr>
+                        <tr>
+                            <td>skew(x, y)</td>
+                            <td>เอียง</td>
+                            <td>transform: skew(10deg, 5deg);</td>
+                            <td>เอียงตามแกน x และ y</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>การใช้หลาย Transforms พร้อมกัน:</b>  
+                <code>transform: translate(50px, 0) rotate(45deg) scale(1.2);</code>
+            </div>
+
+            <div class="main-lesson-image-container">
+                <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+                alt="lesson-image" class="main-lesson-image">
+
+                <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="focus-image-container">
+                    <span class="main-lesson-image-description">css-animation-illustration.png</span>
+                    <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+                </a>
+            </div>
+
+            <div id="keyframes-section" class="mcc-paragraph">
+                <h2>CSS Keyframes - แอนิเมชันที่ซับซ้อน</h2>
+                <b>@keyframes</b> ใช้สร้างแอนิเมชันที่มีหลายขั้นตอน สามารถควบคุมได้ทุกจุด  
+                <b>วิธีใช้:</b> กำหนด keyframes แล้วเรียกใช้ด้วย animation property
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>รูปแบบ Keyframes</th>
+                            <th>ตัวอย่าง</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>from-to</td>
+                            <td>
+                                @keyframes fadeIn {<br>
+                                &nbsp;&nbsp;from { opacity: 0; }<br>
+                                &nbsp;&nbsp;to { opacity: 1; }<br>
+                                }
+                            </td>
+                            <td>แบบง่าย จุดเริ่มต้นและจุดสุดท้าย</td>
+                        </tr>
+                        <tr>
+                            <td>percentage</td>
+                            <td>
+                                @keyframes slide {<br>
+                                &nbsp;&nbsp;0% { left: 0; }<br>
+                                &nbsp;&nbsp;50% { left: 100px; }<br>
+                                &nbsp;&nbsp;100% { left: 0; }<br>
+                                }
+                            </td>
+                            <td>ควบคุมได้ทุกจุด ละเอียด</td>
+                        </tr>
+                        <tr>
+                            <td>multiple properties</td>
+                            <td>
+                                @keyframes bounce {<br>
+                                &nbsp;&nbsp;0%, 100% {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;transform: translateY(0);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;opacity: 1;<br>
+                                &nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;50% {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;transform: translateY(-30px);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;opacity: 0.7;<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </td>
+                            <td>เปลี่ยนหลาย properties พร้อมกัน</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>การเรียกใช้ Keyframes:</b>  
+                <code>
+                .element {<br>
+                &nbsp;&nbsp;animation-name: fadeIn;<br>
+                &nbsp;&nbsp;animation-duration: 2s;<br>
+                &nbsp;&nbsp;animation-timing-function: ease-in;<br>
+                &nbsp;&nbsp;animation-delay: 0.5s;<br>
+                }
+                </code>
+            </div>
+
+            <div id="timing-section" class="mcc-paragraph">
+                <h2>Timing Functions - ควบคุมความเร็ว</h2>
+                <b>Timing Functions</b> กำหนดลักษณะความเร็วของแอนิเมชัน  
+                ทำให้แอนิเมชันดู <b>เป็นธรรมชาติ</b> และ <b>มีน้ำหนัก</b>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Timing Function</th>
+                            <th>ลักษณะการเคลื่อนไหว</th>
+                            <th>ตัวอย่างการใช้งาน</th>
+                            <th>เหมาะสำหรับ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>linear</td>
+                            <td>ความเร็วคงที่ตลอด</td>
+                            <td>transition-timing-function: linear;</td>
+                            <td>แอนิเมชันวนซ้ำ, การหมุน</td>
+                        </tr>
+                        <tr>
+                            <td>ease</td>
+                            <td>ช้า-เร็ว-ช้า (default)</td>
+                            <td>transition-timing-function: ease;</td>
+                            <td>แอนิเมชันทั่วไป</td>
+                        </tr>
+                        <tr>
+                            <td>ease-in</td>
+                            <td>เริ่มช้า แล้วเร่ง</td>
+                            <td>transition-timing-function: ease-in;</td>
+                            <td>การหายไป, dropdown</td>
+                        </tr>
+                        <tr>
+                            <td>ease-out</td>
+                            <td>เริ่มเร็ว แล้วชะลอ</td>
+                            <td>transition-timing-function: ease-out;</td>
+                            <td>การปรากฏ, modal</td>
+                        </tr>
+                        <tr>
+                            <td>ease-in-out</td>
+                            <td>ช้า-เร็ว-ช้า (เด่นชัดกว่า ease)</td>
+                            <td>transition-timing-function: ease-in-out;</td>
+                            <td>slider, carousel</td>
+                        </tr>
+                        <tr>
+                            <td>cubic-bezier()</td>
+                            <td>กำหนดเองได้ทุกอย่าง</td>
+                            <td>cubic-bezier(0.68, -0.55, 0.265, 1.55)</td>
+                            <td>แอนิเมชันพิเศษ, bounce effect</td>
+                        </tr>
+                        <tr>
+                            <td>steps()</td>
+                            <td>กระโดดทีละขั้น</td>
+                            <td>steps(4, end)</td>
+                            <td>sprite animation, typewriter effect</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="animation-properties-section" class="mcc-paragraph">
+                <h2>Animation Properties - คุณสมบัติแอนิเมชัน</h2>
+                Properties ที่ใช้ควบคุมการทำงานของ @keyframes animations
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>ค่าที่ใช้ได้</th>
+                            <th>ตัวอย่าง</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>animation-name</td>
+                            <td>ชื่อ keyframe</td>
+                            <td>animation-name: slideIn;</td>
+                            <td>เรียกใช้ keyframe ที่ต้องการ</td>
+                        </tr>
+                        <tr>
+                            <td>animation-duration</td>
+                            <td>เวลา (s, ms)</td>
+                            <td>animation-duration: 2s;</td>
+                            <td>ใช้เวลา 2 วินาที</td>
+                        </tr>
+                        <tr>
+                            <td>animation-iteration-count</td>
+                            <td>จำนวนครั้ง, infinite</td>
+                            <td>animation-iteration-count: 3;</td>
+                            <td>เล่น 3 รอบ</td>
+                        </tr>
+                        <tr>
+                            <td>animation-direction</td>
+                            <td>normal, reverse, alternate, alternate-reverse</td>
+                            <td>animation-direction: alternate;</td>
+                            <td>เล่นไป-กลับสลับกัน</td>
+                        </tr>
+                        <tr>
+                            <td>animation-fill-mode</td>
+                            <td>none, forwards, backwards, both</td>
+                            <td>animation-fill-mode: forwards;</td>
+                            <td>คงสถานะสุดท้ายหลังจบ</td>
+                        </tr>
+                        <tr>
+                            <td>animation-play-state</td>
+                            <td>running, paused</td>
+                            <td>animation-play-state: paused;</td>
+                            <td>หยุดชั่วคราว</td>
+                        </tr>
+                        <tr>
+                            <td>animation (shorthand)</td>
+                            <td>รวมทั้งหมด</td>
+                            <td>animation: slideIn 2s ease-in-out 0.5s infinite alternate;</td>
+                            <td>เขียนรวมสั้นกระชับ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="multiple-animations-section" class="mcc-paragraph">
+                <h2>Multiple Animations - หลายแอนิเมชันพร้อมกัน</h2>
+                สามารถใช้หลายแอนิเมชันใน Element เดียวได้โดยคั่นด้วย comma  
+                <b>ตัวอย่าง:</b>  
+                <code>
+                .element {<br>
+                &nbsp;&nbsp;animation: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;fadeIn 1s ease-out,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;slideUp 1s ease-out,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;rotate 2s linear infinite;<br>
+                }
+                </code>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>กรณีการใช้งาน</th>
+                            <th>แอนิเมชันที่ใช้</th>
+                            <th>ผลลัพธ์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Loading spinner</td>
+                            <td>rotate + pulse</td>
+                            <td>หมุนพร้อมกับกระพริบ</td>
+                        </tr>
+                        <tr>
+                            <td>Floating button</td>
+                            <td>float + glow</td>
+                            <td>ลอยขึ้นลงพร้อมแสง</td>
+                        </tr>
+                        <tr>
+                            <td>Notification card</td>
+                            <td>slideIn + fadeIn + shake</td>
+                            <td>เลื่อนเข้ามา ค่อยชัด แล้วสั่น</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="3d-transforms-section" class="mcc-paragraph">
+                <h2>3D Transforms - มิติที่สาม</h2>
+                <b>3D Transforms</b> เพิ่มความลึกให้กับแอนิเมชัน  
+                ต้องใช้ <b>perspective</b> เพื่อให้เห็นเอฟเฟกต์ 3D
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Transform Function</th>
+                            <th>ความหมาย</th>
+                            <th>ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>perspective()</td>
+                            <td>กำหนดระยะมอง</td>
+                            <td>perspective: 1000px;</td>
+                        </tr>
+                        <tr>
+                            <td>rotateX()</td>
+                            <td>หมุนตามแกน X (ขึ้น-ลง)</td>
+                            <td>transform: rotateX(45deg);</td>
+                        </tr>
+                        <tr>
+                            <td>rotateY()</td>
+                            <td>หมุนตามแกน Y (ซ้าย-ขวา)</td>
+                            <td>transform: rotateY(180deg);</td>
+                        </tr>
+                        <tr>
+                            <td>rotateZ()</td>
+                            <td>หมุนตามแกน Z (ปกติ)</td>
+                            <td>transform: rotateZ(90deg);</td>
+                        </tr>
+                        <tr>
+                            <td>translateZ()</td>
+                            <td>เลื่อนเข้า-ออก</td>
+                            <td>transform: translateZ(50px);</td>
+                        </tr>
+                        <tr>
+                            <td>transform-style</td>
+                            <td>รักษามิติ 3D</td>
+                            <td>transform-style: preserve-3d;</td>
+                        </tr>
+                        <tr>
+                            <td>backface-visibility</td>
+                            <td>แสดง/ซ่อนด้านหลัง</td>
+                            <td>backface-visibility: hidden;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>ตัวอย่างการ์ดพลิก (Card Flip):</b>  
+                <code>
+                .card {<br>
+                &nbsp;&nbsp;transform-style: preserve-3d;<br>
+                &nbsp;&nbsp;transition: transform 0.6s;<br>
+                }<br>
+                .card:hover {<br>
+                &nbsp;&nbsp;transform: rotateY(180deg);<br>
+                }
+                </code>
+            </div>
+
+            <div id="hover-effects-section" class="mcc-paragraph">
+                <h2>Hover Effects - เอฟเฟกต์เมื่อวางเมาส์</h2>
+                เอฟเฟกต์ยอดนิยมที่ใช้กับปุ่มและลิงก์
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>ชื่อเอฟเฟกต์</th>
+                            <th>CSS Code</th>
+                            <th>ผลลัพธ์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Scale Up</td>
+                            <td>
+                                .btn:hover {<br>
+                                &nbsp;&nbsp;transform: scale(1.1);<br>
+                                }
+                            </td>
+                            <td>ปุ่มขยายใหญ่ขึ้น 10%</td>
+                        </tr>
+                        <tr>
+                            <td>Lift Up</td>
+                            <td>
+                                .card:hover {<br>
+                                &nbsp;&nbsp;transform: translateY(-10px);<br>
+                                &nbsp;&nbsp;box-shadow: 0 10px 20px rgba(0,0,0,0.2);<br>
+                                }
+                            </td>
+                            <td>การ์ดลอยขึ้นพร้อมเงา</td>
+                        </tr>
+                        <tr>
+                            <td>Glow Effect</td>
+                            <td>
+                                .btn:hover {<br>
+                                &nbsp;&nbsp;box-shadow: 0 0 20px rgba(0,123,255,0.5);<br>
+                                }
+                            </td>
+                            <td>ปุ่มเรืองแสง</td>
+                        </tr>
+                        <tr>
+                            <td>Slide Border</td>
+                            <td>
+                                .link::after {<br>
+                                &nbsp;&nbsp;content: '';<br>
+                                &nbsp;&nbsp;width: 0;<br>
+                                &nbsp;&nbsp;transition: width 0.3s;<br>
+                                }<br>
+                                .link:hover::after {<br>
+                                &nbsp;&nbsp;width: 100%;<br>
+                                }
+                            </td>
+                            <td>เส้นใต้เลื่อนเข้ามา</td>
+                        </tr>
+                        <tr>
+                            <td>Rotate Icon</td>
+                            <td>
+                                .icon {<br>
+                                &nbsp;&nbsp;transition: transform 0.3s;<br>
+                                }<br>
+                                .icon:hover {<br>
+                                &nbsp;&nbsp;transform: rotate(360deg);<br>
+                                }
+                            </td>
+                            <td>ไอคอนหมุน 1 รอบ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="loading-section" class="mcc-paragraph">
+                <h2>Loading Animations - แอนิเมชันโหลด</h2>
+                แอนิเมชันที่ใช้แสดงขณะรอโหลดข้อมูล
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>ประเภท</th>
+                            <th>วิธีทำ</th>
+                            <th>ตัวอย่าง Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Spinner หมุน</td>
+                            <td>border + rotate animation</td>
+                            <td>
+                                @keyframes spin {<br>
+                                &nbsp;&nbsp;to { transform: rotate(360deg); }<br>
+                                }<br>
+                                .spinner {<br>
+                                &nbsp;&nbsp;border: 4px solid #f3f3f3;<br>
+                                &nbsp;&nbsp;border-top: 4px solid #3498db;<br>
+                                &nbsp;&nbsp;border-radius: 50%;<br>
+                                &nbsp;&nbsp;animation: spin 1s linear infinite;<br>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dots กระพริบ</td>
+                            <td>opacity animation ล่าช้ากัน</td>
+                            <td>
+                                @keyframes blink {<br>
+                                &nbsp;&nbsp;0%, 100% { opacity: 0.2; }<br>
+                                &nbsp;&nbsp;50% { opacity: 1; }<br>
+                                }<br>
+                                .dot:nth-child(2) { animation-delay: 0.2s; }<br>
+                                .dot:nth-child(3) { animation-delay: 0.4s; }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Progress Bar</td>
+                            <td>width animation</td>
+                            <td>
+                                @keyframes loading {<br>
+                                &nbsp;&nbsp;from { width: 0%; }<br>
+                                &nbsp;&nbsp;to { width: 100%; }<br>
+                                }<br>
+                                .progress-bar {<br>
+                                &nbsp;&nbsp;animation: loading 2s ease-out;<br>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Skeleton Screen</td>
+                            <td>gradient + translate animation</td>
+                            <td>
+                                @keyframes shimmer {<br>
+                                &nbsp;&nbsp;to { transform: translateX(100%); }<br>
+                                }<br>
+                                .skeleton::after {<br>
+                                &nbsp;&nbsp;background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);<br>
+                                &nbsp;&nbsp;animation: shimmer 1.5s infinite;<br>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-lesson-image-container">
+                <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+                alt="lesson-image" class="main-lesson-image">
+
+                <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="focus-image-container">
+                    <span class="main-lesson-image-description">css-animation-code.png</span>
+                    <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+                </a>
+            </div>
+
+            <div id="performance-section" class="mcc-paragraph">
+                <h2>Performance Tips - เคลื่อนลื่น ไม่สะดุด</h2>
+                <b>หลักการสำคัญ:</b> ใช้ properties ที่ browser สามารถเร่งด้วย GPU ได้  
+                <b>Properties ที่เร็ว:</b> transform, opacity  
+                <b>Properties ที่ช้า:</b> top, left, width, height, margin (ทำให้ layout เปลี่ยน)
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>❌ ไม่แนะนำ (ช้า)</th>
+                            <th>✅ แนะนำ (เร็ว)</th>
+                            <th>เหตุผล</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>left: 100px;</td>
+                            <td>transform: translateX(100px);</td>
+                            <td>transform ใช้ GPU acceleration</td>
+                        </tr>
+                        <tr>
+                            <td>width: 150px;</td>
+                            <td>transform: scaleX(1.5);</td>
+                            <td>scale ไม่ทำให้ layout เปลี่ยน</td>
+                        </tr>
+                        <tr>
+                            <td>margin-top: -50px;</td>
+                            <td>transform: translateY(-50px);</td>
+                            <td>translate ไม่กระทบ elements อื่น</td>
+                        </tr>
+                        <tr>
+                            <td>แอนิเมชันหลายอย่างพร้อมกัน</td>
+                            <td>แอนิเมชันที่จำเป็นเท่านั้น</td>
+                            <td>ลด CPU/GPU usage</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>เทคนิคเพิ่มประสิทธิภาพ:</b>  
+                - ใช้ <code>will-change</code> บอก browser ล่วงหน้า: <code>will-change: transform;</code>  
+                - หลีกเลี่ยง <code>box-shadow</code> และ <code>blur</code> ในแอนิเมชันที่เร็ว  
+                - ใช้ <code>transform: translateZ(0);</code> บังคับให้ใช้ GPU (hack)  
+                - ลด <code>animation-duration</code> ที่สั้นเกินไป (&lt;0.1s) อาจดูกระตุก
+            </div>
+
+            <div id="best-practices-section" class="mcc-paragraph">
+                <h2>Best Practices - แนวทางที่ดี</h2>
+                
+                <b>1. ระยะเวลาที่เหมาะสม:</b>  
+                - <b>Micro-interactions:</b> 100-300ms (hover, click feedback)  
+                - <b>Page transitions:</b> 300-500ms (modal, dropdown)  
+                - <b>Complex animations:</b> 500-1000ms (page load effects)  
+                - <b>Loading indicators:</b> 1-2s loops (spinners, progress)
+                
+                <b>2. จุดประสงค์ชัดเจน:</b>  
+                - ใช้แอนิเมชันเพื่อ <b>ช่วยให้เข้าใจ</b> ไม่ใช่เพียงสวยงาม  
+                - <b>Feedback:</b> แสดงว่าระบบรับคำสั่งแล้ว  
+                - <b>Direction:</b> บอกทิศทางการไหลของข้อมูล  
+                - <b>Hierarchy:</b> แสดงความสำคัญของ elements
+                
+                <b>3. ความสอดคล้อง:</b>  
+                - ใช้ <b>timing function เดียวกัน</b> ทั้งเว็บไซต์  
+                - ใช้ <b>ระยะเวลาใกล้เคียงกัน</b> สำหรับการกระทำคล้ายๆ กัน  
+                - สร้าง <b>animation library</b> ที่นำกลับมาใช้ได้
+                
+                <b>4. Accessibility:</b>  
+                - เคารพการตั้งค่า <code>prefers-reduced-motion</code>  
+                - ไม่ใช้แอนิเมชันกระพริบเร็วเกินไป (อาจทำให้ epilepsy)  
+                - มีทางเลือกสำหรับผู้ที่ไม่ต้องการแอนิเมชัน
+                
+                <code>
+                @media (prefers-reduced-motion: reduce) {<br>
+                &nbsp;&nbsp;* {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 0.01ms !important;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;transition-duration: 0.01ms !important;<br>
+                &nbsp;&nbsp;}<br>
+                }
+                </code>
+                
+                <b>5. Testing:</b>  
+                - ทดสอบบน <b>อุปกรณ์จริง</b> ไม่ใช่แค่ emulator  
+                - ทดสอบใน <b>browser ต่างๆ</b>  
+                - ตรวจสอบ <b>performance</b> ด้วย DevTools  
+                - ขอ <b>feedback</b> จากผู้ใช้จริง
+            </div>
+
+            <div class="after-lesson-quiz-container">
+                <a href="quiz-css-animations" class="after-lesson-quiz-button"> &lt; - แบบทดสอบหลังบทเรียน - &gt;</a>
+            </div>
+            <div class="next-lesson-button-container">
+                <a href="./lesson-responsive-design.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : Responsive Design &gt;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="./index.html" class="footer-logo">FrontBasics</a>
+                    <p class="footer-description">
+                        แพลตฟอร์มเรียนรู้การพัฒนาเว็บไซต์สำหรับผู้เริ่มต้น เรียนรู้ HTML, CSS และ JavaScript อย่างง่ายและรวดเร็ว
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="footer-column-title">Quick Links</div>
+                    <a href="./index.html" class="footer-link">หน้าหลัก</a>
+                    <a href="./learn-page.html" class="footer-link">บทเรียนทั้งหมด</a>
+                    <a href="#" class="footer-link">แบบทดสอบ</a>
+                    <a href="#" class="footer-link">เครื่องมือ</a>
+                </div>
+
+                <div class="footer-column">
+                    <div class="footer-column-title">Resources</div>
+                    <a href="#" class="footer-link">เอกสารประกอบ</a>
+                    <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                    <a href="#" class="footer-link">ชุมชน</a>
+                    <a href="#" class="footer-link">สนับสนุน</a>
+                </div>
+
+                <div class="footer-column">
+                    <div class="footer-column-title">About</div>
+                    <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                    <a href="#" class="footer-link">ติดต่อเรา</a>
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 FrontBasics. Released under the MIT License. This project is open-source.
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="social-link" title="GitHub">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=t7zahkRR_uQ" target="_blank" class="social-link" title="YouTube">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!menu || !toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (menu.classList.contains('active') &&
+                    !menu.contains(e.target) &&
+                    !toggle.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    menu.classList.remove('active');
+                }
+            });
+        });
+
+        function notify(message, type = 'default', duration = 2500) {
+            let container = document.getElementById('notificationContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notificationContainer';
+                container.className = 'notification-container';
+                document.body.appendChild(container);
+            }
+
+            const notification = document.createElement('div');
+            notification.className = 'notification' + (type !== 'default' ? ' type-' + type : '');
+
+            const icons = {
+                success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+                error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+                warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>',
+                info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+                default: ''
+            };
+
+            notification.innerHTML = `
+                ${icons[type] ? `<div class="notification-icon">${icons[type]}</div>` : ''}
+                <div class="notification-message">${message}</div>
+            `;
+
+            container.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 10);
+
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.classList.add('hide');
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+
+            return notification;
+        }
+
+        function notifySuccess(message, duration) { return notify(message, 'success', duration); }
+        function notifyError(message, duration) { return notify(message, 'error', duration); }
+        function notifyWarning(message, duration) { return notify(message, 'warning', duration); }
+        function notifyInfo(message, duration) { return notify(message, 'info', duration); }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                notify('เปิดใช้งานโหมดมืดแล้ว', 'success');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                notify('เปลี่ยนกลับเป็นโหมดสว่างแล้ว', 'info');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function toggleLessonSidebar() {
+            const sidebar = document.querySelector('.slider-bar-container');
+            const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
+
+            if (sidebar && toggleBtn) {
+                sidebar.classList.toggle('active');
+                toggleBtn.classList.toggle('active');
+
+                // Update button text
+                if (sidebar.classList.contains('active')) {
+                    toggleBtn.textContent = 'ซ่อนเมนูบทเรียน';
+                } else {
+                    toggleBtn.textContent = 'แสดงเมนูบทเรียน';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('is-scrolled');
+            } else {
+                nav.classList.remove('is-scrolled');
+            }
+        });
+    </script>
+
+    <script src="./js/navSearchSystem.js"></script>
+    <script src="./js/language.js"></script>
+    <script src="./js/mobile-nav-complete.js"></script>
+</body>
+</html>

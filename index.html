@@ -2,12 +2,12 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>FrontBasics | หน้าหลัก</title>
+    
     <link rel="stylesheet" href="./main-css-framework.css">
     <link rel="stylesheet" href="./main-home-page.css">
     <link rel="stylesheet" href="./lesson-framework.css">
-
     <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">
 </head>
 <body>
@@ -15,9 +15,10 @@
     <!-- Notification Container -->
     <div class="notification-container" id="notificationContainer"></div>
 
-    <!-- Navigation -->
+    <!-- ===== NAVIGATION ===== -->
     <nav class="nav-container">
         <div class="nav-content">
+
             <div class="nav-logo-container">
                 <a href="./index.html" class="logo-text">FrontBasics</a>
             </div>
@@ -25,442 +26,335 @@
             <!-- Desktop Search -->
             <div class="nav-search">
                 <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" data-lang-placeholder="search_placeholder" autocomplete="off">
+                    <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
                     <button class="search-button">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    
                     <div class="search-suggestions" id="searchSuggestions"></div>
                 </div>
             </div>
 
             <!-- Desktop Links -->
             <div class="nav-links">
-                <a href="./index.html" class="nav-link" data-lang="home">หน้าหลัก</a>
-                <a href="./learn-page.html" class="nav-link" data-lang="lessons">บทเรียน</a>
-                <a href="#" class="nav-link" data-lang="about">เกี่ยวกับเรา</a>
-                <a href="#" class="nav-link" data-lang="contact">ติดต่อเรา</a>
+                <a href="./index.html"       class="nav-link">หน้าหลัก</a>
+                <a href="./learn-page.html"  class="nav-link">บทเรียน</a>
+                <a href="./maintenance.html" class="nav-link">เกี่ยวกับเรา</a>
+                <a href="./maintenance.html" class="nav-link">ติดต่อเรา</a>
             </div>
 
-            <!-- Language Selector -->
+            <!-- Language Selector (Desktop) -->
             <div class="language-selector">
                 <select id="languageSelect">
                     <option value="th">ไทย</option>
                     <option value="en">English</option>
                     <option value="ar">العربية</option>
                     <option value="zh">中文</option>
-                    <option value="alien">👽 Alien</option>
                 </select>
             </div>
 
-            <!-- Dark Mode Toggle -->
+            <!-- Dark Mode Toggle (Desktop) -->
             <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-                    <path d="M12 2V4M12 20V22M4 12H2M6.31412 6.31412L4.8999 4.8999M17.6859 6.31412L19.1001 4.8999M6.31412 17.69L4.8999 19.1042M17.6859 17.69L19.1001 19.1042M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
 
-            <!-- CTA Buttons -->
+            <!-- CTA Buttons (Desktop) -->
             <div class="nav-cta">
-                <a href="./playground.html" class="nav-button nav-button-secondary">PG</a>
-            <a href="./learn-page.html" class="nav-button nav-button-primary" data-lang="get_started">Get Started</a>
+                <a href="./playground.html"  class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html"  class="nav-button nav-button-primary">เริ่มใช้งาน</a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <!-- ===== HAMBURGER (Mobile only — shown via CSS at ≤1024 px) ===== -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-        </div>
+            </button>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <!-- Mobile Search -->
-            <div class="mobile-search">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="mobileSearchInput" data-lang-placeholder="search_placeholder" autocomplete="off">
-                    <button class="search-button">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div class="search-suggestions" id="mobileSearchSuggestions"></div>
-                </div>
-            </div>
-
-            <a href="./index.html" class="nav-link" data-lang="home">หน้าหลัก</a>
-            <a href="./learn-page.html" class="nav-link" data-lang="lessons">บทเรียน</a>
-            <a href="#" class="nav-link" data-lang="about">เกี่ยวกับเรา</a>
-            <a href="#" class="nav-link" data-lang="contact">ติดต่อเรา</a>
-
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
-                <a href="./playground.html" class="nav-button nav-button-secondary" style="text-align: center;">PG</a>
-                <a href="./learn-page.html" class="nav-button nav-button-primary" style="text-align: center;" data-lang="get_started"></a>
-            </div>
         </div>
     </nav>
 
+    <!-- ===== MOBILE MENU OVERLAY (dark backdrop) ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
+    <!-- ===== MOBILE MENU DRAWER ===== -->
+    <aside class="mobile-menu" id="mobileMenu" role="dialog" aria-label="เมนูมอบิล">
 
-    <!-- Hero Section with Slideshow -->
-    <div class="hero-section-container">
-        <!-- Background Image Slider -->
-        <div class="hero-background-slider">
-            <div class="hero-bg-slides" id="heroBgSlides">
-                <!-- Background Image 1 - Add your image path here -->
-                <div class="hero-bg-slide">
-                    <img src="./asset/background-image/main-home-page/hero-section-image.jpg" alt="Hero Background 1">
-                </div>
-                
-                <!-- Background Image 2 - Add your image path here -->
-                <div class="hero-bg-slide">
-                    <img src="./asset/background-image/main-home-page/tile-section-image-v2.jpg" alt="Hero Background 2">
-                </div>
-                
-                <!-- Background Image 3 - Add your image path here -->
-                <div class="hero-bg-slide">
-                    <img src="./asset/background-image/main-home-page/hero-sectoin-image2.jpg" alt="Hero Background 3">
-                </div>
+        <!-- Header: logo + close -->
+        <div class="mobile-menu-header">
+            <a href="./index.html" class="mobile-menu-logo">FrontBasics</a>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="ปิดเมนู">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="mobile-menu-search">
+            <div class="search-container">
+                <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                <button class="search-button">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="search-suggestions" id="mobileSuggestions"></div>
             </div>
         </div>
 
-        <!-- Pattern Overlay -->
-        <div class="hero-pattern-overlay"></div>
+        <!-- Nav links -->
+        <nav class="mobile-menu-links" aria-label="เมนูหลัก">
+            <a href="./index.html"       class="mobile-menu-link">หน้าหลัก</a>
+            <a href="./learn-page.html"  class="mobile-menu-link">บทเรียน</a>
+            <a href="./playground.html"  class="mobile-menu-link">เครื่องมือ (PG)</a>
+            <a href="./maintenance.html" class="mobile-menu-link">เกี่ยวกับเรา</a>
+            <a href="./maintenance.html" class="mobile-menu-link">ติดต่อเรา</a>
+        </nav>
 
-        <!-- Fixed Content (Floating) -->
+        <div class="mobile-menu-divider"></div>
+
+        <!-- Controls: Language + Dark Mode -->
+        <div class="mobile-menu-controls">
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">ภาษา</span>
+                <select class="mobile-language-select" id="mobileLanguageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">โหมดมืด</span>
+                <button class="mobile-dark-toggle" id="mobileDarkToggle" aria-label="เปลี่ยนโหมดมืด">
+                    <svg class="mobile-sun-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="mobile-moon-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mobile-menu-cta">
+            <a href="./learn-page.html" class="mobile-menu-btn-primary">เริ่มใช้งาน</a>
+        </div>
+    </aside>
+
+    <!-- ===== HERO SECTION ===== -->
+    <div class="hero-section-container">
+        <div class="hero-background-slider">
+            <div class="hero-bg-slides" id="heroBgSlides">
+                <div class="hero-bg-slide"><img src="./asset/background-image/main-home-page/hero-section-image.jpg"   alt="Hero Background 1"></div>
+                <div class="hero-bg-slide"><img src="./asset/background-image/main-home-page/tile-section-image-v2.jpg" alt="Hero Background 2"></div>
+                <div class="hero-bg-slide"><img src="./asset/background-image/main-home-page/hero-sectoin-image2.jpg"  alt="Hero Background 3"></div>
+            </div>
+        </div>
+        <div class="hero-pattern-overlay"></div>
         <div class="canvas-container">
-            <h1 class="hero-header" data-lang="hero_title">Welcome to FrontBasics</h1>
-            <p class="hero-subheader" data-lang="hero_subtitle">Learn web development easily and quickly</p>
+            <h1 class="hero-header">ยินดีต้อนรับสู่ FrontBasics</h1>
+            <p class="hero-subheader">เรียนรู้การพัฒนาเว็บไซต์อย่างง่ายและรวดเร็ว</p>
             <div class="hero-buttons-container">
                 <a href="./lesson-introduction.html" class="hero-button">
                     <img src="./asset/icon-image/main-home-page/right-arrow-icon.png" alt="arrow" class="hero-button-icon">
-                    <span data-lang="start_lesson"></span>
+                    <span>เริ่มบทเรียน</span>
                 </a>
                 <a href="./learn-page.html" class="hero-button-secondary">
                     <img src="./asset/icon-image/cube-icon-black.png" alt="lessons" class="hero-button-icon">
-                    <span data-lang="view_all_lessons"></span>
+                    <span>ดูบทเรียนทั้งหมด</span>
                 </a>
                 <a href="./before-after-learn.html" class="hero-button-secondary">
                     <img src="./asset/icon-image/selection-icon-black.png" alt="test" class="hero-button-icon">
-                    <span data-lang="tests"></span>
+                    <span>แบบทดสอบ</span>
                 </a>
             </div>
         </div>
-
-        <!-- Navigation Arrows -->
-        <div class="hero-arrow hero-arrow-left" onclick="previousHeroSlide()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="hero-arrow hero-arrow-left"  onclick="previousHeroSlide()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <div class="hero-arrow hero-arrow-right" onclick="nextHeroSlide()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6"  stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-
-        <!-- Dots Navigation -->
         <div class="hero-nav" id="heroNav">
             <div class="hero-dot active" onclick="goToHeroSlide(0)"></div>
-            <div class="hero-dot" onclick="goToHeroSlide(1)"></div>
-            <div class="hero-dot" onclick="goToHeroSlide(2)"></div>
+            <div class="hero-dot"        onclick="goToHeroSlide(1)"></div>
+            <div class="hero-dot"        onclick="goToHeroSlide(2)"></div>
         </div>
     </div>
 
-    <!-- Quick Links Section -->
+    <!-- ===== QUICK LINKS ===== -->
     <div class="quick-links-section">
-        <h2 class="section-title" data-lang="easy_access"></h2>
+        <h2 class="section-title">เข้าถึงด่วน</h2>
         <div class="quick-links-grid">
             <a href="./learn-page.html" class="quick-link-card">
                 <img src="./asset/icon-image/cube-icon-black.png" alt="lessons" class="quick-link-icon">
-                <div class="quick-link-title" data-lang="all_lessons"></div>
-                <div class="quick-link-desc" data-lang="all_lessons_desc"></div>
+                <div class="quick-link-title">บทเรียนทั้งหมด</div>
+                <div class="quick-link-desc">เรียกดูบทเรียนที่มีทั้งหมด</div>
             </a>
-
             <a href="./before-after-learn.html" class="quick-link-card">
                 <img src="./asset/icon-image/selection-icon-black.png" alt="test" class="quick-link-icon">
-                <div class="quick-link-title" data-lang="tests"></div>
-                <div class="quick-link-desc" data-lang="tests_desc"></div>
+                <div class="quick-link-title">แบบทดสอบ</div>
+                <div class="quick-link-desc">ทดสอบความรู้ของคุณ</div>
             </a>
-
-            <a href="#" class="quick-link-card" lang="">
+            <a href="./playground.html" class="quick-link-card">
                 <img src="./asset/icon-image/html-icon-black.png" alt="tools" class="quick-link-icon">
-                <div class="quick-link-title" data-lang="tools"></div>
-                <div class="quick-link-desc" data-lang="tools_desc"></div>
+                <div class="quick-link-title">เครื่องมือ</div>
+                <div class="quick-link-desc">เครื่องมือพัฒนาที่มีประโยชน์</div>
             </a>
-
             <a href="#challenges" class="quick-link-card">
                 <img src="./asset/icon-image/java-script-icon-black.png" alt="challenges" class="quick-link-icon">
-                <div class="quick-link-title" data-lang="challenges"></div>
-                <div class="quick-link-desc" data-lang="challenges_desc"></div>
+                <div class="quick-link-title">ความท้าทาย</div>
+                <div class="quick-link-desc">ทดสอบทักษะของคุณด้วยความท้าทาย</div>
             </a>
         </div>
     </div>
 
-    <!-- Lesson Section -->
+    <!-- ===== LESSONS ===== -->
     <div class="lsm-container">
-        <h2 class="section-title" data-lang="suggested_lessons"></h2>
+        <h2 class="section-title">บทเรียนแนะนำ</h2>
         <div class="lsm-grid">
-            <a href="./lesson-basics-html.html" class="lsm-card">
-                <span class="lsm-tag html">HTML</span>
-                <h3 data-lang="html_basics"></h3>
-                <p data-lang="html_basics_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-basics-css.html" class="lsm-card">
-                <span class="lsm-tag css">CSS</span>
-                <h3 data-lang="css_basics"></h3>
-                <p data-lang="css_basics_desc">
-                </p>
-            </a>
-
-            <a href="./" class="lsm-card">
-                <span class="lsm-tag javascript">JavaScript</span>
-                <h3 data-lang="js_basics"></h3>
-                <p data-lang="js_basics_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-html-form.html" class="lsm-card">
-                <span class="lsm-tag html">HTML</span>
-                <h3 data-lang="html_forms"></h3>
-                <p data-lang="html_forms_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-css-layout.html" class="lsm-card">
-                <span class="lsm-tag css">CSS</span>
-                <h3 data-lang="css_layout"></h3>
-                <p data-lang="css_layout_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-js-event.html" class="lsm-card">
-                <span class="lsm-tag javascript">JavaScript</span>
-                <h3 data-lang="js_events"></h3>
-                <p data-lang="js_events_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-html-media.html" class="lsm-card">
-                <span class="lsm-tag html">HTML</span>
-                <h3 data-lang="html_media"></h3>
-                <p data-lang="html_media_desc">
-                </p>
-            </a>
-
-            <a href="./lesson-css-animation.html" class="lsm-card">
-                <span class="lsm-tag css">CSS</span>
-                <h3 data-lang="css_animation"></h3>
-                <p data-lang="css_animation_desc">
-                </p>
-            </a>
+            <a href="./lesson-basics-html.html"  class="lsm-card"><span class="lsm-tag html">HTML</span><h3>พื้นฐาน HTML</h3><p>เรียนรู้พื้นฐานโครงสร้างและองค์ประกอบของ HTML</p></a>
+            <a href="./lesson-basics-css.html"   class="lsm-card"><span class="lsm-tag css">CSS</span><h3>พื้นฐาน CSS</h3><p>เชี่ยวชาญเทคนิคการตกแต่งและจัดวายด้วย CSS</p></a>
+            <a href="./"                         class="lsm-card"><span class="lsm-tag javascript">JavaScript</span><h3>พื้นฐาน JavaScript</h3><p>แนะนำการเขียนโปรแกรมด้วย JavaScript</p></a>
+            <a href="./lesson-html-form.html"    class="lsm-card"><span class="lsm-tag html">HTML</span><h3>ฟอร์ม HTML</h3><p>สร้างฟอร์มโต้ตอบด้วย HTML</p></a>
+            <a href="./lesson-css-layout.html"   class="lsm-card"><span class="lsm-tag css">CSS</span><h3>การจัดวาย CSS</h3><p>เทคนิคการจัดวาย CSS ขั้นสูง</p></a>
+            <a href="./lesson-js-event.html"     class="lsm-card"><span class="lsm-tag javascript">JavaScript</span><h3>เหตุการณ์ JavaScript</h3><p>จัดการการโต้ตอบของผู้ใช้ด้วยเหตุการณ์ JavaScript</p></a>
+            <a href="./lesson-html-media.html"   class="lsm-card"><span class="lsm-tag html">HTML</span><h3>สื่อ HTML</h3><p>ฝังรูปภาพ วิดีโอ และเสียงใน HTML</p></a>
+            <a href="./lesson-css-animation.html" class="lsm-card"><span class="lsm-tag css">CSS</span><h3>แอนิเมชัน CSS</h3><p>สร้างแอนิเมชันที่ราบรื่นด้วย CSS</p></a>
         </div>
     </div>
 
-    <!-- Challenge Section -->
+    <!-- ===== CHALLENGES ===== -->
     <div class="challange-section-container" id="challenges">
-        <div class="challange-header" data-lang="challenge_title"></div>
+        <div class="challange-header">ความท้าทาย</div>
         <div class="cc-container">
-            <!-- HTML Challenge -->
-            <a href="#" class="challange-card" lang="">
+            <a href="./maintenance.html" class="challange-card">
                 <div class="cc-image-container">
                     <img src="./asset/background-image/challange-background/Challange-bg-image-1.png" alt="HTML Challenge" class="cc-image">
                     <div class="cc-text-container">
-                        <div class="cc-text-top-container">
-                            <div class="challange-name-text" data-lang="html_challenge"></div>
-                            <div class="challange-text" data-lang="challenge"></div>
-                        </div>
-                        <div class="cc-text-bottom-container">
-                            <div class="challange-dff-text" data-lang="easy"></div>
-                        </div>
+                        <div class="cc-text-top-container"><div class="challange-name-text">HTML</div><div class="challange-text">ความท้าทาย</div></div>
+                        <div class="cc-text-bottom-container"><div class="challange-dff-text">ระดับง่าย</div></div>
                     </div>
                 </div>
             </a>
-
-            <!-- CSS Challenge -->
-            <a href="#" class="challange-card" lang="">
+            <a href="./maintenance.html" class="challange-card">
                 <div class="cc-image-container">
                     <img src="./asset/background-image/challange-background/Challange-bg-image-2.jpg" alt="CSS Challenge" class="cc-image">
                     <div class="cc-text-container">
-                        <div class="cc-text-top-container">
-                            <div class="challange-name-text">CSS</div>
-                            <div class="challange-text" data-lang="challenge"></div>
-                        </div>
-                        <div class="cc-text-bottom-container">
-                            <div class="challange-dff-text" data-lang="medium"></div>
-                        </div>
+                        <div class="cc-text-top-container"><div class="challange-name-text">CSS</div><div class="challange-text">ความท้าทาย</div></div>
+                        <div class="cc-text-bottom-container"><div class="challange-dff-text">ระดับปานกลาง</div></div>
                     </div>
                 </div>
             </a>
-
-            <!-- JS Challenge -->
-            <a href="#" class="challange-card" lang="">
+            <a href="./maintenance.html" class="challange-card">
                 <div class="cc-image-container">
                     <img src="./asset/background-image/challange-background/Challange-bg-image-3.jpg" alt="JS Challenge" class="cc-image">
                     <div class="cc-text-container">
-                        <div class="cc-text-top-container">
-                            <div class="challange-name-text">JS</div>
-                            <div class="challange-text" data-lang="challenge"></div>
-                        </div>
-                        <div class="cc-text-bottom-container">
-                            <div class="challange-dff-text" data-lang="hard"></div>
-                        </div>
+                        <div class="cc-text-top-container"><div class="challange-name-text">JS</div><div class="challange-text">ความท้าทาย</div></div>
+                        <div class="cc-text-bottom-container"><div class="challange-dff-text">ระดับยาก</div></div>
                     </div>
                 </div>
             </a>
-
-            <!-- All Challenge -->
-            <a href="#" class="challange-card" lang="">
+            <a href="./maintenance.html" class="challange-card">
                 <div class="cc-image-container">
                     <img src="./asset/background-image/challange-background/skull-meme.gif" alt="All Challenge" class="cc-image">
                     <div class="cc-text-container">
-                        <div class="cc-text-top-container">
-                            <div class="challange-name-text" data-lang="all"></div>
-                            <div class="challange-text" data-lang="challenge"></div>
-                        </div>
-                        <div class="cc-text-bottom-container">
-                            <div class="challange-dff-text" data-lang="very_hard"></div>
-                        </div>
+                        <div class="cc-text-top-container"><div class="challange-name-text">ทั้งหมด</div><div class="challange-text">ความท้าทาย</div></div>
+                        <div class="cc-text-bottom-container"><div class="challange-dff-text">ระดับยากมาก</div></div>
                     </div>
                 </div>
             </a>
         </div>
-
-        <a href="#" class="view-leaderboard-button" data-lang="view_leaderboard"></a>
+        <a href="./maintenance.html" class="view-leaderboard-button">ดูอันดับผู้เล่น</a>
     </div>
 
-    <!-- Open Source Section -->
+    <!-- ===== OPEN SOURCE ===== -->
     <div class="osa-container">
         <div class="osa-content">
-            <div class="osa-header-text" data-lang="open_source"></div>
-            <p class="osa-paragraph-text" data-lang="open_source_desc">
-            </p>
+            <div class="osa-header-text">โครงการโอเพนซอร์ส</div>
+            <p class="osa-paragraph-text">เว็บไซต์นี้ได้รับการพัฒนาเป็นโครงการโอเพนซอร์ส ทุกคนสามารถเข้าถึง แก้ไข และมีส่วนร่วมในการพัฒนาได้อย่างอิสระเพื่อสร้างชุมชนการเรียนรู้และแบ่งปันความรู้ในการพัฒนาเว็บร่วมกัน</p>
             <a target="_blank" href="https://github.com/ARTH4R/FrontBasics" class="osa-button-container">
                 <img src="./asset/icon-image/github-icon-black.png" alt="GitHub" class="osa-github-icon">
-                <span data-lang="github_repo"></span>
+                <span>GitHub Repository</span>
             </a>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer-container">
         <div class="footer-content">
             <div class="footer-grid">
-                <!-- Brand Column -->
                 <div class="footer-brand">
                     <a href="./index.html" class="footer-logo">FrontBasics</a>
-                    <p class="footer-description" data-lang="platform_description">
-                    </p>
+                    <p class="footer-description">แพลตฟอร์มเรียนรู้การพัฒนาเว็บไซต์สำหรับผู้เริ่มต้น เรียนรู้ HTML, CSS และ JavaScript อย่างง่ายและรวดเร็ว</p>
                 </div>
-
-                <!-- Quick Links -->
                 <div class="footer-column">
-                    <div class="footer-column-title" data-lang="quick_links"></div>
-                    <a href="./index.html" class="footer-link" data-lang="home"></a>
-                    <a href="./learn-page.html" class="footer-link" data-lang="all_lessons"></a>
-                    <a href="#" class="footer-link" data-lang="tests"></a>
-                    <a href="#" class="footer-link" data-lang="tools"></a>
+                    <div class="footer-column-title">ลิงก์ด่วน</div>
+                    <a href="./index.html"      class="footer-link">หน้าหลัก</a>
+                    <a href="./learn-page.html" class="footer-link">บทเรียนทั้งหมด</a>
+                    <a href="#"                 class="footer-link">แบบทดสอบ</a>
+                    <a href="./playground.html" class="footer-link">PG</a>
                 </div>
-
-                <!-- Resources -->
                 <div class="footer-column">
-                    <div class="footer-column-title" data-lang="resources"></div>
-                    <a href="#" class="footer-link" data-lang="documentation"></a>
-                    <a href="#" class="footer-link" data-lang="faq"></a>
-                    <a href="#" class="footer-link" data-lang="community"></a>
-                    <a href="#" class="footer-link" data-lang="support"></a>
+                    <div class="footer-column-title">ทรัพยากร</div>
+                    <a href="#" class="footer-link">เอกสารประกอบ</a>
+                    <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                    <a href="#" class="footer-link">ชุมชน</a>
+                    <a href="#" class="footer-link">สนับสนุน</a>
                 </div>
-
-                <!-- About -->
                 <div class="footer-column">
-                    <div class="footer-column-title" data-lang="about"></div>
-                    <a href="#" class="footer-link" data-lang="about"></a>
-                    <a href="#" class="footer-link" data-lang="contact"></a>
+                    <div class="footer-column-title">เกี่ยวกับ</div>
+                    <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                    <a href="#" class="footer-link">ติดต่อเรา</a>
                     <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="footer-link">GitHub</a>
-                    <a href="#" class="footer-link" data-lang="privacy_policy"></a>
+                    <a href="#" class="footer-link">นโยบายความเป็นส่วนตัว</a>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    © 2025 FrontBasics. Released under the MIT License. This project is open-source.
-                </div>
-
+                <div class="footer-copyright">© 2025 FrontBasics. Released under the MIT License. This project is open-source.</div>
                 <div class="footer-social">
                     <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="social-link" title="GitHub">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     </a>
                     <a href="https://www.youtube.com/watch?v=t7zahkRR_uQ" target="_blank" class="social-link" title="YouTube">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
                     <a href="#" class="social-link" title="Facebook">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Hero background script -->
+    <!-- ===== HERO SLIDESHOW SCRIPT ===== -->
     <script>
-        // Hero Background Slideshow
         let currentHeroSlide = 0;
-        const heroBgSlides = document.querySelectorAll('.hero-bg-slide');
-        const heroDots = document.querySelectorAll('.hero-dot');
+        const heroBgSlides  = document.querySelectorAll('.hero-bg-slide');
+        const heroDots      = document.querySelectorAll('.hero-dot');
         const totalHeroSlides = heroBgSlides.length;
 
         function showHeroSlide(index) {
             if (index >= totalHeroSlides) currentHeroSlide = 0;
-            if (index < 0) currentHeroSlide = totalHeroSlides - 1;
-            
-            const slidesContainer = document.getElementById('heroBgSlides');
-            slidesContainer.style.transform = `translateX(-${currentHeroSlide * 100}%)`;
-            
-            // Update dots
-            heroDots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentHeroSlide);
-            });
+            if (index < 0)              currentHeroSlide = totalHeroSlides - 1;
+            document.getElementById('heroBgSlides').style.transform = `translateX(-${currentHeroSlide * 100}%)`;
+            heroDots.forEach((dot, i) => dot.classList.toggle('active', i === currentHeroSlide));
         }
-
-        function nextHeroSlide() {
-            currentHeroSlide++;
-            if (currentHeroSlide >= totalHeroSlides) currentHeroSlide = 0;
-            showHeroSlide(currentHeroSlide);
-        }
-
-        function previousHeroSlide() {
-            currentHeroSlide--;
-            if (currentHeroSlide < 0) currentHeroSlide = totalHeroSlides - 1;
-            showHeroSlide(currentHeroSlide);
-        }
-
-        function goToHeroSlide(index) {
-            currentHeroSlide = index;
-            showHeroSlide(currentHeroSlide);
-        }
-
-        // Auto slide every 10 seconds
+        function nextHeroSlide()     { currentHeroSlide++; if (currentHeroSlide >= totalHeroSlides) currentHeroSlide = 0; showHeroSlide(currentHeroSlide); }
+        function previousHeroSlide() { currentHeroSlide--; if (currentHeroSlide < 0) currentHeroSlide = totalHeroSlides - 1; showHeroSlide(currentHeroSlide); }
+        function goToHeroSlide(i)    { currentHeroSlide = i; showHeroSlide(currentHeroSlide); }
         setInterval(nextHeroSlide, 10000);
     </script>
 
-    <!-- Load JavaScript modules -->
+    <!-- ===== LOAD JS MODULES ===== -->
     <script src="./js/main-utilities.js"></script>
-    <script src="./js/language.js"></script>
     <script src="./js/navSearchSystem.js"></script>
+    <script src="./js/mobile-nav-complete.js"></script>
 </body>
 </html>

@@ -526,11 +526,15 @@ body.dark-mode .intro-card-desc {
 }
 
 body.dark-mode .intro-help-section {
-    color: #e5e5e5;
+    color: #fff;
+}
+
+body.dark-mode .intro-help-text {
+    color: #fff;
 }
 
 body.dark-mode .intro-help-text svg {
-    stroke: #e5e5e5;
+    filter: invert(1);
 }
 
 body.dark-mode .intro-help-button {
@@ -667,7 +671,7 @@ body.dark-mode .se-button-paragraph-text {
 }
 
 body.dark-mode .se-icon-image {
-    filter: invert(1);
+    filter: invert(1) brightness(1.2);
 }
 
 body.dark-mode .test-section {

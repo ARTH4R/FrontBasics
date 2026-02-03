@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontBasics | Flexbox และ Grid Layout</title>
+    <link rel="stylesheet" href="./lesson-framework.css">
+    <link rel="stylesheet" href="./main-css-framework.css">
+
+    <link rel="icon" type="image/png" href="./asset/favicon/favicon.ico">    
+</head>
+<body>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/app.js"></script>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-container">
+        <div class="nav-content">
+
+            <div class="nav-logo-container">
+                <a href="./index.html" class="logo-text">FrontBasics</a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                    <button class="search-button">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="./index.html"       class="nav-link">หน้าหลัก</a>
+                <a href="./learn-page.html"  class="nav-link">บทเรียน</a>
+                <a href="./maintenance.html" class="nav-link">เกี่ยวกับเรา</a>
+                <a href="./maintenance.html" class="nav-link">ติดต่อเรา</a>
+            </div>
+
+            <!-- Language Selector (Desktop) -->
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <!-- Dark Mode Toggle (Desktop) -->
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <!-- CTA Buttons (Desktop) -->
+            <div class="nav-cta">
+                <a href="./playground.html"  class="nav-button nav-button-secondary">PG</a>
+                <a href="./learn-page.html"  class="nav-button nav-button-primary">เริ่มใช้งาน</a>
+            </div>
+
+            <!-- ===== HAMBURGER (Mobile only — shown via CSS at ≤1024 px) ===== -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="เปิดเมนู" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU OVERLAY (dark backdrop) ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- ===== MOBILE MENU DRAWER ===== -->
+    <aside class="mobile-menu" id="mobileMenu" role="dialog" aria-label="เมนูมอบิล">
+
+        <!-- Header: logo + close -->
+        <div class="mobile-menu-header">
+            <a href="./index.html" class="mobile-menu-logo">FrontBasics</a>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="ปิดเมนู">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="mobile-menu-search">
+            <div class="search-container">
+                <input type="text" class="search-input" id="mobileSearchInput" placeholder="ค้นหาบทเรียน..." autocomplete="off">
+                <button class="search-button">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.134 17 3 13.866 3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="search-suggestions" id="mobileSuggestions"></div>
+            </div>
+        </div>
+
+        <!-- Nav links -->
+        <nav class="mobile-menu-links" aria-label="เมนูหลัก">
+            <a href="./index.html"       class="mobile-menu-link">หน้าหลัก</a>
+            <a href="./learn-page.html"  class="mobile-menu-link">บทเรียน</a>
+            <a href="./playground.html"  class="mobile-menu-link">เครื่องมือ (PG)</a>
+            <a href="./maintenance.html" class="mobile-menu-link">เกี่ยวกับเรา</a>
+            <a href="./maintenance.html" class="mobile-menu-link">ติดต่อเรา</a>
+        </nav>
+
+        <div class="mobile-menu-divider"></div>
+
+        <!-- Controls: Language + Dark Mode -->
+        <div class="mobile-menu-controls">
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">ภาษา</span>
+                <select class="mobile-language-select" id="mobileLanguageSelect">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+
+            <div class="mobile-menu-control-row">
+                <span class="mobile-menu-control-label">โหมดมืด</span>
+                <button class="mobile-dark-toggle" id="mobileDarkToggle" aria-label="เปลี่ยนโหมดมืด">
+                    <svg class="mobile-sun-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2V4M12 20V22M4 12H2M6.31 6.31L4.9 4.9M17.69 6.31L19.1 4.9M6.31 17.69L4.9 19.1M17.69 17.69L19.1 19.1M22 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="mobile-moon-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mobile-menu-cta">
+            <a href="./learn-page.html" class="mobile-menu-btn-primary">เริ่มใช้งาน</a>
+        </div>
+    </aside>
+
+    <div class="path-container">
+        <div class="path-text-container">
+            <a href="./index.html" class="path-text1 pt">Home</a>
+            <span class="path-separator"> > </span>
+            <a href="./learn-page.html" class="path-text pt">บทเรียน</a>    
+            <span class="path-separator"> > </span>
+            <a href="./lesson-css-layout.html" class="path-text pt">Flexbox และ Grid Layout</a>
+        </div>
+    </div>
+
+<!-- lesson section -->
+    <div class="lesson-container">
+        <div class="slider-bar-container">
+            <div class="cta-button">แบบทดสอบก่อนเรียนรู้</div>
+            <div class="lct-container">
+                <div class="lct-header-text">สิ่งที่จะเรียนรู้</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#overview">Flexbox และ Grid คืออะไร?</a></div>
+                    <div class="lct-paragraph-text"><a href="#flexbox-basics">Flexbox พื้นฐาน</a></div>
+                    <div class="lct-paragraph-text"><a href="#flex-properties">Flex Properties</a></div>
+                    <div class="lct-paragraph-text"><a href="#grid-basics">Grid Layout พื้นฐาน</a></div>
+                </div>
+            </div>
+
+            <div class="lct-container">
+                <div class="lct-header-text">เทคนิคขั้นสูง</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#flex-advanced">Flexbox ขั้นสูง</a></div>
+                    <div class="lct-paragraph-text"><a href="#grid-advanced">Grid Template Areas</a></div>
+                    <div class="lct-paragraph-text"><a href="#responsive">Responsive Design</a></div>
+                    <div class="lct-paragraph-text"><a href="#comparison">เปรียบเทียบ Flex vs Grid</a></div>
+                </div>
+            </div>
+
+            <div class="lct-container">
+                <div class="lct-header-text">การใช้งานจริง</div>
+                <div class="lct-paragraph-container">
+                    <div class="lct-paragraph-text"><a href="#common-patterns">Layout Patterns</a></div>
+                    <div class="lct-paragraph-text"><a href="#real-examples">ตัวอย่างการใช้งาน</a></div>
+                    <div class="lct-paragraph-text"><a href="#tips">เคล็ดลับและข้อควรระวัง</a></div>
+                    <div class="lct-paragraph-text"><a href="#best-practices">Best Practices</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content-container">
+            <div id="overview" class="ml-header-container">
+                <div class="main-lesson-header">Flexbox และ Grid Layout</div>
+                <div class="main-lesson-paragraph">เรียนรู้การจัด Layout ด้วย Flexbox และ CSS Grid สองเครื่องมือที่ทรงพลังสำหรับการออกแบบเว็บไซต์สมัยใหม่</div>
+            </div>
+
+            <div class="mcc-paragraph">
+                <b>Flexbox</b> และ <b>CSS Grid</b> คือเครื่องมือสำคัญสำหรับการจัด Layout ในเว็บไซต์สมัยใหม่  
+                <b>Flexbox</b> เหมาะสำหรับ <b>การจัดเรียงแบบ 1 มิติ</b> (แนวนอนหรือแนวตั้ง)  
+                <b>CSS Grid</b> เหมาะสำหรับ <b>การจัดเรียงแบบ 2 มิติ</b> (ทั้งแนวนอนและแนวตั้งพร้อมกัน)  
+                การเข้าใจทั้งสองระบบทำให้เราสามารถ <b>สร้าง Layout ที่ซับซ้อนได้อย่างง่ายดาย</b> และ <b>Responsive</b>
+            </div>
+
+            <div id="flexbox-basics" class="mcc-paragraph">
+                <h2>Flexbox พื้นฐาน - Flexible Box Layout</h2>
+                <b>Flexbox</b> คือระบบ Layout แบบ 1 มิติ ที่ช่วยจัดเรียง items ในแนวนอนหรือแนวตั้ง  
+                <b>เริ่มต้นใช้งาน:</b> display: flex;  
+                <b>แนวคิด:</b> มี Container (parent) และ Items (children)
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>CSS Code</th>
+                            <th>คำอธิบาย</th>
+                            <th>ผลลัพธ์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>.container { display: flex; }</td>
+                            <td>เปิดใช้งาน Flexbox</td>
+                            <td>Items จะเรียงในแนวนอน</td>
+                        </tr>
+                        <tr>
+                            <td>flex-direction: row;</td>
+                            <td>ทิศทางแนวนอน (ค่าเริ่มต้น)</td>
+                            <td>← → (ซ้ายไปขวา)</td>
+                        </tr>
+                        <tr>
+                            <td>flex-direction: column;</td>
+                            <td>ทิศทางแนวตั้ง</td>
+                            <td>↑ ↓ (บนลงล่าง)</td>
+                        </tr>
+                        <tr>
+                            <td>flex-direction: row-reverse;</td>
+                            <td>แนวนอนกลับทิศ</td>
+                            <td>→ ← (ขวาไปซ้าย)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <b>ข้อดีของ Flexbox:</b>  
+                - จัดเรียง items ง่ายและรวดเร็ว  
+                - ควบคุมการกระจายพื้นที่ได้อย่างยืดหยุ่น  
+                - จัดตำแหน่งแนวนอนและแนวตั้งได้สะดวก  
+                - เหมาะสำหรับ Navigation, Cards, Buttons
+            </div>
+
+            <div id="flex-properties" class="mcc-paragraph">
+                <h2>Flex Container Properties</h2>
+                Properties สำหรับ Container (parent element)
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>ค่าที่ใช้ได้</th>
+                            <th>คำอธิบาย</th>
+                            <th>ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>justify-content</td>
+                            <td>flex-start, center, flex-end, space-between, space-around</td>
+                            <td>จัดตำแหน่งแนว Main Axis</td>
+                            <td>จัดให้อยู่ตรงกลาง</td>
+                        </tr>
+                        <tr>
+                            <td>align-items</td>
+                            <td>flex-start, center, flex-end, stretch, baseline</td>
+                            <td>จัดตำแหน่งแนว Cross Axis</td>
+                            <td>จัดให้อยู่บนหรือล่าง</td>
+                        </tr>
+                        <tr>
+                            <td>flex-wrap</td>
+                            <td>nowrap, wrap, wrap-reverse</td>
+                            <td>กำหนดว่าจะขึ้นบรรทัดใหม่หรือไม่</td>
+                            <td>wrap เมื่อพื้นที่ไม่พอ</td>
+                        </tr>
+                        <tr>
+                            <td>gap</td>
+                            <td>px, rem, %</td>
+                            <td>ระยะห่างระหว่าง items</td>
+                            <td>gap: 1rem;</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Flex Item Properties</h2>
+                Properties สำหรับ Items (child elements)
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>คำอธิบาย</th>
+                            <th>ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>flex-grow</td>
+                            <td>ขยายตัวเมื่อมีพื้นที่เหลือ</td>
+                            <td>flex-grow: 1; (ขยายเท่ากัน)</td>
+                        </tr>
+                        <tr>
+                            <td>flex-shrink</td>
+                            <td>หดตัวเมื่อพื้นที่ไม่พอ</td>
+                            <td>flex-shrink: 0; (ไม่หด)</td>
+                        </tr>
+                        <tr>
+                            <td>flex-basis</td>
+                            <td>ขนาดเริ่มต้น</td>
+                            <td>flex-basis: 200px;</td>
+                        </tr>
+                        <tr>
+                            <td>flex</td>
+                            <td>shorthand ของ grow shrink basis</td>
+                            <td>flex: 1 0 auto;</td>
+                        </tr>
+                        <tr>
+                            <td>align-self</td>
+                            <td>จัดตำแหน่งของ item นี้เอง</td>
+                            <td>align-self: center;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-lesson-image-container">
+                <img src="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" 
+                alt="lesson-image" class="main-lesson-image">
+
+                <a href="./asset/background-image/lesson/lesson-introduction/css-illustration.jpg" class="focus-image-container">
+                    <span class="main-lesson-image-description">flexbox-illustration.png</span>
+                    <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+                </a>
+            </div>
+
+            <div id="grid-basics" class="mcc-paragraph">
+                <h2>CSS Grid Layout พื้นฐาน</h2>
+                <b>CSS Grid</b> คือระบบ Layout แบบ 2 มิติ ที่สามารถจัดการทั้งแถวและคอลัมน์พร้อมกัน  
+                <b>เริ่มต้นใช้งาน:</b> display: grid;  
+                <b>แนวคิด:</b> แบ่งพื้นที่เป็นตาราง (grid) แล้ววาง items ลงไป
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>คำอธิบาย</th>
+                            <th>ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>grid-template-columns</td>
+                            <td>กำหนดจำนวนและขนาดคอลัมน์</td>
+                            <td>grid-template-columns: 200px 1fr 1fr;</td>
+                        </tr>
+                        <tr>
+                            <td>grid-template-rows</td>
+                            <td>กำหนดจำนวนและขนาดแถว</td>
+                            <td>grid-template-rows: 100px auto;</td>
+                        </tr>
+                        <tr>
+                            <td>gap / grid-gap</td>
+                            <td>ระยะห่างระหว่าง cells</td>
+                            <td>gap: 20px; (แถวและคอลัมน์)</td>
+                        </tr>
+                        <tr>
+                            <td>grid-column / grid-row</td>
+                            <td>กำหนดตำแหน่ง item</td>
+                            <td>grid-column: 1 / 3; (ครอบ 2 คอลัมน์)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <b>หน่วยพิเศษใน Grid:</b>  
+                - <b>fr (fraction)</b> - แบ่งพื้นที่ตามสัดส่วน  
+                - <b>auto</b> - ขนาดตามเนื้อหา  
+                - <b>repeat()</b> - ทำซ้ำ เช่น repeat(3, 1fr)  
+                - <b>minmax()</b> - กำหนดขนาดต่ำสุดและสูงสุด
+            </div>
+
+            <div id="flex-advanced" class="mcc-paragraph">
+                <h2>Flexbox ขั้นสูง - Alignment และ Distribution</h2>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Technique</th>
+                            <th>CSS Code</th>
+                            <th>การใช้งาน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Center ทุกอย่าง</td>
+                            <td>display: flex; justify-content: center; align-items: center;</td>
+                            <td>จัดกึ่งกลางทั้งแนวนอนและตั้ง</td>
+                        </tr>
+                        <tr>
+                            <td>Space Between</td>
+                            <td>justify-content: space-between;</td>
+                            <td>กระจาย items ห่างเท่าๆ กัน</td>
+                        </tr>
+                        <tr>
+                            <td>Flexible Cards</td>
+                            <td>flex: 1 1 300px; (grow shrink basis)</td>
+                            <td>Cards ขยายหดได้ ขนาดเริ่มต้น 300px</td>
+                        </tr>
+                        <tr>
+                            <td>Sticky Footer</td>
+                            <td>body: flex column; footer: margin-top: auto;</td>
+                            <td>Footer อยู่ล่างสุดเสมอ</td>
+                        </tr>
+                        <tr>
+                            <td>Equal Height Columns</td>
+                            <td>align-items: stretch; (default)</td>
+                            <td>คอลัมน์สูงเท่ากันอัตโนมัติ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="grid-advanced" class="mcc-paragraph">
+                <h2>Grid Template Areas - การวาง Layout แบบภาพ</h2>
+                <b>Template Areas</b> ช่วยให้เราวาง Layout ได้อย่างมองเห็นภาพชัดเจน
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>CSS Code</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                grid-template-areas:<br>
+                                "header header header"<br>
+                                "sidebar main main"<br>
+                                "footer footer footer";
+                            </td>
+                            <td>วาง Layout แบบ 3 คอลัมน์<br>Header ครอบทั้งหมด<br>Sidebar 1 คอลัมน์, Main 2 คอลัมน์<br>Footer ครอบทั้งหมด</td>
+                        </tr>
+                        <tr>
+                            <td>.header { grid-area: header; }</td>
+                            <td>กำหนดให้ element นี้อยู่ใน area ชื่อ header</td>
+                        </tr>
+                        <tr>
+                            <td>grid-template-columns: 200px 1fr 1fr;</td>
+                            <td>กำหนดขนาดคอลัมน์ที่สอดคล้องกับ areas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <b>Grid Auto Placement:</b>  
+                - <b>grid-auto-flow:</b> row (ค่าเริ่มต้น) หรือ column  
+                - <b>grid-auto-rows:</b> ขนาดแถวที่สร้างอัตโนมัติ  
+                - <b>grid-auto-columns:</b> ขนาดคอลัมน์ที่สร้างอัตโนมัติ
+            </div>
+
+            <div id="responsive" class="mcc-paragraph">
+                <h2>Responsive Design ด้วย Flexbox และ Grid</h2>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>เทคนิค</th>
+                            <th>Flexbox</th>
+                            <th>Grid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Auto Responsive Cards</td>
+                            <td>flex-wrap: wrap; flex: 1 1 300px;</td>
+                            <td>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</td>
+                        </tr>
+                        <tr>
+                            <td>เปลี่ยนทิศทางบนมือถือ</td>
+                            <td>@media: flex-direction: column;</td>
+                            <td>@media: grid-template-columns: 1fr;</td>
+                        </tr>
+                        <tr>
+                            <td>ซ่อน/แสดง Items</td>
+                            <td>order: -1; (เปลี่ยนลำดับ)</td>
+                            <td>grid-column: 1 / -1; (ครอบทุกคอลัมน์)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <b>auto-fit vs auto-fill:</b>  
+                - <b>auto-fit:</b> collapse empty tracks (เหมาะเมื่อต้องการให้ items ขยายเต็ม)  
+                - <b>auto-fill:</b> keep empty tracks (เหมาะเมื่อต้องการขนาดคงที่)
+            </div>
+
+            <div id="comparison" class="mcc-paragraph">
+                <h2>เปรียบเทียบ Flexbox vs Grid</h2>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>ลักษณะ</th>
+                            <th>Flexbox</th>
+                            <th>CSS Grid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>มิติ</td>
+                            <td>1 มิติ (แนวเดียว)</td>
+                            <td>2 มิติ (แนวนอนและตั้ง)</td>
+                        </tr>
+                        <tr>
+                            <td>เหมาะสำหรับ</td>
+                            <td>Navigation, Buttons, Small Components</td>
+                            <td>Page Layout, Complex Grids, Card Layouts</td>
+                        </tr>
+                        <tr>
+                            <td>ควบคุม Layout</td>
+                            <td>Items ควบคุมขนาดตัวเอง</td>
+                            <td>Container ควบคุมทุกอย่าง</td>
+                        </tr>
+                        <tr>
+                            <td>ความยืดหยุ่น</td>
+                            <td>ยืดหยุ่นสูง ปรับตามเนื้อหา</td>
+                            <td>โครงสร้างชัดเจน แม่นยำ</td>
+                        </tr>
+                        <tr>
+                            <td>Browser Support</td>
+                            <td>รองรับเก่ากว่า (2012)</td>
+                            <td>รองรับใหม่กว่า (2017)</td>
+                        </tr>
+                        <tr>
+                            <td>ใช้ร่วมกันได้หรือไม่</td>
+                            <td colspan="2">ใช้ร่วมกันได้! Grid สำหรับ Layout หลัก, Flex สำหรับ Components</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="common-patterns" class="mcc-paragraph">
+                <h2>Layout Patterns ที่ใช้บ่อย</h2>
+                
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>วิธีทำ (Flexbox)</th>
+                            <th>วิธีทำ (Grid)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Holy Grail Layout</td>
+                            <td>Flex column + Flex row nested</td>
+                            <td>grid-template-areas ง่ายกว่า</td>
+                        </tr>
+                        <tr>
+                            <td>Card Grid</td>
+                            <td>flex-wrap: wrap;</td>
+                            <td>repeat(auto-fit, minmax());</td>
+                        </tr>
+                        <tr>
+                            <td>Centered Box</td>
+                            <td>justify-content + align-items</td>
+                            <td>place-items: center;</td>
+                        </tr>
+                        <tr>
+                            <td>Sidebar Layout</td>
+                            <td>Sidebar fixed width, Main flex: 1</td>
+                            <td>grid-template-columns: 250px 1fr;</td>
+                        </tr>
+                        <tr>
+                            <td>12-Column Grid</td>
+                            <td>ซับซ้อน ใช้ % หรือ calc()</td>
+                            <td>repeat(12, 1fr); ง่ายมาก</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="real-examples" class="mcc-paragraph">
+                <h2>ตัวอย่างการใช้งานจริง</h2>
+                
+                <b>1. Navigation Bar (Flexbox)</b>  
+                <code>
+                .nav {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;justify-content: space-between;<br>
+                &nbsp;&nbsp;align-items: center;<br>
+                &nbsp;&nbsp;padding: 1rem 2rem;<br>
+                }
+                </code>
+
+                <b>2. Card Grid (CSS Grid)</b>  
+                <code>
+                .card-container {<br>
+                &nbsp;&nbsp;display: grid;<br>
+                &nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));<br>
+                &nbsp;&nbsp;gap: 2rem;<br>
+                }
+                </code>
+
+                <b>3. Dashboard Layout (Grid + Flex)</b>  
+                <code>
+                .dashboard {<br>
+                &nbsp;&nbsp;display: grid;<br>
+                &nbsp;&nbsp;grid-template-areas:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"sidebar header header"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"sidebar main main";<br>
+                &nbsp;&nbsp;grid-template-columns: 250px 1fr 1fr;<br>
+                }<br>
+                .widget {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;flex-direction: column;<br>
+                }
+                </code>
+
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>Use Case</th>
+                            <th>แนะนำใช้</th>
+                            <th>เหตุผล</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Navigation Menu</td>
+                            <td>Flexbox</td>
+                            <td>เรียงในแนวเดียว ยืดหยุ่น</td>
+                        </tr>
+                        <tr>
+                            <td>Photo Gallery</td>
+                            <td>Grid</td>
+                            <td>จัดเป็นตาราง ควบคุมง่าย</td>
+                        </tr>
+                        <tr>
+                            <td>Form Layout</td>
+                            <td>Grid</td>
+                            <td>จัด label และ input เป็นคอลัมน์</td>
+                        </tr>
+                        <tr>
+                            <td>Button Group</td>
+                            <td>Flexbox</td>
+                            <td>จัดเรียงปุ่มติดกัน</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Layout</td>
+                            <td>Grid (main) + Flex (cards)</td>
+                            <td>ใช้ร่วมกัน</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="main-lesson-image-container">
+                <img src="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" 
+                alt="lesson-image" class="main-lesson-image">
+
+                <a href="./asset/background-image/lesson/lesson-introduction/vscode-image.jpg" class="focus-image-container">
+                    <span class="main-lesson-image-description">grid-layout-example.png</span>
+                    <img src="./asset/icon-image/lesson-ui-icon/focus-icon.png" alt="focus-icon" class="focus-icon">
+                </a>
+            </div>
+
+            <div id="tips" class="mcc-paragraph">
+                <h2>เคล็ดลับและข้อควรระวัง</h2>
+                
+                <b>Flexbox Tips:</b>  
+                - ใช้ <b>gap</b> แทน margin ระหว่าง items (ทันสมัยกว่า)  
+                - <b>flex: 1</b> คือ shorthand ของ flex: 1 1 0  
+                - <b>min-width: 0</b> ป้องกัน items ล้นออกมา  
+                - ระวัง <b>flex-shrink</b> อาจทำให้รูปบิดเบี้ยว (ใช้ 0 ถ้าไม่ต้องการให้หด)
+
+                <b>Grid Tips:</b>  
+                - ใช้ <b>fr</b> แทน % เพื่อคำนวณง่าย  
+                - <b>minmax(300px, 1fr)</b> สร้าง responsive grid อัตโนมัติ  
+                - ใช้ <b>grid-auto-flow: dense</b> เติมช่องว่างอัตโนมัติ  
+                - ระวัง <b>implicit grid</b> (แถว/คอลัมน์ที่สร้างเอง) อาจมีขนาดไม่ตรงต้องการ
+
+                <b>ข้อควรระวังทั่วไป:</b>  
+                - ไม่ควรใช้ float กับ Flexbox/Grid (จะไม่ทำงาน)  
+                - Margin auto ใน Flexbox ใช้จัด alignment ได้  
+                - Grid item ที่มี position: absolute จะออกจาก grid flow
+            </div>
+
+            <div id="best-practices" class="mcc-paragraph">
+                <h2>Best Practices</h2>
+                
+                <b>แนวทางปฏิบัติที่ดี:</b>  
+                - <b>Mobile First:</b> เริ่มจาก 1 คอลัมน์ แล้วค่อยขยาย  
+                - <b>ใช้ร่วมกัน:</b> Grid สำหรับ page layout, Flex สำหรับ components  
+                - <b>Semantic HTML:</b> ใช้ tags ที่เหมาะสม ไม่ใช้ div ทั้งหมด  
+                - <b>Comment:</b> อธิบาย layout ที่ซับซ้อน  
+                - <b>Test:</b> ทดสอบบน browsers และขนาดหน้าจอต่างๆ
+
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>❌ ไม่ควรทำ</th>
+                            <th>✅ ควรทำ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ใช้ Flexbox สำหรับทั้ง page layout</td>
+                            <td>ใช้ Grid สำหรับ page layout</td>
+                        </tr>
+                        <tr>
+                            <td>ใช้ fixed width ทุก element</td>
+                            <td>ใช้ fr, %, auto ให้เหมาะสม</td>
+                        </tr>
+                        <tr>
+                            <td>ซ้อน container หลายชั้นโดยไม่จำเป็น</td>
+                            <td>ใช้ Grid nested เมื่อจำเป็น</td>
+                        </tr>
+                        <tr>
+                            <td>ใช้ !important บังคับ layout</td>
+                            <td>เข้าใจ specificity และแก้ที่ต้นเหตุ</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <b>Performance:</b>  
+                - Flexbox และ Grid มี <b>performance ดีมาก</b> ไม่ต้องกังวล  
+                - หลีกเลี่ยง <b>deep nesting</b> (ซ้อนหลายชั้นเกินไป)  
+                - ใช้ <b>CSS variables</b> สำหรับค่าที่ซ้ำ (เช่น gap, padding)
+            </div>
+
+            <div class="after-lesson-quiz-container">
+                <a href="quiz-flexbox-grid" class="after-lesson-quiz-button"> < - แบบทดสอบหลังบทเรียน - ></a>
+            </div>
+            <div class="next-lesson-button-container">
+                <a href="./lesson-responsive.html" class="next-lesson-button">ไปยังบทเรียนถัดไป : Responsive Design ></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="./index.html" class="footer-logo">FrontBasics</a>
+                    <p class="footer-description">
+                        แพลตฟอร์มเรียนรู้การพัฒนาเว็บไซต์สำหรับผู้เริ่มต้น เรียนรู้ HTML, CSS และ JavaScript อย่างง่ายและรวดเร็ว
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Quick Links</div>
+                    <a href="./index.html" class="footer-link">หน้าหลัก</a>
+                    <a href="./learn-page.html" class="footer-link">บทเรียนทั้งหมด</a>
+                    <a href="#" class="footer-link">แบบทดสอบ</a>
+                    <a href="#" class="footer-link">เครื่องมือ</a>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-column">
+                    <div class="footer-column-title">Resources</div>
+                    <a href="#" class="footer-link">เอกสารประกอบ</a>
+                    <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                    <a href="#" class="footer-link">ชุมชน</a>
+                    <a href="#" class="footer-link">สนับสนุน</a>
+                </div>
+
+                <!-- About -->
+                <div class="footer-column">
+                    <div class="footer-column-title">About</div>
+                    <a href="#" class="footer-link">เกี่ยวกับเรา</a>
+                    <a href="#" class="footer-link">ติดต่อเรา</a>
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 FrontBasics. Released under the MIT License. This project is open-source.
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://github.com/ARTH4R/FrontBasics" target="_blank" class="social-link" title="GitHub">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=t7zahkRR_uQ" target="_blank" class="social-link" title="YouTube">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile drop-down toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!menu || !toggle) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (menu.classList.contains('active') &&
+                    !menu.contains(e.target) &&
+                    !toggle.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    menu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Notification System
+        function notify(message, type = 'default', duration = 2500) {
+            let container = document.getElementById('notificationContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notificationContainer';
+                container.className = 'notification-container';
+                document.body.appendChild(container);
+            }
+
+            const notification = document.createElement('div');
+            notification.className = 'notification' + (type !== 'default' ? ' type-' + type : '');
+
+            const icons = {
+                success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+                error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+                warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>',
+                info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+                default: ''
+            };
+
+            notification.innerHTML = `
+                ${icons[type] ? `<div class="notification-icon">${icons[type]}</div>` : ''}
+                <div class="notification-message">${message}</div>
+            `;
+
+            container.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 10);
+
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.classList.add('hide');
+                    setTimeout(() => notification.remove(), 300);
+                }, duration);
+            }
+
+            return notification;
+        }
+
+        // Dark Mode
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                notify('เปิดใช้งานโหมดมืดแล้ว', 'success');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                notify('เปลี่ยนกลับเป็นโหมดสว่างแล้ว', 'info');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('is-scrolled');
+            } else {
+                nav.classList.remove('is-scrolled');
+            }
+        });
+    </script>
+
+    <script src="./js/navSearchSystem.js"></script>
+    <script src="./js/language.js"></script>
+    <script src="./js/mobile-nav-complete.js"></script>
+</body>
+</html>

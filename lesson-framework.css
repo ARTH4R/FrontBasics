@@ -55,6 +55,32 @@
     box-sizing: border-box;
 }
 
+/* Mobile Sidebar Toggle */
+.mobile-sidebar-toggle {
+    display: none;
+    background: #0078d4;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-sidebar-toggle:hover {
+    background: #005a9e;
+    transform: translateY(-1px);
+}
+
+.mobile-sidebar-toggle.active {
+    background: #0078d4;
+}
+
 /* ================================
    SIDEBAR
 ================================ */
@@ -67,6 +93,31 @@
     border-radius: 14px;
     padding: 1.5rem;
     box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+/* Mobile Sidebar Toggle */
+.mobile-sidebar-toggle {
+    display: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #0a0a0a, #262626);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: all 0.25s ease;
+}
+
+.mobile-sidebar-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.mobile-sidebar-toggle.active {
+    background: linear-gradient(135deg, #0078d4, #005a9e);
 }
 
 .cta-button {
@@ -330,6 +381,61 @@ MEDIA
     .main-content-container {
         width: 100%;
     }
+    .slider-bar-container {
+        display: none; /* Hide sidebar by default on mobile */
+        position: static; /* Remove sticky positioning on mobile */
+        margin-bottom: 2rem;
+    }
+    .slider-bar-container.active {
+        display: block; /* Show when active */
+    }
+}
+
+/* Mobile Sidebar Toggle */
+.mobile-sidebar-toggle {
+    display: none;
+    background: #0a0a0a;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-sidebar-toggle:hover {
+    background: #262626;
+    transform: translateY(-1px);
+}
+
+.mobile-sidebar-toggle.active {
+    background: #0078d4;
+}
+
+@media (max-width: 900px) {
+    .mobile-sidebar-toggle {
+        display: block;
+    }
+}
+
+/* Dark mode for mobile sidebar toggle */
+body.dark-mode .mobile-sidebar-toggle {
+    background: #171717;
+    color: #e5e5e5;
+    border: 1px solid #262626;
+}
+
+body.dark-mode .mobile-sidebar-toggle:hover {
+    background: #262626;
+}
+
+body.dark-mode .mobile-sidebar-toggle.active {
+    background: #0078d4;
 }
 
 @media (max-width: 768px) {
@@ -380,7 +486,7 @@ body.dark-mode .cta-button:hover {
 }
 
 body.dark-mode .lct-header-text {
-    color: #e5e5e5;
+    color: #fff;
 }
 
 body.dark-mode .lct-paragraph-text {
@@ -467,4 +573,8 @@ body.dark-mode .after-lesson-quiz-button:hover {
 
 body.dark-mode .next-lesson-button {
     background: linear-gradient(135deg, #0a0a0a, #262626);
+}
+
+body.dark-mode .focus-icon {
+    filter: invert(1);
 }
